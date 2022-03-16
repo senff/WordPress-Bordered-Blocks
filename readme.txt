@@ -22,8 +22,7 @@ This version is very, very alpha and still needs a lot of work.
 = Features =
 
 * Adds borders to your blocks with a label.
-* PLANNED: option to customize the borders (sizes/colors)
-* PLANNED: option to toggle the borders on/off
+
 
 
 == Installation ==
