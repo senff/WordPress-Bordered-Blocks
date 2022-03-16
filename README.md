@@ -1,6 +1,6 @@
 # Gutenborders
 * Contributors: senff
-* Donate link: http://www.senff.com/donate
+* Donate link: https://paypal.senff.com
 * Tags: gutenberg, borders, editor, blocks
 * Plugin URI: http://www.senff.com
 * Requires at least: 5.9
