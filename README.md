@@ -47,11 +47,6 @@ Q: What did the drummer call his twin daughters?
 A: Anna One, Anna Two.
 
 
-## Screenshots
-
-1. Borders around your blocks!
-
-
 ## Changelog
 
 ### 0.1 
