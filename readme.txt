@@ -1,5 +1,3 @@
-Test 123
-
 === Gutenborders ===
 Contributors: senff
 Tags: gutenberg, borders, editor, blocks
