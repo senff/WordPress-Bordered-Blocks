@@ -1,5 +1,6 @@
 jQuery(function($) {
 
+
     let blocksOnPage = new Array();
     $('body').append('<style type="text/css" id="gutenBorders-css"></style>');
 
@@ -16,9 +17,23 @@ jQuery(function($) {
             }
         });
 
+        // Standard Image Block with alignment
         $('.editor-styles-wrapper figure').each(function(figure) {
-            $(this).parent().addClass('has-image');
+            if ($(this).parent().hasClass('wp-block')) {
+                $(this).parent().addClass('has-image');
+            }
         });
+        
+        // Gallery Block with alignment
+        $('.editor-styles-wrapper figure.wp-block-gallery').each(function(galleryfigure) {
+            $(this).addClass('meh');
+            $(this).parent().removeClass('has-image').addClass('contains-blocks gallery-block');
+        });     
+
+        $('.editor-styles-wrapper .wp-block-media-text').each(function(mediaText) {
+            $(this).parent().addClass('contains-blocks has-media-text');
+        });
+
         // Generate CSS that applies to all blocks
         // This CSS code also includes blocks that were on the page before.
         let cssCode = '';
@@ -26,10 +41,13 @@ jQuery(function($) {
             cssCode += '.editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
         });  
 
-        $('#gutenBorders-css').html(cssCode);
-        
+        $('#gutenBorders-css').html(cssCode);        
           
     }
+
+
+
+    }, 1000);
 
     var checkBlockTypes = setInterval(function() {
         checkBlocks();
