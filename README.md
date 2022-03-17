@@ -1,11 +1,11 @@
 # Gutenborders
-* Contributors: senff
+* Contributors: senff, correliebre
 * Donate link: https://paypal.senff.com
 * Tags: gutenberg, borders, editor, blocks
 * Plugin URI: http://www.senff.com
 * Requires at least: 5.9
 * Tested up to: 5.9
-* Stable tag: 0.2
+* Stable tag: 0.5
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,11 +47,24 @@ A: Anna One, Anna Two.
 
 ## Changelog
 
+### 0.5 
+* Beta release 
+* Global settings screen added
+
+### 0.2 
+* Toggle button added
+
 ### 0.1 
 * Initial alpha release 
 
 
 ## Upgrade Notice 
+
+### 0.5 
+* Beta release 
+
+### 0.2 
+* Update 
 
 ### 0.1 
 * Initial alpha release 
