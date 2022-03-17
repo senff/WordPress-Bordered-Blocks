@@ -45,10 +45,6 @@ jQuery(function($) {
           
     }
 
-
-
-    }, 1000);
-
     var checkBlockTypes = setInterval(function() {
         checkBlocks();
     }, 1000);
