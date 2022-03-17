@@ -1,8 +1,22 @@
 jQuery(function($) {
 
+    $('body').addClass('gutenborders');
 
     let blocksOnPage = new Array();
     $('body').append('<style type="text/css" id="gutenBorders-css"></style>');
+
+    function addToggle() {
+        $('.edit-post-header-toolbar__left').append('<span class="gutenborders-toggle components-form-toggle is-checked"><input class="components-form-toggle__input" id="gutenborders-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" checked><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="gutenblocks-toggle">Show borders/labels</label></span>').addClass('hasToggle');
+    }
+
+    $('body').on('click','.gutenborders-toggle',function(){
+       $(this).toggleClass('is-checked');
+       $('body').toggleClass('gutenborders');
+    });  
+
+
+
+
 
     // This function SHOULD run every time a new block is added, or when an existing block is changed.
     // Right now, it will just run every second, and will output an array with all the block types on the page.
@@ -38,12 +52,20 @@ jQuery(function($) {
         // This CSS code also includes blocks that were on the page before.
         let cssCode = '';
         blocksOnPage.forEach(function(blockType) {
-            cssCode += '.editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
         });  
 
         $('#gutenBorders-css').html(cssCode);        
-          
     }
+
+    var addToggleButton = setInterval(function() {
+        if(!$('.edit-post-header-toolbar__left').hasClass('hasToggle')) {
+            addToggle();
+        } else {
+        // End this silly loop
+            clearInterval(addToggleButton);
+        }
+    }, 1000);
 
     var checkBlockTypes = setInterval(function() {
         checkBlocks();

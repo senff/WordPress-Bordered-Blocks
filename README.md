@@ -5,7 +5,7 @@
 * Plugin URI: http://www.senff.com
 * Requires at least: 5.9
 * Tested up to: 5.9
-* Stable tag: 0.1
+* Stable tag: 0.2
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,8 +24,6 @@ This version is very, very alpha and still needs a lot of work.
 ### Features
 
 * Adds borders to your blocks with a label.
-* **PLANNED:** option to customize the borders (sizes/colors)
-* **PLANNED:** option to toggle the borders on/off
 
 
 ## Installation 

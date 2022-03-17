@@ -31,10 +31,11 @@ if (!function_exists('gutenborders_styles')) {
 }
 
 
+
 /**
  * === HOOKS AND ACTIONS AND FILTERS AND SUCH ==========================================================
  */
 
 $plugin = plugin_basename(__FILE__); 
 
-add_action('admin_enqueue_scripts', 'gutenborders_styles' );
+add_action( 'enqueue_block_editor_assets', 'gutenborders_styles' );
