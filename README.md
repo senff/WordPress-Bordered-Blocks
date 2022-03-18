@@ -1,11 +1,11 @@
 # Gutenborders
-* Contributors: senff
+* Contributors: senff, correliebre
 * Donate link: https://paypal.senff.com
 * Tags: gutenberg, borders, editor, blocks
 * Plugin URI: http://www.senff.com
 * Requires at least: 5.9
 * Tested up to: 5.9
-* Stable tag: 0.2
+* Stable tag: 0.5
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,15 +16,16 @@ The Gutenborders plugin will add borders to all your blocks in the editor.
 
 ### Summary
 
-The Gutenborders plugin will add borders to every block in the editor, to give you a clear overview of all your blocks.
+Gutenborders adds (customizable) borders and labels to all Blocks in the Post/Page editor, to give you a clearer overview of the structure of your content.
 
-This version is very, very alpha and still needs a lot of work.
+A toggle switch at the top of the page will allow you to quickly switch between the default editor view and the bordered view.
 
 
 ### Features
 
-* Adds borders to your blocks with a label.
-
+* Adds borders and labels to your Blocks in the WordPress editor.
+* Border styles and labels are customizable.
+* Quickly switch between default view (showing the blocks without borders) and custom view (blocks with borders).
 
 ## Installation 
 
@@ -47,11 +48,24 @@ A: Anna One, Anna Two.
 
 ## Changelog
 
+### 0.5 
+* Beta release 
+* Global settings screen added
+
+### 0.2 
+* Toggle button added
+
 ### 0.1 
 * Initial alpha release 
 
 
 ## Upgrade Notice 
+
+### 0.5 
+* Beta release 
+
+### 0.2 
+* Update 
 
 ### 0.1 
 * Initial alpha release 

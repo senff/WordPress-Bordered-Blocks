@@ -1,15 +1,50 @@
 jQuery(function($) {
 
-    $('body').addClass('gutenborders');
+    $('body').append('<style type="text/css" id="gutenBorders-css-dynamic"></style><style type="text/css" id="gutenBorders-css-variable"></style>');
 
     let blocksOnPage = new Array();
-    $('body').append('<style type="text/css" id="gutenBorders-css"></style>');
+    
+    // Variables from database
+    let bordershow = gutenborders_loader.bordershow;
+    let bordercolor = gutenborders_loader.bordercolor;
+    let borderstyle = gutenborders_loader.borderstyle;
+    let borderwidth = gutenborders_loader.borderwidth;
+    let paddingtop = gutenborders_loader.paddingtop;
+    let paddingright = gutenborders_loader.paddingright;
+    let paddingbottom = gutenborders_loader.paddingbottom;
+    let paddingleft = gutenborders_loader.paddingleft;
+    let labelcolor = gutenborders_loader.labelcolor;
+    let labelbackground = gutenborders_loader.labelbackground;
+    let labelopacity = gutenborders_loader.labelopacity;
+    let labelsize = gutenborders_loader.labelsize;      
 
-    function addToggle() {
-        $('.edit-post-header-toolbar__left').append('<span class="gutenborders-toggle components-form-toggle is-checked"><input class="components-form-toggle__input" id="gutenborders-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" checked><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="gutenblocks-toggle">Show borders/labels</label></span>').addClass('hasToggle');
+    // Apply CSS styles for borders
+    let cssVar = '.gutenborders .editor-styles-wrapper .wp-block {';
+    cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+';';
+    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important;}';
+    // Apply CSS styles for labels
+    if (labelsize < 1) {
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
+    } else {
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {';
+        cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
+        cssVar += '}';
+    }
+    $('#gutenBorders-css-variable').html(cssVar);        
+
+
+    // Whether the toggle button (and the borders) should be ON of OFF by default
+    let checkedornot;
+    if (bordershow) {
+        $('body').addClass('gutenborders');
+        checkedornot = 'checked';
     }
 
-    $('body').on('click','.gutenborders-toggle',function(){
+    function addToggle() {
+        $('.edit-post-header-toolbar__left').append('<div class="gutenborders-header"><span class="gutenborders-toggle components-form-toggle is-'+checkedornot+'"><input class="components-form-toggle__input" id="gutenborders-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" '+checkedornot+'><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="gutenblocks-toggle">Show borders/labels</label></span></div>').addClass('hasToggle');
+    }
+
+    $('#editor').on('click','.gutenborders-toggle',function(){
        $(this).toggleClass('is-checked');
        $('body').toggleClass('gutenborders');
     });  
@@ -26,7 +61,7 @@ jQuery(function($) {
         // array and write it from scratch again)
         $('.editor-styles-wrapper .wp-block').each(function(block) {
             blockType = $(this).attr('data-title');
-            if (!blocksOnPage.includes(blockType)) {
+            if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
                 blocksOnPage.push(blockType);
             }
         });
@@ -55,7 +90,7 @@ jQuery(function($) {
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
         });  
 
-        $('#gutenBorders-css').html(cssCode);        
+        $('#gutenBorders-css-dynamic').html(cssCode);        
     }
 
     var addToggleButton = setInterval(function() {
