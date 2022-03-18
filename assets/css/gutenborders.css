@@ -54,14 +54,8 @@
 }
 
 
-/*
-.gutenborders .editor-styles-wrapper .wp-block .wp-block .wp-block {
-    border: solid 1px red;
-}
-*/
 
-
-
+/* These are some exceptional cases that we need to hard-code for now */
 
 
 .gutenborders .editor-styles-wrapper h1:before {content:"H1 Title";}

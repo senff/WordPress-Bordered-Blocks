@@ -1,7 +1,7 @@
 jQuery(function($) {
 
     $('body').append('<style type="text/css" id="gutenBorders-css-dynamic"></style><style type="text/css" id="gutenBorders-css-variable"></style>');
-    
+
     let blocksOnPage = new Array();
     
     // Variables from database
@@ -23,15 +23,19 @@ jQuery(function($) {
     cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+';';
     cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important;}';
     // Apply CSS styles for labels
-    cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {';
-    cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+labelopacity+';';
-    cssVar += '}';
+    if (labelsize < 1) {
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
+    } else {
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {';
+        cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:0.'+labelopacity+';';
+        cssVar += '}';
+    }
     $('#gutenBorders-css-variable').html(cssVar);        
 
 
     // Whether the toggle button (and the borders) should be ON of OFF by default
     let checkedornot;
-    if (bordershow == 'on') {
+    if (bordershow) {
         $('body').addClass('gutenborders');
         checkedornot = 'checked';
     }
