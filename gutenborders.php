@@ -35,7 +35,7 @@ defined('ABSPATH') or die('INSERT COIN');
 				$new_options['gb_labelcolor'] = '#ffffff';
 				$new_options['gb_labelbackground'] = '#000000';
 				$new_options['gb_labelopacity'] = '3';
-				$new_options['gb_labelsize'] = '18';						
+				$new_options['gb_labelsize'] = '11';						
 				add_option('gutenborders_options',$new_options);
 			} 
 		}
@@ -178,10 +178,10 @@ if (!function_exists('gutenborders_config_page')) {
 							</tr>
 
 							<tr>
-								<td>
+								<td class="no-padding">
 
 									<table class="border-table">
-										<tr><th colspan="2" class="table-title"><h2><?php _e('Borders','Gutenborders'); ?></h2></th></tr>
+										<tr><th colspan="2" class="table-title"><input type="button" value="<?php _e('Reset to defaults','Gutenborders'); ?>" class="button-reset-border button-reset button-secondary"/><h2><?php _e('Borders','Gutenborders'); ?></h2></th></tr>
 										<tr>
 											<th scope="row"><?php _e('Border Style:','Gutenborders'); ?> <a href="#" title="<?php _e('Choose what type of line should be used for the borders.','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="borderstyle">
@@ -208,23 +208,37 @@ if (!function_exists('gutenborders_config_page')) {
 
 								</td>
 								<td rowspan="3" class="preview-cell">
-									
+
+									<div class="preview-intro">
+										<h2>Preview</h2>
+
+										To update the preview before you submit the settings, select the button below: <br><br><input type="button" value="<?php _e('APPLY CHANGES TO PREVIEW','Gutenborders'); ?>" class="button-preview button-secondary"/>
+									</div>
+
 									<div class="prev-block columns" data-type="COLUMNS">
 										
 										<div class="prev-block column" data-type="COLUMN">
 
-											<p class="prev-paragraph" data-type="PARAGRAPH"> 
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											<p class="prev-block" data-type="PARAGRAPH"> 
+												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 											</p>
-											
+
 										</div>
-										<div class="prev-block column">
-											<div class="prev-label">COLUMN</div>
-										</div>
-										<div class="prev-block column">
-											<div class="prev-label">COLUMN</div>
+			
+										<div class="prev-block column" data-type="COLUMN">
+											sdfhgfdhdgfjfhj
 										</div>
 									</div>
+
+									<style type="text/css">
+										.preview-cell div, .preview-cell p{
+											border: <?php echo ($gutenborders_options['gb_borderstyle']).' '.($gutenborders_options['gb_borderwidth']).'px '.($gutenborders_options['gb_bordercolor']) ?>;
+											padding: <?php echo ($gutenborders_options['gb_paddingtop']).'px '.($gutenborders_options['gb_paddingright']).'px '.($gutenborders_options['gb_paddingbottom']).'px '.($gutenborders_options['gb_paddingleft']).'px ;' ?>;
+											margin-top: 25px;
+											font-size: 15px;
+										}
+									</style>
+
 								</td>
 							</tr>
 
@@ -232,23 +246,23 @@ if (!function_exists('gutenborders_config_page')) {
 								<td>
 
 									<table class="padding-table">
-										<tr><th colspan="3" class="table-title"><h2><?php _e('Spacing','Gutenborders'); ?></h2></th></tr>
+										<tr><th colspan="3" class="table-title"><input type="button" value="<?php _e('Reset to defaults','Gutenborders'); ?>" class="button-reset-padding button-reset button-secondary"/><h2><?php _e('Spacing','Gutenborders'); ?></h2></th></tr>
 										<tr>
 											<td> </td>
-											<td><input type="number" min="1" max="50" name="gb_paddingtop" value="<?php echo $gutenborders_options['gb_paddingtop'] ?>" /> px
+											<td><input type="number" min="1" max="50" name="gb_paddingtop" value="<?php echo $gutenborders_options['gb_paddingtop'] ?>" />
 											</td>
 											<td> </td>			
 										</tr>
 										<tr>
-											<td><input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo $gutenborders_options['gb_paddingleft'] ?>" /> px
+											<td><input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo $gutenborders_options['gb_paddingleft'] ?>" /> 
 											</td>
-											<td> </td>
-											<td><input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo $gutenborders_options['gb_paddingright'] ?>" /> px
+											<td style="border: <?php echo $gutenborders_options['gb_borderstyle'] ?> <?php echo $gutenborders_options['gb_borderwidth'] ?>px <?php echo $gutenborders_options['gb_bordercolor'] ?>"> </td>
+											<td><input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo $gutenborders_options['gb_paddingright'] ?>" /> 
 											</td>			
 										</tr>
 										<tr>
 											<td> </td>
-											<td><input type="number" min="1" max="50" name="gb_paddingbottom" value="<?php echo $gutenborders_options['gb_paddingbottom'] ?>" /> px
+											<td><input type="number" min="1" max="50" name="gb_paddingbottom" value="<?php echo $gutenborders_options['gb_paddingbottom'] ?>" /> 
 											</td>
 											<td> </td>			
 										</tr>																				
@@ -258,10 +272,10 @@ if (!function_exists('gutenborders_config_page')) {
 							</tr>
 
 							<tr>
-								<td>
+								<td class="no-padding">
 
 									<table class="label-table">
-										<tr><th colspan="2" class="table-title"><h2><?php _e('Labels','Gutenborders'); ?></h2></th></tr>
+										<tr><th colspan="2" class="table-title"><input type="button" value="<?php _e('Reset to defaults','Gutenborders'); ?>" class="button-reset-label button-reset button-secondary"/><h2><?php _e('Labels','Gutenborders'); ?></h2></th></tr>
 										<tr>
 											<th scope="row"><?php _e('Background color:','Gutenborders'); ?> <a href="#" title="<?php _e('Choose the background color of the labels','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="labelbackground">
@@ -295,8 +309,6 @@ if (!function_exists('gutenborders_config_page')) {
 							</tr>
 						</table>
 
-
-
 						<input type="submit" value="<?php _e('SAVE SETTINGS','Gutenborders'); ?>" class="button-primary"/>
 
 						<p>&nbsp;</p>
@@ -313,10 +325,11 @@ if (!function_exists('gutenborders_config_page')) {
 
 		</div>
 
+		<!--
 		<div class="main-sidebar">	
 			<?php include 'assets/plugin-info.php'; ?>
 		</div>
-
+		-->
 	</div>
 
 	<?php

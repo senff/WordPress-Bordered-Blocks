@@ -27,7 +27,7 @@ jQuery(function($) {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
     } else {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {';
-        cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:0.'+labelopacity+';';
+        cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
         cssVar += '}';
     }
     $('#gutenBorders-css-variable').html(cssVar);        
