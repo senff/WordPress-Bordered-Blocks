@@ -21,10 +21,11 @@
 }
 
 #gutenborders-main .form-table h2 {
-	margin: 0;
+	margin: 0 0 10px 0;
 }
 
-#gutenborders-main .button-primary {
+#gutenborders-main .button-primary,
+#gutenborders-main .button-secondary {
 	margin: 15px ;
 }
 
@@ -62,14 +63,35 @@
 	vertical-align: top;
 }
 
-.form-table .preview-cell h2 {
+.form-table .preview-cell h3 {
 	font-size: 30px;
+	margin: 0;
 }
 
-.form-table .preview-cell .preview-intro {
+.form-table .preview-cell .preview-intro,
+.form-table .preview-cell .preview-outro {
 	text-align: center;
 	border: 0 !important;
 	padding: 0 !important;
+}
+
+.form-table .preview-cell .preview-outro {
+	margin-top: 30px !important;
+	color: #ff0000;
+}
+
+.form-table .preview-cell p,
+.form-table .preview-cell div {
+	position: relative;
+	margin-top: 5px !important;
+	margin-bottom: 10px !important;
+	font-size: 16px;	
+}
+
+.form-table .preview-cell ul,
+.form-table .preview-cell li {
+	list-style-type: disc;
+	margin: 0 0 0 10px;
 }
 
 .form-table .preview-cell .columns {	
@@ -79,3 +101,32 @@
 .form-table .preview-cell .columns > * {
 	margin: 0 10px;
 }
+
+.form-table .preview-cell .column-left {
+	width: 30%;
+}
+
+.form-table .preview-cell .column-right {
+	width: 70%;
+}
+
+.form-table .preview-cell img {
+	width: 200px;
+}
+
+.form-table .preview-cell .block-label {
+    transition: all 0.2s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;    
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    text-indent: 5px;
+    border-bottom: dotted 1px #c0c0c0;
+    font-weight: normal;
+    z-index: 10;
+    font-family: "Source Sans Pro","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+

@@ -35,7 +35,7 @@ defined('ABSPATH') or die('INSERT COIN');
 				$new_options['gb_labelcolor'] = '#ffffff';
 				$new_options['gb_labelbackground'] = '#000000';
 				$new_options['gb_labelopacity'] = '3';
-				$new_options['gb_labelsize'] = '11';						
+				$new_options['gb_labelsize'] = '12';						
 				add_option('gutenborders_options',$new_options);
 			} 
 		}
@@ -209,33 +209,82 @@ if (!function_exists('gutenborders_config_page')) {
 								</td>
 								<td rowspan="3" class="preview-cell">
 
-									<div class="preview-intro">
-										<h2>Preview</h2>
+									<div class="prev-block">
+										<span class="block-label">HEADING</span>
+										<h3>PREVIEW</h3>
+									</div>
 
-										To update the preview before you submit the settings, select the button below: <br><br><input type="button" value="<?php _e('APPLY CHANGES TO PREVIEW','Gutenborders'); ?>" class="button-preview button-secondary"/>
+									<p class="prev-block">
+										<span class="block-label">PARAGRAPH</span>
+										This is to give you a rough idea how the blocks will look in your editor (actual results may be different, depending on your theme). To view changes before you save/submit the settings, select the button below:
+									</p>
+
+									<div class="prev-block">
+										<span class="block-label">BUTTONS</span>
+										
+										<div class="prev-block" style="display: inline-block;">
+											<span class="block-label">BUTTON</span>
+
+											<input type="button" value="<?php _e('SHOW CHANGES IN PREVIEW','Gutenborders'); ?>" class="button-preview button-secondary"/>				
+										</div>
 									</div>
 
 									<div class="prev-block columns" data-type="COLUMNS">
+										<span class="block-label">COLUMNS</span>
 										
-										<div class="prev-block column" data-type="COLUMN">
+										<div class="prev-block column column-left" data-type="COLUMN">
+											<span class="block-label">COLUMN</span>
 
-											<p class="prev-block" data-type="PARAGRAPH"> 
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											<p class="prev-block"> 
+												<span class="block-label">PARAGRAPH</span>
+												<strong>Sowing the Seeds of Love</strong> by <strong>Tears for Fears</strong>
 											</p>
+
+											<div class="prev-image" data-type="IMAGE">
+												<span class="block-label">IMAGE</span>
+												<img src="<?php 
+												define('sophieURL', plugins_url('/assets/img/sophie.png', __FILE__));
+												$sophie = sophieURL;
+												echo $sophie; ?>">
+											</div>											
 
 										</div>
 			
-										<div class="prev-block column" data-type="COLUMN">
-											sdfhgfdhdgfjfhj
+										<div class="prev-block column column-right" data-type="COLUMN">
+											<span class="block-label">COLUMN</span>
+											
+											<p class="prev-block"> 
+												<span class="block-label">PARAGRAPH</span>
+												High time we made a stand and shook up the views of the common man and the love train rides from coast to coast, DJ's the man we love the most
+											</p>
+											<p class="prev-block"> 
+												<span class="block-label">PARAGRAPH</span>											
+												Could you be, could you be squeaky clean and smash any hope of democracy? As the headline says you're free to choose, there's egg on your face and mud on your shoes. One of these days they're gonna call it the blues
+											</p>
+
+											<div class="prev-block"> 
+												<span class="block-label">LIST</span>
+												<ul>
+													<li>Album: The Seeds of Love</li>
+													<li>Year: 1989</li>
+													<li>Produced by Tears for Fears / Dave Bascombe </li>
+													<li>Label: Fontana</li>
+												</ul>
+											</div>											
+
 										</div>
 									</div>
 
 									<style type="text/css">
-										.preview-cell div, .preview-cell p{
+										.preview-cell div, .preview-cell p  {
 											border: <?php echo ($gutenborders_options['gb_borderstyle']).' '.($gutenborders_options['gb_borderwidth']).'px '.($gutenborders_options['gb_bordercolor']) ?>;
 											padding: <?php echo ($gutenborders_options['gb_paddingtop']).'px '.($gutenborders_options['gb_paddingright']).'px '.($gutenborders_options['gb_paddingbottom']).'px '.($gutenborders_options['gb_paddingleft']).'px ;' ?>;
-											margin-top: 25px;
-											font-size: 15px;
+										}
+										.preview-cell .block-label {
+											background: <?php echo ($gutenborders_options['gb_labelbackground']) ?>;
+											color: <?php echo ($gutenborders_options['gb_labelcolor']) ?>;
+											font-size: <?php echo ($gutenborders_options['gb_labelsize']) ?>px;
+											opacity: <?php $labelopacity = ($gutenborders_options['gb_labelopacity']); echo $labelopacity/10; ?>;
 										}
 									</style>
 
@@ -256,7 +305,7 @@ if (!function_exists('gutenborders_config_page')) {
 										<tr>
 											<td><input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo $gutenborders_options['gb_paddingleft'] ?>" /> 
 											</td>
-											<td style="border: <?php echo $gutenborders_options['gb_borderstyle'] ?> <?php echo $gutenborders_options['gb_borderwidth'] ?>px <?php echo $gutenborders_options['gb_bordercolor'] ?>"> </td>
+											<td class="padding-preview" style="border: <?php echo $gutenborders_options['gb_borderstyle'] ?> <?php echo $gutenborders_options['gb_borderwidth'] ?>px <?php echo $gutenborders_options['gb_bordercolor'] ?>"> </td>
 											<td><input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo $gutenborders_options['gb_paddingright'] ?>" /> 
 											</td>			
 										</tr>
@@ -309,6 +358,8 @@ if (!function_exists('gutenborders_config_page')) {
 							</tr>
 						</table>
 
+						<input type="button" value="<?php _e('Reset all to defaults','Gutenborders'); ?>" class="button-reset-all button-secondary"/>
+						<input type="button" value="<?php _e('Preview','Gutenborders'); ?>" class="button-preview button-secondary"/>
 						<input type="submit" value="<?php _e('SAVE SETTINGS','Gutenborders'); ?>" class="button-primary"/>
 
 						<p>&nbsp;</p>
