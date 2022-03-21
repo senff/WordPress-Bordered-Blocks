@@ -26,7 +26,7 @@ jQuery(function($) {
     if (labelsize < 1) {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
     } else {
-        cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {';
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block::before, .gutenborders .editor-styles-wrapper .wp-block .gutenborders-label {';
         cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
         cssVar += '}';
     }
@@ -49,10 +49,6 @@ jQuery(function($) {
        $('body').toggleClass('gutenborders');
     });  
 
-
-
-
-
     // This function SHOULD run every time a new block is added, or when an existing block is changed.
     // Right now, it will just run every second, and will output an array with all the block types on the page.
 	function checkBlocks() {
@@ -60,37 +56,36 @@ jQuery(function($) {
         // The array also contains blocks that are on the page before (this saves us from clearing the entire
         // array and write it from scratch again)
         $('.editor-styles-wrapper .wp-block').each(function(block) {
-            blockType = $(this).attr('data-title');
-            if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
-                blocksOnPage.push(blockType);
+            // Add a label
+            if ($(this)[0].hasAttribute('data-title')) {
+                blockType = $(this).attr('data-title');
+                if (!($(this).children().first().hasClass('gutenborders-label')) && (typeof blockType != 'undefined')) {
+                    $(this).prepend('<div class="gutenborders-label">'+blockType+'</a>');
+                    $(this).addClass('has-gutenborder-label')
+                }
+                if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
+                    blocksOnPage.push(blockType);
+                }
+            } else if (!$(this).find('.block-editor-inserter').length) {
+                // The block is not stand-alone; instead, it contains other blocks. It's either a wrapper or
+                // alignment or... etc. etc. but NOT an empty block.
+                $(this).addClass('contains-blocks');
+                childType = $(this).children().first().attr('data-title');
+                $(this).attr('data-title',childType);
             }
+
         });
 
-        // Standard Image Block with alignment
-        $('.editor-styles-wrapper figure').each(function(figure) {
-            if ($(this).parent().hasClass('wp-block')) {
-                $(this).parent().addClass('has-image');
-            }
-        });
-        
-        // Gallery Block with alignment
-        $('.editor-styles-wrapper figure.wp-block-gallery').each(function(galleryfigure) {
-            $(this).addClass('meh');
-            $(this).parent().removeClass('has-image').addClass('contains-blocks gallery-block');
-        });     
-
-        $('.editor-styles-wrapper .wp-block-media-text').each(function(mediaText) {
-            $(this).parent().addClass('contains-blocks has-media-text');
-        });
+        // --- LET'S REVISIT THIS LATER. IF IT'S NEEDED AT ALL.
 
         // Generate CSS that applies to all blocks
         // This CSS code also includes blocks that were on the page before.
-        let cssCode = '';
-        blocksOnPage.forEach(function(blockType) {
-            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
-        });  
-
-        $('#gutenBorders-css-dynamic').html(cssCode);        
+        // let cssCode = '';
+        //blocksOnPage.forEach(function(blockType) {
+            // cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] .gutenborder-label {content: "'+blockType+'";} ';
+        // });  
+        //
+        // $('#gutenBorders-css-dynamic').html(cssCode);        
     }
 
     var addToggleButton = setInterval(function() {
