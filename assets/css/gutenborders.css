@@ -29,8 +29,8 @@ body:not(.gutenborders) .gutenborders-label {
     padding-top: 10px !important;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block:hover {
-    border: solid 1px #a0a0a0;
+.gutenborders .editor-styles-wrapper *[data-title]:hover {
+    border-color: #00000 !important;
 }
 
 .gutenborders .components-placeholder.components-placeholder {
@@ -52,7 +52,7 @@ body:not(.gutenborders) .gutenborders-label {
 }
 
 .gutenborders .editor-styles-wrapper .wp-block::before,
-.gutenborders .editor-styles-wrapper .wp-block .gutenborders-label  {
+.gutenborders .editor-styles-wrapper .wp-block *[data-title]::before  {
     transition: all 0.2s;
     position: absolute;
     left: 0;
@@ -78,20 +78,13 @@ body:not(.gutenborders) .gutenborders-label {
 /* These are some exceptional cases that we need to hard-code for now */
 /* ------------------------------------------------------------------ */
 
-.gutenborders .editor-styles-wrapper .wp-block.contains-blocks {position: relative;}
+.gutenborders .editor-styles-wrapper .wp-block.contains-blocks {position: relative; padding: 0 !important; border: none;}
+.gutenborders .editor-styles-wrapper .wp-block.contains-blocks::before {display: none;}
 
 .gutenborders .editor-styles-wrapper h1:before {content:"H1 Title";}
-.gutenborders .editor-styles-wrapper .contains-blocks[data-title="Image"] img {
-    margin-top: -10px;
-}
+
+.gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{margin-top: 0};
 
 
-/*
-.gutenborders .editor-styles-wrapper .wp-block.contains-blocks > *[data-title] {
-    background: lightblue;
-    padding: 10px;
-    border: solid 1px red;
-    margin-bottom: 20px;
-}
-*/
+
 

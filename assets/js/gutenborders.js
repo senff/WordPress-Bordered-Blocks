@@ -19,14 +19,14 @@ jQuery(function($) {
     let labelsize = gutenborders_loader.labelsize;      
 
     // Apply CSS styles for borders
-    let cssVar = '.gutenborders .editor-styles-wrapper .wp-block {';
+    let cssVar = '.gutenborders .editor-styles-wrapper .wp-block, .gutenborders .editor-styles-wrapper *[data-title], .gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{';
     cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+';';
-    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important;}';
+    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin: 10px !important;}';
     // Apply CSS styles for labels
     if (labelsize < 1) {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
     } else {
-        cssVar += '.gutenborders .editor-styles-wrapper .wp-block::before, .gutenborders .editor-styles-wrapper .wp-block .gutenborders-label {';
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block::before, .gutenborders .editor-styles-wrapper .wp-block *[data-title]::before {';
         cssVar += 'font-size:'+labelsize+'px;height:'+(labelsize*1.5)+'px;line-height:'+(labelsize*1.5)+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
         cssVar += '}';
     }
@@ -60,7 +60,6 @@ jQuery(function($) {
             if ($(this)[0].hasAttribute('data-title')) {
                 blockType = $(this).attr('data-title');
                 if (!($(this).children().first().hasClass('gutenborders-label')) && (typeof blockType != 'undefined')) {
-                    // $(this).prepend('<div class="gutenborders-label" contenteditable="false">'+blockType+'</a>');
                     $(this).addClass('has-gutenborder-label').attr('gutenborders-label',blockType);
                 }
                 if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
@@ -75,16 +74,11 @@ jQuery(function($) {
             }
         });
 
-
-
-
-        // --- LET'S REVISIT THIS LATER. IF IT'S NEEDED AT ALL.
-
         // Generate CSS that applies to all blocks
         // This CSS code also includes blocks that were on the page before.
         let cssCode = '';
         blocksOnPage.forEach(function(blockType) {
-            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="'+blockType+'"]:before {content: "'+blockType+'";} ';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} .gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] *[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
         });  
         //
         $('#gutenBorders-css-dynamic').html(cssCode);        
