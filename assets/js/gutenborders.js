@@ -65,6 +65,10 @@ jQuery(function($) {
                 if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
                     blocksOnPage.push(blockType);
                 }
+                if ($(this).attr('data-title') == 'Post Navigation Link') {
+                    linkType = $(this).find('a').attr('aria-label');
+                    $(this).attr('gutenborders-label',linkType);
+                }
             } else if ($(this).hasClass('wp-block-post-title')) {
                 $(this).attr('data-title','H1 Title');
             } else if (!$(this).find('.block-editor-inserter').length) {
@@ -86,6 +90,9 @@ jQuery(function($) {
         // There's a few exceptions (thanks to Gutenberg's inconsistencies), so we'll need to add those.
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-category:before {content: "Post Categories";}';
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-post_tag:before {content: "Post Tags";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="Next post"]:before {content: "Next Post";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="Previous post"]:before {content: "Previous Post";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block.wp-block-query-title:before {content: "Archive Title";}';
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none; padding: 0; margin-bottom: 0;} .gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"]:before {display: none;}';
 
         //
