@@ -58,7 +58,7 @@ jQuery(function($) {
         var setPadding = $('input[name="gb_paddingtop"]').val() + 'px ' + $('input[name="gb_paddingright"]').val() + 'px ' + $('input[name="gb_paddingbottom"]').val() + 'px ' + $('input[name="gb_paddingleft"]').val() + 'px';
         $('.padding-preview').css('border', setBorder);
         $('.preview-cell div, .preview-cell p').css('border', setBorder).css('padding', setPadding);
-        $('.preview-cell .block-label').css('background',$('input[name="gb_labelbackground"]').val()).css('color',$('input[name="gb_labelcolor"]').val()).css('font-size',$('input[name="gb_labelsize"]').val() +'px ').css('opacity',($('input[name="gb_labelopacity"]').val())/10);
+        $('.preview-cell .block-label').css('background',$('input[name="gb_labelbackground"]').val()).css('color',$('input[name="gb_labelcolor"]').val()).css('font-size',$('input[name="gb_labelsize"]').val() +'px ').css('opacity',($('input[name="gb_labelopacity"]').val())/10).css('height',($('input[name="gb_labelsize"]').val()*1.5) +'px ').css('line-height',($('input[name="gb_labelsize"]').val()*1.5) +'px ');
     });
 
 });

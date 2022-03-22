@@ -284,6 +284,8 @@ if (!function_exists('gutenborders_config_page')) {
 											background: <?php echo ($gutenborders_options['gb_labelbackground']) ?>;
 											color: <?php echo ($gutenborders_options['gb_labelcolor']) ?>;
 											font-size: <?php echo ($gutenborders_options['gb_labelsize']) ?>px;
+											height: <?php echo (($gutenborders_options['gb_labelsize'])*1.5) ?>px;
+											line-height: <?php echo (($gutenborders_options['gb_labelsize'])*1.5) ?>px;
 											opacity: <?php $labelopacity = ($gutenborders_options['gb_labelopacity']); echo $labelopacity/10; ?>;
 										}
 									</style>

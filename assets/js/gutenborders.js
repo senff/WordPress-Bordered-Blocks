@@ -27,7 +27,7 @@ jQuery(function($) {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
     } else {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block::before, .gutenborders .editor-styles-wrapper .wp-block .gutenborders-label {';
-        cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
+        cssVar += 'font-size:'+labelsize+'px;height:'+(labelsize*1.5)+'px;line-height:'+(labelsize*1.5)+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
         cssVar += '}';
     }
     $('#gutenBorders-css-variable').html(cssVar);        
@@ -60,8 +60,8 @@ jQuery(function($) {
             if ($(this)[0].hasAttribute('data-title')) {
                 blockType = $(this).attr('data-title');
                 if (!($(this).children().first().hasClass('gutenborders-label')) && (typeof blockType != 'undefined')) {
-                    $(this).prepend('<div class="gutenborders-label">'+blockType+'</a>');
-                    $(this).addClass('has-gutenborder-label')
+                    // $(this).prepend('<div class="gutenborders-label" contenteditable="false">'+blockType+'</a>');
+                    $(this).addClass('has-gutenborder-label').attr('gutenborders-label',blockType);
                 }
                 if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
                     blocksOnPage.push(blockType);
@@ -73,19 +73,21 @@ jQuery(function($) {
                 childType = $(this).children().first().attr('data-title');
                 $(this).attr('data-title',childType);
             }
-
         });
+
+
+
 
         // --- LET'S REVISIT THIS LATER. IF IT'S NEEDED AT ALL.
 
         // Generate CSS that applies to all blocks
         // This CSS code also includes blocks that were on the page before.
-        // let cssCode = '';
-        //blocksOnPage.forEach(function(blockType) {
-            // cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] .gutenborder-label {content: "'+blockType+'";} ';
-        // });  
+        let cssCode = '';
+        blocksOnPage.forEach(function(blockType) {
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="'+blockType+'"]:before {content: "'+blockType+'";} ';
+        });  
         //
-        // $('#gutenBorders-css-dynamic').html(cssCode);        
+        $('#gutenBorders-css-dynamic').html(cssCode);        
     }
 
     var addToggleButton = setInterval(function() {
