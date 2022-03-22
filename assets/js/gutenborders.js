@@ -21,7 +21,7 @@ jQuery(function($) {
     // Apply CSS styles for borders
     let cssVar = '.gutenborders .editor-styles-wrapper .wp-block, .gutenborders .editor-styles-wrapper *[data-title], .gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{';
     cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+';';
-    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin-bottom: 10px !important;}';
+    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin-bottom: 20px !important;}';
     // Apply CSS styles for labels
     if (labelsize < 1) {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
@@ -65,13 +65,16 @@ jQuery(function($) {
                 if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
                     blocksOnPage.push(blockType);
                 }
+            } else if ($(this).hasClass('wp-block-post-title')) {
+                $(this).attr('data-title','H1 Title');
             } else if (!$(this).find('.block-editor-inserter').length) {
                 // The block is not stand-alone; instead, it contains other blocks. It's either a wrapper or
                 // alignment or... etc. etc. but NOT an empty block.
                 $(this).addClass('contains-blocks');
-                childType = $(this).children().first().attr('data-title');
+                childType = $(this).find('[data-title]').first().attr('data-title');
                 $(this).attr('data-title',childType);
-            }
+            } 
+
         });
 
         // Generate CSS that applies to all blocks
@@ -80,6 +83,11 @@ jQuery(function($) {
         blocksOnPage.forEach(function(blockType) {
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} .gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] *[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
         });  
+        // There's a few exceptions (thanks to Gutenberg's inconsistencies), so we'll need to add those.
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-category:before {content: "Post Categories";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-post_tag:before {content: "Post Tags";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none; padding: 0; margin-bottom: 0;} .gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"]:before {display: none;}';
+
         //
         $('#gutenBorders-css-dynamic').html(cssCode);        
     }

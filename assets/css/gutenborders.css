@@ -82,8 +82,9 @@ body:not(.gutenborders) .gutenborders-label {
 .gutenborders .editor-styles-wrapper .wp-block.contains-blocks {position: relative; padding: 0 !important; border: none;}
 .gutenborders .editor-styles-wrapper .wp-block.contains-blocks::before {display: none;}
 
-.gutenborders .editor-styles-wrapper h1:before {content:"H1 Title";}
 
+.gutenborders .editor-styles-wrapper h1:before {content:"H1 Title";}
+.gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none !important; padding: 0 !important; margin-bottom: 0 !important;}
 .gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{margin-top: 0};
 
 
