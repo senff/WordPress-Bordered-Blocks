@@ -21,7 +21,7 @@ jQuery(function($) {
     // Apply CSS styles for borders
     let cssVar = '.gutenborders .editor-styles-wrapper .wp-block, .gutenborders .editor-styles-wrapper *[data-title], .gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{';
     cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+';';
-    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin: 10px !important;}';
+    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin-bottom: 10px !important;}';
     // Apply CSS styles for labels
     if (labelsize < 1) {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
