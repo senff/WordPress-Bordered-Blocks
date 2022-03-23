@@ -8,7 +8,7 @@
 <div class="inner">
 
 	<ul>
-		<li><strong><?php _e('Author:','Gutenborders'); ?></strong> <a href="http://www.senff.com" target="_blank">Senff</a></li>
+		<li><strong><?php _e('Author:','Gutenborders'); ?></strong> <a href="https://profiles.wordpress.org/senff/" target="_blank">Senff</a></li>
 		<li><strong><?php _e('Version:','Gutenborders'); ?></strong> <?php echo $version; ?></li>
 		<li><strong><?php _e('Detailed Documentation:','Gutenborders'); ?></strong> <a href="https://wordpress.org/plugins/gutenborders" target="_blank">WordPress.org</a></li>
 		<li><strong><?php _e('Support Forum','Gutenborders'); ?></strong>: <a href="https://wordpress.org/support/plugin/gutenborders" target="_blank">WordPress.org</a></li>
@@ -19,4 +19,4 @@
 
 </div>
 
-<p><a href="https://wordpress.org/support/plugin/gutenborders" target="_blank"><strong><?php _e('Please Report Bugs','Gutenborders'); ?></strong></a></p>
+<p><?php _e('Please report bugs or feature requests on <a href="https://wordpress.org/support/plugin/gutenborders" target="_blank"><strong>WordPress.org</strong></a>','Gutenborders'); ?>.</p>

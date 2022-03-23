@@ -31,7 +31,13 @@ jQuery(function($) {
         cssVar += 'font-size:'+labelsize+'px;height:'+(labelsize*1.5)+'px;line-height:'+(labelsize*1.5)+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
         cssVar += '}';
     }
-    $('#gutenBorders-css-variable').html(cssVar);        
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block.contains-blocks[data-title] {position: relative; padding: 0 !important; border: none;}';
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block.contains-blocks::before {display: none;}';    
+        cssVar += '.gutenborders .editor-styles-wrapper hr.wp-block-separator[data-title], .gutenborders .editor-styles-wrapper .contains-blocks[data-title] hr[data-title] {padding: 0 !important;} .gutenborders .editor-styles-wrapper hr.wp-block-separator:after {display: none;}';
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .gutenborders .editor-styles-wrapper .wp-block.contains-blocks[data-title="Social Icons"] *[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"]:before {display: none;}';
+
+
+        $('#gutenBorders-css-variable').html(cssVar);        
 
 
     // Whether the toggle button (and the borders) should be ON of OFF by default
@@ -103,7 +109,6 @@ jQuery(function($) {
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="Next post"]:before {content: "Next Post";}';
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="Previous post"]:before {content: "Previous Post";}';
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block.wp-block-query-title:before {content: "Archive Title";}';
-            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none; padding: 0; margin-bottom: 0;} .gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"]:before {display: none;}';
 
         //
         $('#gutenBorders-css-dynamic').html(cssCode);        

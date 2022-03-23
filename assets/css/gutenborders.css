@@ -61,6 +61,7 @@ body:not(.gutenborders) .gutenborders-label {
     text-transform: uppercase;
     text-align: left;
     padding: 0 5px;
+    border-top: 0;
     border-bottom: dotted 1px #c0c0c0;
     font-weight: normal;
     z-index: 25;
@@ -68,6 +69,12 @@ body:not(.gutenborders) .gutenborders-label {
     letter-spacing: initial;
     max-width: 100%;
     transform: none;
+    border-radius: 0;
+}
+
+.gutenborders .editor-styles-wrapper .wp-block img,
+.gutenborders .editor-styles-wrapper .wp-block video {
+    opacity: 0.75;
 }
 
 .gutenborders .editor-styles-wrapper .wp-block[data-empty="true"]:before {
@@ -79,12 +86,8 @@ body:not(.gutenborders) .gutenborders-label {
 /* These are some exceptional cases that we need to hard-code for now */
 /* ------------------------------------------------------------------ */
 
-.gutenborders .editor-styles-wrapper .wp-block.contains-blocks {position: relative; padding: 0 !important; border: none;}
-.gutenborders .editor-styles-wrapper .wp-block.contains-blocks::before {display: none;}
-
 
 .gutenborders .editor-styles-wrapper h1:before {content:"H1 Title";}
-.gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none !important; padding: 0 !important; margin-bottom: 0 !important;}
 .gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{margin-top: 0};
 
 
