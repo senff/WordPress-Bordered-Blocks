@@ -5,7 +5,7 @@ Plugin URI: http://www.senff.com/plugins/gutenborders
 Description: Gutenborders plugin will add borders to all your blocks in the editor.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 0.1
+Version: 0.9
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -21,10 +21,10 @@ defined('ABSPATH') or die('INSERT COIN');
 
 	if (!function_exists('gutenborders_default_options')) {
 		function gutenborders_default_options() {
-			$versionNum = '0.5';
+			$versionNum = '0.9 RC1';
 			if (get_option('gutenborders_options') === false) {
 				$new_options['gb_version'] = $versionNum;
-				$new_options['gb_bordershow'] = 'true';
+				$new_options['gb_bordershow'] = '';
 				$new_options['gb_bordercolor'] = '#c0c0c0';
 				$new_options['gb_borderstyle'] = 'dotted';
 				$new_options['gb_borderwidth'] = '1';
@@ -120,30 +120,37 @@ if (!function_exists('gutenborders_config_page')) {
 			<h2 class="nav-tab-wrapper">	
 				<a class="nav-tab" href="#main"><?php _e('Settings','Gutenborders'); ?></a>
 				<a class="nav-tab" href="#faq"><?php _e('FAQ/Troubleshooting','Gutenborders'); ?></a>
+				<a class="nav-tab" href="#supported-blocks"><?php _e('Supported Blocks','Gutenborders'); ?></a>
+				<a class="nav-tab" href="#plugin-info"><?php _e('About','Gutenborders'); ?></a>
 			</h2>
 
 			<br>
 
 			<?php 
 
-				$warnings = false;
-				$bordercolorwarning = false;
+				if ( isset( $_GET['message'] ) && ($_GET['message'] == '1')) { 
+					echo '<div id="message" class="fade updated"><p><strong>'.__('Settings updated.','Gutenborders').'</strong></p></div>';
+				}	
 
-				if ( isset( $_GET['message'] )) { 
-					if ($_GET['message'] == '1') {
-						echo '<div id="message" class="fade updated"><p><strong>'.__('Settings Updated.','Gutenborders').'</strong></p></div>';
-					}
-				} 
+				if ( isset( $_GET['warning'] ) && ($_GET['warning'] == '1')) { 
+					echo '<div id="message" class="error"><p><strong>WARNING! Please review the following settings:</strong></p><ul style="list-style-type: disc; margin: 0 0 20px 24px;">';
+ 			
 
-				// IF THERE ARE ERRORS, SHOW THEM
-				if ( $warnings == true ) { 
-					echo '<div id="message" class="error"><p><strong>'.__('WARNING','Gutenborders').'</strong></p>';
-					echo '<ul style="list-style-type:disc; margin:0 0 20px 24px;">';
+					if ( isset( $_GET['borderwarning'] ) && ($_GET['borderwarning'] == 'true')) { 
+						echo '<li>One or more settings for the <strong>BORDER</strong> were empty or invalid and were reverted to their previous values.</li>';
+					} 	
 
+					if ( isset( $_GET['paddingwarning'] ) && ($_GET['paddingwarning'] == 'true')) { 
+						echo '<li>One or more settings for the <strong>PADDING</strong> were empty or invalid and were reverted to their previous values.</li>';
+					} 	
 
+					if ( isset( $_GET['labelwarning'] ) && ($_GET['labelwarning'] == 'true')) { 
+						echo '<li>One or more settings for the <strong>LABEL</strong> were empty or invalid and were reverted to their previous values.</li>';
+					} 	
 
 					echo '</ul></div>';
-				} 			
+				} 
+
 
 			?>
 		
@@ -168,7 +175,7 @@ if (!function_exists('gutenborders_config_page')) {
 												<fieldset>
 													<input type="checkbox" id="gb_bordershow" name="gb_bordershow" <?php if ($gutenborders_options['gb_bordershow'] ) echo ' checked="checked" ';?> />
 													<label for="gb_bordershow"><strong><?php _e('Show borders & labels by default','Gutenborders'); ?></strong></label>
-													<br><em>You can always still quicky switch between showing/hiding the borders on any Post/Page.</em>
+													<br><em><?php _e('Selecting this option will always show the borders/labels of all Blocks on page load, which may cause performance issues.<br>Regardless of this setting, you can always quicky switch between showing/hiding the borders on any Post/Page.','Gutenborders'); ?></em>
 												</fieldset>
 											</td>
 										</tr>
@@ -216,7 +223,7 @@ if (!function_exists('gutenborders_config_page')) {
 
 									<p class="prev-block">
 										<span class="block-label">PARAGRAPH</span>
-										This is to give you a rough idea how the blocks will look in your editor (actual results may be different, depending on your theme). To view changes before you save/submit the settings, select the button below:
+										This is to give you a very rough idea how the blocks will look in your editor. Actual results may be different, depending on your theme. <strong>To view changes before you save/submit the settings, select the button below</strong>:
 									</p>
 
 									<div class="prev-block">
@@ -225,8 +232,9 @@ if (!function_exists('gutenborders_config_page')) {
 										<div class="prev-block" style="display: inline-block;">
 											<span class="block-label">BUTTON</span>
 
-											<input type="button" value="<?php _e('SHOW CHANGES IN PREVIEW','Gutenborders'); ?>" class="button-preview button-secondary"/>				
+											<input type="button" value="<?php _e('SHOW ME A PREVIEW!','Gutenborders'); ?>" class="button-preview button-secondary"/>				
 										</div>
+
 									</div>
 
 									<div class="prev-block columns" data-type="COLUMNS">
@@ -237,7 +245,7 @@ if (!function_exists('gutenborders_config_page')) {
 
 											<p class="prev-block"> 
 												<span class="block-label">PARAGRAPH</span>
-												<strong>Sowing the Seeds of Love</strong> by <strong>Tears for Fears</strong>
+												And now a picture of a beautiful girl:
 											</p>
 
 											<div class="prev-image" data-type="IMAGE">
@@ -255,23 +263,21 @@ if (!function_exists('gutenborders_config_page')) {
 											
 											<p class="prev-block"> 
 												<span class="block-label">PARAGRAPH</span>
-												High time we made a stand and shook up the views of the common man and the love train rides from coast to coast, DJ's the man we love the most
-											</p>
-											<p class="prev-block"> 
-												<span class="block-label">PARAGRAPH</span>											
-												Could you be, could you be squeaky clean and smash any hope of democracy? As the headline says you're free to choose, there's egg on your face and mud on your shoes. One of these days they're gonna call it the blues
+												We also have space for an additional fun fact.
 											</p>
 
 											<div class="prev-block"> 
 												<span class="block-label">LIST</span>
 												<ul>
-													<li>Album: The Seeds of Love</li>
-													<li>Year: 1989</li>
-													<li>Produced by Tears for Fears / Dave Bascombe </li>
-													<li>Label: Fontana</li>
+													<li>Q: What did the drummer call his twin daughters?</li>
+													<li>A: Anna One, Anna Two.</li>
 												</ul>
-											</div>											
+											</div>	
 
+											<p class="prev-block"> 
+												<span class="block-label">PARAGRAPH</span>											
+												It's not really a fun fact, actually. Let's just call it what it is -- it's a <strong>dad joke</strong>. And not a particularly good one. Then again, isn't that the definition of a dad joke?
+											</p>
 										</div>
 									</div>
 
@@ -284,6 +290,8 @@ if (!function_exists('gutenborders_config_page')) {
 											background: <?php echo ($gutenborders_options['gb_labelbackground']) ?>;
 											color: <?php echo ($gutenborders_options['gb_labelcolor']) ?>;
 											font-size: <?php echo ($gutenborders_options['gb_labelsize']) ?>px;
+											height: <?php echo (($gutenborders_options['gb_labelsize'])*1.5) ?>px;
+											line-height: <?php echo (($gutenborders_options['gb_labelsize'])*1.5) ?>px;
 											opacity: <?php $labelopacity = ($gutenborders_options['gb_labelopacity']); echo $labelopacity/10; ?>;
 										}
 									</style>
@@ -372,6 +380,14 @@ if (!function_exists('gutenborders_config_page')) {
 					<?php include 'assets/faq.php'; ?>
 				</div>
 
+				<div id="gutenborders-supported-blocks">
+					<?php include 'assets/supported-blocks.php'; ?>
+				</div>
+
+				<div id="gutenborders-plugin-info">
+					<?php include 'assets/plugin-info.php'; ?>
+				</div>
+
 			</div>
 
 		</div>
@@ -407,7 +423,7 @@ if (!function_exists('process_gutenborders_options')) {
 		$options = get_option('gutenborders_options');
 
 		foreach ( array('gb_bordershow') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = true;
 			} else {
 				$options[$option_name] = false;
@@ -415,90 +431,116 @@ if (!function_exists('process_gutenborders_options')) {
 		}
 
 		foreach ( array('gb_borderstyle') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
 			} 
 		}
 
-		// If the color entered does not match the standard color code format, submit #c0c0c0 as the default.
 		foreach ( array('gb_bordercolor') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
-				if(preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) {
-					$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-				} else {
-					$options[$option_name] = '#c0c0c0';
-				}
-			} 
+			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) ) {
+				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+			} else {
+				$warning = 'true';
+				$borderwarning = 'true';
+			}
 		}
 
 		foreach ( array('gb_borderwidth') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-			} 
+			} else {
+				$warning = 'true';
+				$borderwarning = 'true';				
+			}
 		}		
 
 		foreach ( array('gb_paddingtop') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-			} 
+			} else {
+				$warning = 'true';
+				$paddingwarning = 'true';
+			}
 		}	
 
 		foreach ( array('gb_paddingright') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-			} 
+			} else {
+				$warning = 'true';
+				$paddingwarning = 'true';				
+			}
 		}	
 
 		foreach ( array('gb_paddingbottom') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-			} 
+			} else {
+				$warning = 'true';
+				$paddingwarning = 'true';
+			}
 		}	
 
 		foreach ( array('gb_paddingleft') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-			} 
+			} else {
+				$warning = 'true';
+				$paddingwarning = 'true';
+			}
 		}							
 
 		foreach ( array('gb_labelbackground') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
-				if(preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) {
-					$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-				} else {
-					$options[$option_name] = '#000000';
-				}
-			} 
+			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) ) {
+				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+			} else {
+				$warning = 'true';
+				$labelwarning = 'true';
+			}
 		}
 
 		foreach ( array('gb_labelcolor') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
-				if(preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) {
-					$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-				} else {
-					$options[$option_name] = '#ffffff';
-				}
-			} 
+			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) ) {
+				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+			} else {
+				$warning = 'true';
+				$labelwarning = 'true';
+			}
 		}
 
 		foreach ( array('gb_labelsize') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-			} 
+			} else {
+				$warning = 'true';
+				$labelwarning = 'true';				
+			}
 		}
 
 		foreach ( array('gb_labelopacity') as $option_name ) {
-			if ( isset( $_POST[$option_name] ) ) {
+			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
 				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
-			} 
+			} 	else {
+				$warning = 'true';
+				$labelwarning = 'true';
+			}
 		}
 
 		update_option( 'gutenborders_options', $options );	
- 		wp_redirect( add_query_arg(
- 			array('page' => 'gutenbordersconfig', 'message' => '1'),
- 			admin_url( 'options-general.php' ) 
- 			)
- 		);	
+
+		if ($warning == 'true') {
+	 		wp_redirect( add_query_arg(
+	 			array('page' => 'gutenbordersconfig', 'message' => '1', 'warning' => '1', 'borderwarning' => $borderwarning, 'paddingwarning' => $paddingwarning, 'labelwarning' => $labelwarning, ),
+	 			admin_url( 'options-general.php' ) 
+	 			)
+	 		);
+		} else {
+	 		wp_redirect( add_query_arg(
+	 			array('page' => 'gutenbordersconfig', 'message' => '1'),
+	 			admin_url( 'options-general.php' ) 
+	 			)
+	 		);	
+ 		}
 
 		exit;
 	}

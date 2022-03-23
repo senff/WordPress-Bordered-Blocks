@@ -3,6 +3,7 @@ jQuery(function($) {
     $('body').append('<style type="text/css" id="gutenBorders-css-dynamic"></style><style type="text/css" id="gutenBorders-css-variable"></style>');
 
     let blocksOnPage = new Array();
+    let embedsOnPage = new Array();
     
     // Variables from database
     let bordershow = gutenborders_loader.bordershow;
@@ -19,18 +20,24 @@ jQuery(function($) {
     let labelsize = gutenborders_loader.labelsize;      
 
     // Apply CSS styles for borders
-    let cssVar = '.gutenborders .editor-styles-wrapper .wp-block {';
+    let cssVar = '.gutenborders .editor-styles-wrapper .wp-block, .gutenborders .editor-styles-wrapper *[data-title], .gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{';
     cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+';';
-    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important;}';
+    cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin-bottom: 20px !important;}';
     // Apply CSS styles for labels
     if (labelsize < 1) {
         cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {display: none;}';
     } else {
-        cssVar += '.gutenborders .editor-styles-wrapper .wp-block:before  {';
-        cssVar += 'font-size:'+labelsize+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block::before, .gutenborders .editor-styles-wrapper .wp-block *[data-title]::before {';
+        cssVar += 'font-size:'+labelsize+'px;height:'+(labelsize*1.5)+'px;line-height:'+(labelsize*1.5)+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
         cssVar += '}';
     }
-    $('#gutenBorders-css-variable').html(cssVar);        
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block.contains-blocks[data-title] {position: relative; padding: 0 !important; border: none;}';
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block.contains-blocks::before {display: none;}';    
+        cssVar += '.gutenborders .editor-styles-wrapper hr.wp-block-separator[data-title], .gutenborders .editor-styles-wrapper .contains-blocks[data-title] hr[data-title] {padding: 0 !important;} .gutenborders .editor-styles-wrapper hr.wp-block-separator:after {display: none;}';
+        cssVar += '.gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .gutenborders .editor-styles-wrapper .wp-block.contains-blocks[data-title="Social Icons"] *[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .gutenborders .editor-styles-wrapper .wp-block[data-title="Social Icon"]:before {display: none;}';
+
+
+        $('#gutenBorders-css-variable').html(cssVar);        
 
 
     // Whether the toggle button (and the borders) should be ON of OFF by default
@@ -49,10 +56,6 @@ jQuery(function($) {
        $('body').toggleClass('gutenborders');
     });  
 
-
-
-
-
     // This function SHOULD run every time a new block is added, or when an existing block is changed.
     // Right now, it will just run every second, and will output an array with all the block types on the page.
 	function checkBlocks() {
@@ -60,36 +63,54 @@ jQuery(function($) {
         // The array also contains blocks that are on the page before (this saves us from clearing the entire
         // array and write it from scratch again)
         $('.editor-styles-wrapper .wp-block').each(function(block) {
-            blockType = $(this).attr('data-title');
-            if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
-                blocksOnPage.push(blockType);
-            }
-        });
+            // Add a label
+            if ($(this)[0].hasAttribute('data-title')) {
+                blockType = $(this).attr('data-title');
+                if (!($(this).children().first().hasClass('gutenborders-label')) && (typeof blockType != 'undefined')) {
+                    $(this).addClass('has-gutenborder-label').attr('gutenborders-label',blockType);
+                }
+                if (!blocksOnPage.includes(blockType) && (typeof blockType != 'undefined')) {
+                    blocksOnPage.push(blockType);
+                }
+                if ($(this).attr('data-title') == 'Post Navigation Link') {
+                    linkType = $(this).find('a').attr('aria-label');
+                    $(this).attr('gutenborders-label',linkType);
+                }
+                if ($(this).attr('data-title') == 'Embed') {
+                    embedType = $(this).find('iframe').attr('title');
+                    $(this).attr('gutenborders-label',embedType);
+                    embedsOnPage.push(embedType);
+                }                
+            } else if ($(this).hasClass('wp-block-post-title')) {
+                $(this).attr('data-title','H1 Title');
+            } else if (!$(this).find('.block-editor-inserter').length) {
+                // The block is not stand-alone; instead, it contains other blocks. It's either a wrapper or
+                // alignment or... etc. etc. but NOT an empty block.
+                $(this).addClass('contains-blocks');
+                childType = $(this).find('[data-title]').first().attr('data-title');
+                $(this).attr('data-title',childType);
+            } 
 
-        // Standard Image Block with alignment
-        $('.editor-styles-wrapper figure').each(function(figure) {
-            if ($(this).parent().hasClass('wp-block')) {
-                $(this).parent().addClass('has-image');
-            }
-        });
-        
-        // Gallery Block with alignment
-        $('.editor-styles-wrapper figure.wp-block-gallery').each(function(galleryfigure) {
-            $(this).addClass('meh');
-            $(this).parent().removeClass('has-image').addClass('contains-blocks gallery-block');
-        });     
-
-        $('.editor-styles-wrapper .wp-block-media-text').each(function(mediaText) {
-            $(this).parent().addClass('contains-blocks has-media-text');
         });
 
         // Generate CSS that applies to all blocks
         // This CSS code also includes blocks that were on the page before.
         let cssCode = '';
         blocksOnPage.forEach(function(blockType) {
-            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} .gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] *[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
+        });  
+        embedsOnPage.forEach(function(embedType) {
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="'+embedType+'"]:before {content: "'+embedType+'";} .gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="'+embedType+'"] *[data-title="Embed"]:before {content: "'+embedType+'";} ';
         });  
 
+        // There's a few exceptions (thanks to Gutenberg's inconsistencies), so we'll need to add those.
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-category:before {content: "Post Categories";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-post_tag:before {content: "Post Tags";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="Next post"]:before {content: "Next Post";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="Previous post"]:before {content: "Previous Post";}';
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block.wp-block-query-title:before {content: "Archive Title";}';
+
+        //
         $('#gutenBorders-css-dynamic').html(cssCode);        
     }
 

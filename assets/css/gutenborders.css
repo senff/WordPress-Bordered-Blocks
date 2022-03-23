@@ -11,18 +11,26 @@
     margin-left: 10px;
     position: relative;
     top: -1px;
-
 }
+
 .editor-styles-wrapper .wp-block {
     transition: all 0.3s;
+}
+
+body:not(.gutenborders) .gutenborders-label {
+    display: none !important;
+}
+
+.gutenborders .editor-styles-wrapper .wp-block {
+    margin-top: 0 !important;
 }
 
 .gutenborders .editor-styles-wrapper .wp-block[data-empty="true"] {
     padding-top: 10px !important;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block:hover {
-    border: solid 1px #a0a0a0;
+.gutenborders .editor-styles-wrapper *[data-title]:hover {
+    border-color: #00000 !important;
 }
 
 .gutenborders .components-placeholder.components-placeholder {
@@ -39,36 +47,49 @@
     padding: 0;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block:before  {
+.gutenborders .editor-styles-wrapper .block-editor-inserter {
+    z-index: 25;
+}
+
+.gutenborders .editor-styles-wrapper .wp-block::before,
+.gutenborders .editor-styles-wrapper .wp-block *[data-title]::before  {
     transition: all 0.2s;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;    
     text-transform: uppercase;
+    text-align: left;
     padding: 0 5px;
+    border-top: 0;
     border-bottom: dotted 1px #c0c0c0;
     font-weight: normal;
-    z-index: 10;
+    z-index: 25;
     font-family: "Source Sans Pro","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    letter-spacing: initial;
+    max-width: 100%;
+    transform: none;
+    border-radius: 0;
+}
+
+.gutenborders .editor-styles-wrapper .wp-block img,
+.gutenborders .editor-styles-wrapper .wp-block video {
+    opacity: 0.75;
+}
+
+.gutenborders .editor-styles-wrapper .wp-block[data-empty="true"]:before {
+    display: none;
 }
 
 
-
+/* ------------------------------------------------------------------ */
 /* These are some exceptional cases that we need to hard-code for now */
+/* ------------------------------------------------------------------ */
 
 
 .gutenborders .editor-styles-wrapper h1:before {content:"H1 Title";}
+.gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{margin-top: 0};
 
-.gutenborders .editor-styles-wrapper .wp-block.contains-blocks {position: relative; padding-bottom: 50px !important;}
-.gutenborders .editor-styles-wrapper .wp-block.has-image:before {content:"Image";}
-.gutenborders .editor-styles-wrapper .wp-block.has-image figure {margin-top:0;}
 
-.gutenborders .editor-styles-wrapper .wp-block.gallery-block:before {content:"Gallery";}
 
-.gutenborders .editor-styles-wrapper .wp-block.has-media-text:before {content:"Media & Text";}
-.gutenborders .editor-styles-wrapper .wp-block[data-empty="true"]:before {display: none;}
 
-.gutenborders-toggle span {
-    display: none;
-}
