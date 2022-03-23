@@ -3,6 +3,7 @@ jQuery(function($) {
     $('body').append('<style type="text/css" id="gutenBorders-css-dynamic"></style><style type="text/css" id="gutenBorders-css-variable"></style>');
 
     let blocksOnPage = new Array();
+    let embedsOnPage = new Array();
     
     // Variables from database
     let bordershow = gutenborders_loader.bordershow;
@@ -69,6 +70,11 @@ jQuery(function($) {
                     linkType = $(this).find('a').attr('aria-label');
                     $(this).attr('gutenborders-label',linkType);
                 }
+                if ($(this).attr('data-title') == 'Embed') {
+                    embedType = $(this).find('iframe').attr('title');
+                    $(this).attr('gutenborders-label',embedType);
+                    embedsOnPage.push(embedType);
+                }                
             } else if ($(this).hasClass('wp-block-post-title')) {
                 $(this).attr('data-title','H1 Title');
             } else if (!$(this).find('.block-editor-inserter').length) {
@@ -87,6 +93,10 @@ jQuery(function($) {
         blocksOnPage.forEach(function(blockType) {
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} .gutenborders .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] *[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
         });  
+        embedsOnPage.forEach(function(embedType) {
+            cssCode += '.gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="'+embedType+'"]:before {content: "'+embedType+'";} .gutenborders .editor-styles-wrapper .wp-block[gutenborders-label="'+embedType+'"] *[data-title="Embed"]:before {content: "'+embedType+'";} ';
+        });  
+
         // There's a few exceptions (thanks to Gutenberg's inconsistencies), so we'll need to add those.
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-category:before {content: "Post Categories";}';
             cssCode += '.gutenborders .editor-styles-wrapper .wp-block.taxonomy-post_tag:before {content: "Post Tags";}';
