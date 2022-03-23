@@ -5,7 +5,7 @@ Plugin URI: http://www.senff.com/plugins/gutenborders
 Description: Gutenborders plugin will add borders to all your blocks in the editor.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 0.1
+Version: 0.9
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -24,7 +24,7 @@ defined('ABSPATH') or die('INSERT COIN');
 			$versionNum = '0.9 RC1';
 			if (get_option('gutenborders_options') === false) {
 				$new_options['gb_version'] = $versionNum;
-				$new_options['gb_bordershow'] = 'true';
+				$new_options['gb_bordershow'] = '';
 				$new_options['gb_bordercolor'] = '#c0c0c0';
 				$new_options['gb_borderstyle'] = 'dotted';
 				$new_options['gb_borderwidth'] = '1';
