@@ -21,7 +21,7 @@ defined('ABSPATH') or die('INSERT COIN');
 
 	if (!function_exists('gutenborders_default_options')) {
 		function gutenborders_default_options() {
-			$versionNum = '0.9 RC2';
+			$versionNum = '0.92';
 			if (get_option('gutenborders_options') === false) {
 				$new_options['gb_bordershow'] = '';
 				$new_options['gb_bordercolor'] = '#c0c0c0';
@@ -51,7 +51,7 @@ defined('ABSPATH') or die('INSERT COIN');
 		function gutenborders_version_update() {
 			$gb_version = get_option('gutenborders_version');
 			$dbVersion = $options['gb_num']; // version in database
-			$currentVersion = '0.91'; 
+			$currentVersion = '0.92'; 
 
 			if ($dbVersion != $currentVersion) {
 				$updateversion['gb_num'] = $currentVersion;		
