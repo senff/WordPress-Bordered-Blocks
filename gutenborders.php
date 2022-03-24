@@ -5,7 +5,7 @@ Plugin URI: http://www.senff.com/plugins/gutenborders
 Description: Gutenborders plugin will add borders to all your blocks in the editor.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 0.9
+Version: 0.91
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -16,14 +16,13 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 
 /**
- * --- IF DATABASE VALUES ARE NOT SET AT ALL, ADD DEFAULT OPTIONS TO DATABASE ---------------------------
+ * --- ON ACTIVATION: IF DATABASE VALUES ARE NOT SET AT ALL, ADD DEFAULT OPTIONS TO DATABASE ---------------------------
  */
 
 	if (!function_exists('gutenborders_default_options')) {
 		function gutenborders_default_options() {
-			$versionNum = '0.9 RC1';
+			$versionNum = '0.9 RC2';
 			if (get_option('gutenborders_options') === false) {
-				$new_options['gb_version'] = $versionNum;
 				$new_options['gb_bordershow'] = '';
 				$new_options['gb_bordercolor'] = '#c0c0c0';
 				$new_options['gb_borderstyle'] = 'dotted';
@@ -38,6 +37,26 @@ defined('ABSPATH') or die('INSERT COIN');
 				$new_options['gb_labelsize'] = '12';						
 				add_option('gutenborders_options',$new_options);
 			} 
+			// Ver
+			if (get_option('gutenborders_version') === false) {	
+				$new_options['gb_num'] = $versionNum;	
+			}
+		}
+	}
+
+/**
+ * --- UPDATE THE VERSION NUMBER IN THE DATABASE --------------------------------------------------------------
+ */
+	if (!function_exists('gutenborders_version_update')) {
+		function gutenborders_version_update() {
+			$gb_version = get_option('gutenborders_version');
+			$dbVersion = $options['gb_num']; // version in database
+			$currentVersion = '0.91'; 
+
+			if ($dbVersion != $currentVersion) {
+				$updateversion['gb_num'] = $currentVersion;		
+				update_option('gutenborders_version',$updateversion);
+			}
 		}
 	}
 
@@ -48,7 +67,6 @@ defined('ABSPATH') or die('INSERT COIN');
 		function gutenborders_styles() {
 
 			$options = get_option('gutenborders_options');
-			$versionNum = $options['gb_version'];
 			
 			$script_vars = array(
 				'version' 		=> $options['gb_version'],
@@ -66,10 +84,8 @@ defined('ABSPATH') or die('INSERT COIN');
 				'labelsize'	=> $options['gb_labelsize']	      
 			);
 
-			// If the value in the database does not follow a specific format, just set it to the default #c0c0c0.
-			if( !preg_match('/^#[a-f0-9]{6}$/i', $script_vars['bordercolor'])) {
-				$script_vars['bordercolor'] = '#c0c0c0';
-			}
+			$gb_version = get_option('gutenborders_version');
+			$versionNum = $options['gb_num'];			
 
 			wp_enqueue_script('gutenbordersLoader', plugins_url('/assets/js/gutenborders.js', __FILE__), array( 'jquery' ), $versionNum, true);
 			wp_localize_script( 'gutenbordersLoader', 'gutenborders_loader', $script_vars );
@@ -105,8 +121,21 @@ function gutenborders_settings_link($links) {
  */
 if (!function_exists('gutenborders_config_page')) {
 	function gutenborders_config_page() {
-	// Retrieve plugin configuration options from database
+	// Retrieve plugin configuration options from database and put them in variables
 	$gutenborders_options = get_option( 'gutenborders_options' );
+	$gb_bordershow = ( isset( $gutenborders_options['gb_bordershow'] ) ) ? $gutenborders_options['gb_bordershow'] : '';
+	$gb_borderstyle = ( isset( $gutenborders_options['gb_borderstyle'] ) ) ? $gutenborders_options['gb_borderstyle'] : ''; 
+	$gb_bordercolor = ( isset( $gutenborders_options['gb_bordercolor'] ) ) ? $gutenborders_options['gb_bordercolor'] : '';
+	$gb_borderwidth = ( isset( $gutenborders_options['gb_borderwidth'] ) ) ? $gutenborders_options['gb_borderwidth'] : '';
+	$gb_paddingtop = ( isset( $gutenborders_options['gb_paddingtop'] ) ) ? $gutenborders_options['gb_paddingtop'] : '';
+	$gb_paddingright = ( isset( $gutenborders_options['gb_paddingright'] ) ) ? $gutenborders_options['gb_paddingright'] : ''; 
+	$gb_paddingbottom = ( isset( $gutenborders_options['gb_paddingbottom'] ) ) ? $gutenborders_options['gb_paddingbottom'] : ''; 
+	$gb_paddingleft = ( isset( $gutenborders_options['gb_paddingleft'] ) ) ? $gutenborders_options['gb_paddingleft'] : ''; 
+	$gb_labelbackground = ( isset( $gutenborders_options['gb_labelbackground'] ) ) ? $gutenborders_options['gb_labelbackground'] : ''; 
+	$gb_labelcolor = ( isset( $gutenborders_options['gb_labelcolor'] ) ) ? $gutenborders_options['gb_labelcolor'] : ''; 
+	$gb_labelsize = ( isset( $gutenborders_options['gb_labelsize'] ) ) ? $gutenborders_options['gb_labelsize'] : ''; 
+	$gb_labelopacity = ( isset( $gutenborders_options['gb_labelopacity'] ) ) ? $gutenborders_options['gb_labelopacity'] : ''; 
+
 	?>
 
 	<div id="gutenborders-settings-general" class="wrap">
@@ -164,6 +193,7 @@ if (!function_exists('gutenborders_config_page')) {
 						<!-- Adding security through hidden referrer field -->
 						<?php wp_nonce_field( 'gutenborders' ); ?>
 
+
 						<table class="form-table">
 							<tr>
 								<td colspan="2">
@@ -173,7 +203,7 @@ if (!function_exists('gutenborders_config_page')) {
 											<th scope="row"><?php _e('Default State','Gutenborders'); ?> </th>
 											<td>
 												<fieldset>
-													<input type="checkbox" id="gb_bordershow" name="gb_bordershow" <?php if ($gutenborders_options['gb_bordershow'] ) echo ' checked="checked" ';?> />
+													<input type="checkbox" id="gb_bordershow" name="gb_bordershow" <?php if (esc_attr($gb_bordershow )) echo ' checked="checked" ';?> />
 													<label for="gb_bordershow"><strong><?php _e('Show borders & labels by default','Gutenborders'); ?></strong></label>
 													<br><em><?php _e('Selecting this option will always show the borders/labels of all Blocks on page load, which may cause performance issues.<br>Regardless of this setting, you can always quicky switch between showing/hiding the borders on any Post/Page.','Gutenborders'); ?></em>
 												</fieldset>
@@ -192,23 +222,23 @@ if (!function_exists('gutenborders_config_page')) {
 										<tr>
 											<th scope="row"><?php _e('Border Style:','Gutenborders'); ?> <a href="#" title="<?php _e('Choose what type of line should be used for the borders.','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="borderstyle">
-												<fieldset><input type="radio" id="gb_type_1" name="gb_borderstyle" value="solid" <?php if ($gutenborders_options['gb_borderstyle'] == "solid") {echo 'checked';} ?>><label id="borderstyle-1" for="gb_type_1">Solid</label></fieldset>
-												<fieldset><input type="radio" id="gb_type_2" name="gb_borderstyle" value="dashed" <?php if ($gutenborders_options['gb_borderstyle'] == "dashed") {echo 'checked';} ?>><label id="borderstyle-2" for="gb_type_2">Dashed</label></fieldset>
-												<fieldset><input type="radio" id="gb_type_3" name="gb_borderstyle" value="dotted" <?php if ($gutenborders_options['gb_borderstyle'] == "dotted") {echo 'checked';} ?>><label id="borderstyle-3" for="gb_type_3">Dotted</label></fieldset>
+												<fieldset><input type="radio" id="gb_type_1" name="gb_borderstyle" value="solid" <?php if (esc_attr( $gb_borderstyle ) == "solid") {echo 'checked';} ?>><label id="borderstyle-1" for="gb_type_1">Solid</label></fieldset>
+												<fieldset><input type="radio" id="gb_type_2" name="gb_borderstyle" value="dashed" <?php if (esc_attr( $gb_borderstyle ) == "dashed") {echo 'checked';} ?>><label id="borderstyle-2" for="gb_type_2">Dashed</label></fieldset>
+												<fieldset><input type="radio" id="gb_type_3" name="gb_borderstyle" value="dotted" <?php if (esc_attr( $gb_borderstyle ) == "dotted") {echo 'checked';} ?>><label id="borderstyle-3" for="gb_type_3">Dotted</label></fieldset>
 											</td>
 										</tr>								
 
 										<tr>
 											<th scope="row"><?php _e('Border Color:','Gutenborders'); ?> <a href="#" title="<?php _e('Choose the color of the borders.','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="bordercolor">
-												<input type="text" name="gb_bordercolor" value="<?php echo $gutenborders_options['gb_bordercolor'] ?>" class="field-colorpicker" />
+												<input type="text" name="gb_bordercolor" value="<?php echo esc_attr( $gb_bordercolor ) ?>" class="field-colorpicker" />
 											</td>
 										</tr>
 
 										<tr>
 											<th scope="row"><?php _e('Border Width (1-5):','Gutenborders'); ?> <a href="#" title="<?php _e('Choose the width of the borders (1-10).','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="borderwidth">
-												<input type="number" min="1" max="5" name="gb_borderwidth" value="<?php echo $gutenborders_options['gb_borderwidth'] ?>" /> px
+												<input type="number" min="1" max="5" name="gb_borderwidth" value="<?php echo esc_attr( $gb_borderwidth ) ?>" /> px
 											</td>
 										</tr>
 									</table>
@@ -283,16 +313,16 @@ if (!function_exists('gutenborders_config_page')) {
 
 									<style type="text/css">
 										.preview-cell div, .preview-cell p  {
-											border: <?php echo ($gutenborders_options['gb_borderstyle']).' '.($gutenborders_options['gb_borderwidth']).'px '.($gutenborders_options['gb_bordercolor']) ?>;
-											padding: <?php echo ($gutenborders_options['gb_paddingtop']).'px '.($gutenborders_options['gb_paddingright']).'px '.($gutenborders_options['gb_paddingbottom']).'px '.($gutenborders_options['gb_paddingleft']).'px ;' ?>;
+											border: <?php echo esc_attr( $gb_borderstyle ).' '.esc_attr( $gb_borderwidth ).'px '.esc_attr( $gb_bordercolor ) ?>;
+											padding: <?php echo esc_attr( $gb_paddingtop ).'px '.esc_attr( $gb_paddingright ).'px '.esc_attr( $gb_paddingbottom ).'px '.esc_attr( $gb_paddingleft ).'px ;' ?>;
 										}
 										.preview-cell .block-label {
-											background: <?php echo ($gutenborders_options['gb_labelbackground']) ?>;
-											color: <?php echo ($gutenborders_options['gb_labelcolor']) ?>;
-											font-size: <?php echo ($gutenborders_options['gb_labelsize']) ?>px;
-											height: <?php echo (($gutenborders_options['gb_labelsize'])*1.5) ?>px;
-											line-height: <?php echo (($gutenborders_options['gb_labelsize'])*1.5) ?>px;
-											opacity: <?php $labelopacity = ($gutenborders_options['gb_labelopacity']); echo $labelopacity/10; ?>;
+											background: <?php echo esc_attr( $gb_labelbackground ) ?>;
+											color: <?php echo esc_attr( $gb_labelcolor ) ?>;
+											font-size: <?php echo esc_attr( $gb_labelsize ) ?>px;
+											height: <?php echo (esc_attr( $gb_labelsize )*1.5) ?>px;
+											line-height: <?php echo (esc_attr( $gb_labelsize )*1.5) ?>px;
+											opacity: <?php echo (esc_attr( $gb_labelopacity ))/10 ?>;
 										}
 									</style>
 
@@ -306,20 +336,24 @@ if (!function_exists('gutenborders_config_page')) {
 										<tr><th colspan="3" class="table-title"><input type="button" value="<?php _e('Reset to defaults','Gutenborders'); ?>" class="button-reset-padding button-reset button-secondary"/><h2><?php _e('Spacing','Gutenborders'); ?></h2></th></tr>
 										<tr>
 											<td> </td>
-											<td><input type="number" min="1" max="50" name="gb_paddingtop" value="<?php echo $gutenborders_options['gb_paddingtop'] ?>" />
+											<td>
+												<input type="number" min="1" max="50" name="gb_paddingtop" value="<?php echo esc_attr( $gb_paddingtop ) ?>" />
 											</td>
 											<td> </td>			
 										</tr>
 										<tr>
-											<td><input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo $gutenborders_options['gb_paddingleft'] ?>" /> 
+											<td>
+												<input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo esc_attr( $gb_paddingleft ) ?>" />
 											</td>
-											<td class="padding-preview" style="border: <?php echo $gutenborders_options['gb_borderstyle'] ?> <?php echo $gutenborders_options['gb_borderwidth'] ?>px <?php echo $gutenborders_options['gb_bordercolor'] ?>"> </td>
-											<td><input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo $gutenborders_options['gb_paddingright'] ?>" /> 
+											<td class="padding-preview" style="border: <?php echo esc_attr( $gb_borderstyle ) ?> <?php echo esc_attr( $gb_borderwidth ) ?>px <?php echo esc_attr( $gb_bordercolor ) ?>"> </td>
+											<td>
+												<input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo esc_attr( $gb_paddingright ) ?>" /> 
 											</td>			
 										</tr>
 										<tr>
 											<td> </td>
-											<td><input type="number" min="1" max="50" name="gb_paddingbottom" value="<?php echo $gutenborders_options['gb_paddingbottom'] ?>" /> 
+											<td>
+												<input type="number" min="1" max="50" name="gb_paddingbottom" value="<?php echo esc_attr( $gb_paddingbottom ) ?>" />
 											</td>
 											<td> </td>			
 										</tr>																				
@@ -336,28 +370,28 @@ if (!function_exists('gutenborders_config_page')) {
 										<tr>
 											<th scope="row"><?php _e('Background color:','Gutenborders'); ?> <a href="#" title="<?php _e('Choose the background color of the labels','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="labelbackground">
-												<input type="text" name="gb_labelbackground" value="<?php echo $gutenborders_options['gb_labelbackground'] ?>" class="field-colorpicker" />
+												<input type="text" name="gb_labelbackground" value="<?php echo esc_attr( $gb_labelbackground ) ?>" class="field-colorpicker" />
 											</td>
 										</tr>								
 
 										<tr>
 											<th scope="row"><?php _e('Text Color:','Gutenborders'); ?> <a href="#" title="<?php _e('Choose the text color of the labels.','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="labelcolor">
-												<input type="text" name="gb_labelcolor" value="<?php echo $gutenborders_options['gb_labelcolor'] ?>" class="field-colorpicker" />
+												<input type="text" name="gb_labelcolor" value="<?php echo esc_attr( $gb_labelcolor ) ?>" class="field-colorpicker" />
 											</td>
 										</tr>
 
 										<tr>
 											<th scope="row"><?php _e('Text size (0-30):','Gutenborders'); ?> <a href="#" title="<?php _e('Choose the text size of the labels. If 0, no labels will be shown at all.','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="borderwidth">
-												<input type="number" min="0" max="30" name="gb_labelsize" value="<?php echo $gutenborders_options['gb_labelsize'] ?>" /> px
+												<input type="number" min="0" max="30" name="gb_labelsize" value="<?php echo esc_attr( $gb_labelsize ) ?>" /> px
 											</td>
 										</tr>
 
 										<tr>
 											<th scope="row"><?php _e('Opacity (0-10):','Gutenborders'); ?> <a href="#" title="<?php _e('Choose the opacity size of the labels. 0 = invisible, 10 = full opacity.','Gutenborders'); ?>" class="help">?</a></th>
 											<td class="borderwidth">
-												<input type="number" min="0" max="10" name="gb_labelopacity" value="<?php echo $gutenborders_options['gb_labelopacity'] ?>" />
+												<input type="number" min="0" max="10" name="gb_labelopacity" value="<?php echo esc_attr( $gb_labelopacity ) ?>" />
 											</td>
 										</tr>
 									</table>
@@ -578,11 +612,10 @@ if (!function_exists('enqueue_color_picker')) {
 	$plugin = plugin_basename(__FILE__); 
 
 	register_activation_hook( __FILE__, 'gutenborders_default_options' );
-
-	// add_action( 'enqueue_block_editor_assets', 'gutenborders_load_db_values' );
-	add_action( 'enqueue_block_editor_assets', 'gutenborders_styles' );
+	add_action('enqueue_block_editor_assets', 'gutenborders_styles' );
 	add_action('admin_menu', 'gutenborders_menu');
 	add_action('admin_init', 'gutenborders_admin_init' );
+	add_action('admin_init', 'gutenborders_version_update' );	
 	add_action('admin_enqueue_scripts', 'gutenborders_admin' );	
 	add_action('admin_enqueue_scripts', 'enqueue_color_picker' );
 	add_filter("plugin_action_links_$plugin", 'gutenborders_settings_link' );
