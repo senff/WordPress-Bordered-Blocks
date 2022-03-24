@@ -3,9 +3,10 @@
 
 <p><strong><?php _e('Q: What does this plugin do, really?','Gutenborders'); ?></strong></p>
 
-<p>By default, the WordPress editor is relatively clean and minimalistic. This is by design, but it can also be slightly confusing when you see all the content but not <em>which</em> Blocks are being used on the page, or <em>how they're laid out</em>.</p>
 
-<p>Gutenborders adds borders and labels to every Block in the editor when you create/edit content, so you can get a better sense of the layout of your content.</p>
+<p>By default, the WordPress editor is relatively clean and minimalistic. This is by design, but it can also be slightly confusing when you <em>only</em> the content itself (text &amp; images) but not <em>which</em> Blocks are being used on the page, or how they're laid out.</p>
+
+<p>Gutenborders attempts to solve that by adding borders and labels to every Block in the editor, so you can get a better sense of the layout of your content.
 
 <p>Bonus: you can fully customize the size/color/type of the borders/labels to your needs.</p>
 
@@ -26,9 +27,9 @@
 <p><strong><?php _e('Q: What\'s next for Gutenborders?','Gutenborders'); ?></strong></p>
 <p>The following items are currently on the roadmap:</p>
 <ul>
-	<li>Support for WooCommerce Blocks</li>
-	<li>Support for Jetpack Blocks</li>
-	<li>Performance: have the main <span class="bold-text">checkBlocks()</span> JS function run <em>only</em> when a Block is being added/edited (currently it runs every second)</li>
+	<li>- Support for WooCommerce Blocks</li>
+	<li>- Support for Jetpack Blocks</li>
+	<li>- Performance: have the main <span class="bold-text">checkBlocks()</span> JS function run <em>only</em> when a Block is being added/edited (currently it runs every second)</li>
 </ul>
 
 <p><strong><?php _e('Q: What\'s with all the "!important" things in the code? That\'s bad CSS.','Gutenborders'); ?></strong></p>
@@ -38,4 +39,4 @@
 <p>Gutenborder's <a href="https://wordpress.org/support/plugin/gutenborders" target="_blank">community support forum</a> is a good place, though if you want to add all sorts of <em>technical</em> details, it's best to report it on the plugin's <a href="https://github.com/senff/gutenborders/issues" target="_blank">Github page</a>. This is also where I accept code contributions.</p>
 
 <p><strong><?php _e('Q: My question isn\'t listed here.','Gutenborders'); ?></strong></p>
-<p>Please go to the plugin's <a href="https://wordpress.org/support/plugin/gutenborders" target="_blank">community support forum</a> and post a message. Note that support is provided on a voluntary basis and that it is always difficult to troubleshoot, as it will require access to your admin area (needless to say, <span class="bold-text">NEVER</span> include any passwords of your site on a public forum!</p>
+<p>Please go to the plugin's <a href="https://wordpress.org/support/plugin/gutenborders" target="_blank">community support forum</a> and post a message. Note that support is provided on a voluntary basis and that it is always difficult to troubleshoot, as it will require access to your admin area (needless to say, <span class="bold-text" style="color:#ff0000;">NEVER include any passwords of your site on a public forum!</span>)</p>

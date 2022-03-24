@@ -4,7 +4,7 @@ Tags: gutenberg, borders, editor, blocks
 Plugin URI: http://www.senff.com/
 Requires at least: 5.9
 Tested up to: 5.9
-Stable tag: 0.9
+Stable tag: 0.91
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,8 +39,8 @@ A toggle switch at the top of the page will allow you to quickly switch between 
 
 = What does this plugin do, really?
 
-By default, the WordPress editor is relatively clean and minimalistic. This is by design, but it can also be slightly confusing when you see all the content but not which Blocks are being used on the page, or how they're laid out.
-Gutenborders adds borders and labels to every Block in the editor when you create/edit content, so you can get a better sense of the layout of your content.
+By default, the WordPress editor is relatively clean and minimalistic. This is by design, but it can also be slightly confusing when you *only* the content itself (text & images) but not *which* Blocks are being used on the page, or how they're laid out. 
+Gutenborders attempts to solve that by adding borders and labels to every Block in the editor, so you can get a better sense of the layout of your content.
 Bonus: you can fully customize the size/color/type of the borders/labels to your needs.
 
 = Doesn't that make the editor a lot more messy?
@@ -80,6 +80,9 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 
 == Changelog ==
+
+= 0.91 = 
+* Security update
 
 = 0.9 =
 * Release candidate 1
