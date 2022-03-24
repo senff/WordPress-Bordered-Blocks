@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Gutenborders
-Plugin URI: http://www.senff.com/plugins/gutenborders
-Description: Gutenborders plugin will add borders to all your blocks in the editor.
+Plugin URI: https://wordpress.org/plugins/gutenborders
+Description: Gutenborders plugin will add borders and labels to all your blocks in the editor.
 Author: Senff
 Author URI: http://www.senff.com
 Version: 0.92
