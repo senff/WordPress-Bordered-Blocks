@@ -180,7 +180,6 @@ if (!function_exists('gutenborders_config_page')) {
 					echo '</ul></div>';
 				} 
 
-
 			?>
 		
 			<div class="tabs-content">
@@ -205,7 +204,7 @@ if (!function_exists('gutenborders_config_page')) {
 												<fieldset>
 													<input type="checkbox" id="gb_bordershow" name="gb_bordershow" <?php if (esc_attr($gb_bordershow )) echo ' checked="checked" ';?> />
 													<label for="gb_bordershow"><strong><?php _e('Show borders & labels by default','Gutenborders'); ?></strong></label>
-													<br><em><?php _e('Selecting this option will always show the borders/labels of all Blocks on page load, which may cause performance issues.<br>Regardless of this setting, you can always quicky switch between showing/hiding the borders on any Post/Page.','Gutenborders'); ?></em>
+													<br><em><?php _e('Selecting this option will always show the borders/labels of all Blocks on page load, which may cause performance issues.<br>Regardless of this setting, there will always be a toggle switch at the top of on any Post/Page in the editor, allowing you to quicky switch between showing/hiding the borders.','Gutenborders'); ?></em>
 												</fieldset>
 											</td>
 										</tr>
