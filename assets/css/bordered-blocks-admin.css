@@ -6,12 +6,38 @@
 	font-weight: bold;
 }
 
-#gutenborders-faq p {
+#borderedblocks-main .help {
+	background: #606060;
+	color: #ffffff;
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	display: inline-block;
+	border-radius: 100px;
+	text-align: center;
+	text-decoration: none;
+	cursor:help;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+#borderedblocks-main .help:focus,
+#borderedblocks-main .help:active {
+	box-shadow: none;
+}
+
+#borderedblocks-faq p {
 	font-size:14px;
 	margin-bottom:20px;
 }
 
-#gutenborders-faq strong {
+#borderedblocks-faq li {
+	font-size:14px;
+	margin-left: 25px;
+	list-style-type: disc;
+}
+
+#borderedblocks-faq strong {
 	color:#222;
 	font-size:16px;
 	padding-top:20px;
@@ -20,16 +46,16 @@
 	display:block;
 }
 
-#gutenborders-faq p:nth-of-type(1) strong {
+#borderedblocks-faq p:nth-of-type(1) strong {
 	border-top:none;
 }
 
-#gutenborders-main .form-table h2 {
+#borderedblocks-main .form-table h2 {
 	margin: 0 0 10px 0;
 }
 
-#gutenborders-main .button-primary,
-#gutenborders-main .button-secondary {
+#borderedblocks-main .button-primary,
+#borderedblocks-main .button-secondary {
 	margin: 15px ;
 }
 
@@ -135,18 +161,18 @@
     font-family: "Source Sans Pro","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 
-#gutenborders-supported-blocks p,
-#gutenborders-supported-blocks li {
+#borderedblocks-supported-blocks p,
+#borderedblocks-supported-blocks li {
 	font-size: 14px;
 }
 
-#gutenborders-supported-blocks ul ul {
+#borderedblocks-supported-blocks ul ul {
 		list-style-type: disc;
 		margin-left: 25px;
 		margin-bottom: 40px;
 }
 
-#gutenborders-supported-blocks .supported-blocks > ul {
+#borderedblocks-supported-blocks .supported-blocks > ul {
 	float: left;
 	width: 30%;
 	max-width: 250px;
@@ -155,6 +181,6 @@
 }
 
 
-#gutenborders-supported-blocks .supported-blocks p {
+#borderedblocks-supported-blocks .supported-blocks p {
 	clear: both;
 }

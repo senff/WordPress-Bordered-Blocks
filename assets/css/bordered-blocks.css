@@ -1,4 +1,4 @@
-.gutenborders-header {
+.borderedblocks-header {
     margin-left: 15px;
     padding-left: 15px;
     border-left: solid 1px #000000;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.gutenborders-toggle label {
+.borderedblocks-toggle label {
     margin-left: 10px;
     position: relative;
     top: -1px;
@@ -17,42 +17,42 @@
     transition: all 0.3s;
 }
 
-body:not(.gutenborders) .gutenborders-label {
+body:not(.borderedblocks) .borderedblocks-label {
     display: none !important;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block {
+.borderedblocks .editor-styles-wrapper .wp-block {
     margin-top: 0 !important;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block[data-empty="true"] {
+.borderedblocks .editor-styles-wrapper .wp-block[data-empty="true"] {
     padding-top: 10px !important;
 }
 
-.gutenborders .editor-styles-wrapper *[data-title]:hover {
+.borderedblocks .editor-styles-wrapper *[data-title]:hover {
     border-color: #00000 !important;
 }
 
-.gutenborders .components-placeholder.components-placeholder {
+.borderedblocks .components-placeholder.components-placeholder {
     max-width: 100% !important;
     overflow: hidden;
 }
 
-.gutenborders .components-placeholder.components-placeholder:hover {
+.borderedblocks .components-placeholder.components-placeholder:hover {
     overflow: initial;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block.block-list-appender {
+.borderedblocks .editor-styles-wrapper .wp-block.block-list-appender {
     border: 0;
     padding: 0;
 }
 
-.gutenborders .editor-styles-wrapper .block-editor-inserter {
+.borderedblocks .editor-styles-wrapper .block-editor-inserter {
     z-index: 25;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block::before,
-.gutenborders .editor-styles-wrapper .wp-block *[data-title]::before  {
+.borderedblocks .editor-styles-wrapper .wp-block::before,
+.borderedblocks .editor-styles-wrapper .wp-block *[data-title]::before  {
     transition: all 0.2s;
     position: absolute;
     left: 0;
@@ -73,23 +73,26 @@ body:not(.gutenborders) .gutenborders-label {
     border-radius: 0;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block img,
-.gutenborders .editor-styles-wrapper .wp-block video {
+.borderedblocks .editor-styles-wrapper .wp-block img,
+.borderedblocks .editor-styles-wrapper .wp-block video {
     opacity: 0.75;
 }
 
-.gutenborders .editor-styles-wrapper .wp-block[data-empty="true"]:before {
+.borderedblocks .editor-styles-wrapper .wp-block[data-empty="true"]:before {
     display: none;
 }
 
+.borderedblocks .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{
+    margin-top: 0
+};
 
 /* ------------------------------------------------------------------ */
 /* These are some exceptional cases that we need to hard-code for now */
 /* ------------------------------------------------------------------ */
 
 
-.gutenborders .editor-styles-wrapper h1:before {content:"H1 Title";}
-.gutenborders .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{margin-top: 0};
+.borderedblocks .editor-styles-wrapper h1:before {content:"H1 Title";}
+
 
 
 
