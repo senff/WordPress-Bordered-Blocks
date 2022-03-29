@@ -238,30 +238,39 @@ function borderedblocks_config_page() {
 								<td class="no-padding">
 
 									<table class="border-table">
-										<tr><th colspan="2" class="table-title"><input type="button" value="<?php esc_attr_e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-border button-reset button-secondary"/><h2><?php esc_html_e('Borders','Bordered Blocks'); ?></h2></th></tr>
+										<tr>
+											<th colspan="2" class="table-title">
+												<input type="button" value="<?php esc_attr_e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-border button-reset button-secondary"/>
+												<h2><?php esc_html_e('Borders','Bordered Blocks'); ?></h2>
+											</th>
+										</tr>
 										<tr>
 											<th scope="row">
 												<?php esc_html_e('Border Style:','Bordered Blocks'); ?> 
-												<a href="#" class="help" title="<?php esc_attr_e('Choose what type of line should be used for the borders.','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
+												<a href="<?php echo esc_url('#'); ?>" class="<?php echo esc_attr('help') ?>" title="<?php esc_attr_e('Choose what type of line should be used for the borders.','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
 											</th>
 											<td class="borderstyle">
-												<fieldset><input type="radio" id="gb_type_1" name="gb_borderstyle" value="<?php esc_attr_e('solid','Bordered Blocks'); ?>" <?php if (esc_attr( $gb_borderstyle ) == "solid") {echo 'checked';} ?>><label id="borderstyle-1" for="gb_type_1"><?php esc_html_e('Solid','Bordered Blocks'); ?></label></fieldset>
-												<fieldset><input type="radio" id="gb_type_2" name="gb_borderstyle" value="<?php esc_attr_e('dashed','Bordered Blocks'); ?>" <?php if (esc_attr( $gb_borderstyle ) == "dashed") {echo 'checked';} ?>><label id="borderstyle-2" for="gb_type_2"><?php esc_html_e('Dashed','Bordered Blocks'); ?></label></fieldset>
-												<fieldset><input type="radio" id="gb_type_3" name="gb_borderstyle" value="<?php esc_attr_e('dotted','Bordered Blocks'); ?>" <?php if (esc_attr( $gb_borderstyle ) == "dotted") {echo 'checked';} ?>><label id="borderstyle-3" for="gb_type_3"><?php esc_html_e('Dotted','Bordered Blocks'); ?></label></fieldset>
+												<fieldset><input type="radio" id="<?php echo esc_attr('gb_type_1') ?>" name="<?php echo esc_attr('gb_borderstyle') ?>" value="<?php esc_attr_e('solid','Bordered Blocks'); ?>" <?php if (esc_attr( $gb_borderstyle ) == "solid") {echo 'checked';} ?>><label id="<?php echo esc_attr('borderstyle-1') ?>" for="<?php echo esc_attr('gb_type_1') ?>"><?php esc_html_e('Solid','Bordered Blocks'); ?></label></fieldset>
+												<fieldset><input type="radio" id="<?php echo esc_attr('gb_type_2') ?>" name="<?php echo esc_attr('gb_borderstyle') ?>" value="<?php esc_attr_e('dashed','Bordered Blocks'); ?>" <?php if (esc_attr( $gb_borderstyle ) == "dashed") {echo 'checked';} ?>><label id="<?php echo esc_attr('borderstyle-2') ?>" for="<?php echo esc_attr('gb_type_2') ?>"><?php esc_html_e('Dashed','Bordered Blocks'); ?></label></fieldset>
+												<fieldset><input type="radio" id="<?php echo esc_attr('gb_type_3') ?>" name="<?php echo esc_attr('gb_borderstyle') ?>" value="<?php esc_attr_e('dotted','Bordered Blocks'); ?>" <?php if (esc_attr( $gb_borderstyle ) == "dotted") {echo 'checked';} ?>><label id="<?php echo esc_attr('borderstyle-3') ?>" for="<?php echo esc_attr('gb_type_3') ?>"><?php esc_html_e('Dotted','Bordered Blocks'); ?></label></fieldset>
 											</td>
 										</tr>								
-
 										<tr>
-											<th scope="row"><?php _e('Border Color:','Bordered Blocks'); ?> <a href="#" title="<?php _e('Choose the color of the borders.','Bordered Blocks'); ?>" class="help">?</a></th>
+											<th scope="row">
+												<?php esc_html_e('Border Color:','Bordered Blocks'); ?> 
+												<a href="<?php echo esc_url('#'); ?>" class="<?php echo esc_attr('help') ?>" title="<?php esc_attr_e('Choose the color of the borders.','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
+											</th>
 											<td class="bordercolor">
-												<input type="text" name="gb_bordercolor" value="<?php echo esc_attr( $gb_bordercolor ) ?>" class="field-colorpicker" />
+												<input type="text" name="<?php echo esc_attr('gb_bordercolor') ?>" value="<?php echo esc_attr( $gb_bordercolor ) ?>" class="<?php echo esc_attr('field-colorpicker') ?>" />
 											</td>
 										</tr>
-
 										<tr>
-											<th scope="row"><?php _e('Border Width (1-5):','Bordered Blocks'); ?> <a href="#" title="<?php _e('Choose the width of the borders (1-10).','Bordered Blocks'); ?>" class="help">?</a></th>
+											<th scope="row">
+												<?php esc_html_e('Border Width (1-10):','Bordered Blocks'); ?> 
+												<a href="<?php echo esc_url('#'); ?>" class="<?php echo esc_attr('help') ?>" title="<?php esc_attr_e('Choose the width of the borders (1-10).','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
+											</th>
 											<td class="borderwidth">
-												<input type="number" min="1" max="5" name="gb_borderwidth" value="<?php echo esc_attr( $gb_borderwidth ) ?>" /> px
+												<input type="number" min="1" max="10" name="<?php echo esc_attr('gb_borderwidth') ?>" value="<?php echo esc_attr( $gb_borderwidth ) ?>" /> px
 											</td>
 										</tr>
 									</table>
@@ -270,67 +279,63 @@ function borderedblocks_config_page() {
 								<td rowspan="3" class="preview-cell">
 
 									<div class="prev-block">
-										<span class="block-label">HEADING</span>
-										<h3>PREVIEW</h3>
+										<span class="block-label"><?php esc_html_e('HEADING','Bordered Blocks'); ?></span>
+										<h3><?php esc_html_e('PREVIEW','Bordered Blocks'); ?></h3>
 									</div>
 
 									<p class="prev-block">
-										<span class="block-label">PARAGRAPH</span>
-										This is to give you a very rough idea how the blocks will look in your editor. Actual results may be different, depending on your theme. <strong>To view changes before you save/submit the settings, select the button below</strong>:
+										<span class="block-label"><?php esc_html_e('PARAGRAPH','Bordered Blocks'); ?></span>
+										<?php esc_html_e('This is to give you a very rough idea how the blocks will look in your editor. Actual results may be different, depending on your theme.','Bordered Blocks'); ?>
+										<strong>
+											<?php esc_html_e('To view changes before you save/submit the settings, select the button below:','Bordered Blocks'); ?>
+										</strong>
 									</p>
 
 									<div class="prev-block">
-										<span class="block-label">BUTTONS</span>
+										<span class="block-label"><?php esc_html_e('BUTTONS','Bordered Blocks'); ?></span>
 										
 										<div class="prev-block" style="display: inline-block;">
-											<span class="block-label">BUTTON</span>
-
-											<input type="button" value="<?php _e('SHOW ME A PREVIEW!','Bordered Blocks'); ?>" class="button-preview button-secondary"/>				
+											<span class="block-label"><?php esc_html_e('BUTTON','Bordered Blocks'); ?></span>
+											<input type="button" value="<?php _e('SHOW ME A PREVIEW!','Bordered Blocks'); ?>" class="button-preview button-primary"/>				
 										</div>
 
 									</div>
 
 									<div class="prev-block columns" data-type="COLUMNS">
-										<span class="block-label">COLUMNS</span>
+										<span class="block-label"><?php esc_html_e('COLUMNS','Bordered Blocks'); ?></span>
 										
 										<div class="prev-block column column-left" data-type="COLUMN">
-											<span class="block-label">COLUMN</span>
+											<span class="block-label"><?php esc_html_e('COLUMN','Bordered Blocks'); ?></span>
 
 											<p class="prev-block"> 
-												<span class="block-label">PARAGRAPH</span>
-												And now a picture of a beautiful girl:
+												<span class="block-label"><?php esc_html_e('PARAGRAPH','Bordered Blocks'); ?></span>
+												<?php esc_html_e('And now a picture of a beautiful girl:','Bordered Blocks'); ?>
 											</p>
 
 											<div class="prev-image" data-type="IMAGE">
-												<span class="block-label">IMAGE</span>
-												<img src="<?php 
-												define('sophieURL', plugins_url('/assets/img/sophie.png', __FILE__));
-												$sophie = sophieURL;
-												echo $sophie; ?>">
+												<span class="block-label"><?php esc_html_e('IMAGE','Bordered Blocks'); ?></span>
+												<?php define('sophieURL', plugins_url('/assets/img/sophie.png', __FILE__)); ?>
+												<img src="<?php echo esc_attr(sophieURL); ?>">												
 											</div>											
 
 										</div>
 			
 										<div class="prev-block column column-right" data-type="COLUMN">
-											<span class="block-label">COLUMN</span>
+											<span class="block-label"><?php esc_html_e('COLUMN','Bordered Blocks'); ?></span>
 											
 											<p class="prev-block"> 
-												<span class="block-label">PARAGRAPH</span>
-												We also have space for an additional fun fact.
+												<span class="block-label"><?php esc_html_e('PARAGRAPH','Bordered Blocks'); ?></span>
+												<?php esc_html_e('We also have space for an additional joke.','Bordered Blocks'); ?>
 											</p>
 
 											<div class="prev-block"> 
-												<span class="block-label">LIST</span>
+												<span class="block-label"><?php esc_html_e('LIST','Bordered Blocks'); ?></span>
 												<ul>
-													<li>Q: What did the drummer call his twin daughters?</li>
-													<li>A: Anna One, Anna Two.</li>
+													<li><?php esc_html_e('Q: What did the drummer call his twin daughters?','Bordered Blocks'); ?></li>
+													<li><?php esc_html_e('A: Anna One, Anna Two.','Bordered Blocks'); ?></li>
 												</ul>
 											</div>	
 
-											<p class="prev-block"> 
-												<span class="block-label">PARAGRAPH</span>											
-												It's not really a fun fact, actually. Let's just call it what it is -- it's a <strong>dad joke</strong>. And not a particularly good one. Then again, isn't that the definition of a dad joke?
-											</p>
 										</div>
 									</div>
 
@@ -356,27 +361,32 @@ function borderedblocks_config_page() {
 								<td>
 
 									<table class="padding-table">
-										<tr><th colspan="3" class="table-title"><input type="button" value="<?php _e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-padding button-reset button-secondary"/><h2><?php _e('Spacing','Bordered Blocks'); ?></h2></th></tr>
+										<tr>
+											<th colspan="3" class="table-title">
+												<input type="button" value="<?php esc_attr_e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-padding button-reset button-secondary"/>
+												<h2><?php esc_html_e('Padding','Bordered Blocks'); ?></h2>
+											</th>
+										</tr>								
 										<tr>
 											<td> </td>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingtop" value="<?php echo esc_attr( $gb_paddingtop ) ?>" />
+												<input type="number" min="1" max="50" name="<?php echo esc_attr('gb_paddingtop') ?>" value="<?php echo esc_attr( $gb_paddingtop ) ?>" />
 											</td>
 											<td> </td>			
 										</tr>
 										<tr>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo esc_attr( $gb_paddingleft ) ?>" />
+												<input type="number" min="1" max="50" name="<?php echo esc_attr('gb_paddingleft') ?>" value="<?php echo esc_attr( $gb_paddingleft ) ?>" />
 											</td>
-											<td class="padding-preview" style="border: <?php echo esc_attr( $gb_borderstyle ) ?> <?php echo esc_attr( $gb_borderwidth ) ?>px <?php echo esc_attr( $gb_bordercolor ) ?>"> </td>
+											<td class="<?php echo esc_attr('padding-preview') ?>" style="<?php echo esc_attr( 'border:' ).esc_attr( $gb_borderstyle ).' '.esc_attr( $gb_borderwidth ).'px '.esc_attr( $gb_bordercolor ) ?>"> </td>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo esc_attr( $gb_paddingright ) ?>" /> 
+												<input type="number" min="1" max="50" name="<?php echo esc_attr('gb_paddingright') ?>" value="<?php echo esc_attr( $gb_paddingright ) ?>" /> 
 											</td>			
 										</tr>
 										<tr>
 											<td> </td>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingbottom" value="<?php echo esc_attr( $gb_paddingbottom ) ?>" />
+												<input type="number" min="1" max="50" name="<?php echo esc_attr('gb_paddingbottom') ?>" value="<?php echo esc_attr( $gb_paddingbottom ) ?>" />
 											</td>
 											<td> </td>			
 										</tr>																				
@@ -389,32 +399,49 @@ function borderedblocks_config_page() {
 								<td class="no-padding">
 
 									<table class="label-table">
-										<tr><th colspan="2" class="table-title"><input type="button" value="<?php _e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-label button-reset button-secondary"/><h2><?php _e('Labels','Bordered Blocks'); ?></h2></th></tr>
 										<tr>
-											<th scope="row"><?php _e('Background color:','Bordered Blocks'); ?> <a href="#" title="<?php _e('Choose the background color of the labels','Bordered Blocks'); ?>" class="help">?</a></th>
+											<th colspan="2" class="table-title">
+												<input type="<?php echo esc_attr('button') ?>" value="<?php esc_attr_e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-label button-reset button-secondary"/>
+												<h2><?php esc_html_e('Labels','Bordered Blocks'); ?></h2>
+											</th>
+										</tr>	
+										<tr>
+											<th scope="row">
+												<?php esc_html_e('Background color:','Bordered Blocks'); ?>
+												<a href="<?php echo esc_url('#'); ?>" class="<?php echo esc_attr('help') ?>" title="<?php esc_attr_e('Choose the background of the labels.','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
+											</th>
 											<td class="labelbackground">
-												<input type="text" name="gb_labelbackground" value="<?php echo esc_attr( $gb_labelbackground ) ?>" class="field-colorpicker" />
+												<input type="text" name="<?php echo esc_attr('gb_labelbackground') ?>" value="<?php echo esc_attr( $gb_labelbackground ) ?>" class="<?php echo esc_attr('field-colorpicker') ?>" />
 											</td>
 										</tr>								
 
 										<tr>
-											<th scope="row"><?php _e('Text Color:','Bordered Blocks'); ?> <a href="#" title="<?php _e('Choose the text color of the labels.','Bordered Blocks'); ?>" class="help">?</a></th>
+											<th scope="row">
+												<?php esc_html_e('Text Color:','Bordered Blocks'); ?> 
+												<a href="<?php echo esc_url('#'); ?>" class="<?php echo esc_attr('help') ?>" title="<?php esc_attr_e('Choose the color of the labels.','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
+											</th>
 											<td class="labelcolor">
-												<input type="text" name="gb_labelcolor" value="<?php echo esc_attr( $gb_labelcolor ) ?>" class="field-colorpicker" />
+												<input type="text" name="<?php echo esc_attr('gb_labelcolor') ?>" value="<?php echo esc_attr( $gb_labelcolor ) ?>" class="<?php echo esc_attr('field-colorpicker') ?>" />
 											</td>
 										</tr>
 
 										<tr>
-											<th scope="row"><?php _e('Text size (0-30):','Bordered Blocks'); ?> <a href="#" title="<?php _e('Choose the text size of the labels. If 0, no labels will be shown at all.','Bordered Blocks'); ?>" class="help">?</a></th>
+											<th scope="row">
+												<?php esc_html_e('Text size (0-30):','Bordered Blocks'); ?> 
+												<a href="<?php echo esc_url('#'); ?>" class="<?php echo esc_attr('help') ?>" title="<?php esc_attr_e('Choose the text size of the labels. If 0, no labels will be shown at all.','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
+											</th>
 											<td class="borderwidth">
-												<input type="number" min="0" max="30" name="gb_labelsize" value="<?php echo esc_attr( $gb_labelsize ) ?>" /> px
+												<input type="number" min="1" max="30" name="<?php echo esc_attr('gb_labelsize') ?>" value="<?php echo esc_attr( $gb_labelsize ) ?>" /> px
 											</td>
 										</tr>
 
 										<tr>
-											<th scope="row"><?php _e('Opacity (0-10):','Bordered Blocks'); ?> <a href="#" title="<?php _e('Choose the opacity size of the labels. 0 = invisible, 10 = full opacity.','Bordered Blocks'); ?>" class="help">?</a></th>
+											<th scope="row">
+												<?php esc_html_e('Opacity (0-10):','Bordered Blocks'); ?> 
+												<a href="<?php echo esc_url('#'); ?>" class="<?php echo esc_attr('help') ?>" title="<?php esc_attr_e('Choose the opacity size of the labels. 0 = invisible, 10 = full opacity.','Bordered Blocks'); ?>"><?php echo esc_html('?'); ?></a>
+											</th>
 											<td class="borderwidth">
-												<input type="number" min="0" max="10" name="gb_labelopacity" value="<?php echo esc_attr( $gb_labelopacity ) ?>" />
+												<input type="number" min="1" max="10" name="<?php echo esc_attr('gb_labelopacity') ?>" value="<?php echo esc_attr( $gb_labelopacity ) ?>" />
 											</td>
 										</tr>
 									</table>
@@ -423,9 +450,9 @@ function borderedblocks_config_page() {
 							</tr>
 						</table>
 
-						<input type="button" value="<?php _e('Reset all to defaults','Bordered Blocks'); ?>" class="button-reset-all button-secondary"/>
-						<input type="button" value="<?php _e('Preview','Bordered Blocks'); ?>" class="button-preview button-secondary"/>
-						<input type="submit" value="<?php _e('SAVE SETTINGS','Bordered Blocks'); ?>" class="button-primary"/>
+						<input type="<?php echo esc_attr('button') ?>" value="<?php esc_attr_e('Reset all to defaults','Bordered Blocks'); ?>" class="button-reset-all button-secondary"/>
+						<input type="<?php echo esc_attr('button') ?>" value="<?php esc_attr_e('Preview','Bordered Blocks'); ?>" class="button-preview button-secondary"/>
+						<input type="<?php echo esc_attr('submit') ?>" value="<?php esc_attr_e('SAVE SETTINGS','Bordered Blocks'); ?>" class="button-primary"/>
 
 						<p>&nbsp;</p>
 					</form>
