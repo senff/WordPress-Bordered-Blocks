@@ -1,6 +1,6 @@
 jQuery(function($) {
 
-	// --- HANDLING THE TABS ----------------------------------- 
+    // --- HANDLING THE TABS ----------------------------------- 
 
     var hash = window.location.hash;
 
