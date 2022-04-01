@@ -21,7 +21,7 @@ jQuery(function($) {
 
     // Apply CSS styles for borders
     let cssVar = '.borderedblocks .editor-styles-wrapper .wp-block, .borderedblocks .editor-styles-wrapper *[data-title], .borderedblocks .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{';
-    cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+';';
+    cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+' !important;';
     cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin-bottom: 20px !important;}';
     // Apply CSS styles for labels
     if (labelsize < 1) {

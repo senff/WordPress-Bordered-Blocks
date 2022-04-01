@@ -5,7 +5,7 @@
 * Plugin URI: http://www.senff.com
 * Requires at least: 5.9
 * Tested up to: 5.9
-* Stable tag: 1.0
+* Stable tag: 1.1
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,10 +67,9 @@ If you see that the issue still appears when your site is on a default theme, le
 
 The following items are currently not supported, but are on the roadmap:
 
-* Support for WooCommerce Blocks
 * Support for Jetpack Blocks
 * Performance: have the main checkBlocks() JS function run only when a Block is being added/edited (currently it runs every second)
-* Multi-language support
+* Full multi-language support
 
 ### What's with all the "!important" things in the code? That's bad CSS.
 
@@ -94,11 +93,17 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 ## Changelog
 
+### 1.1 
+* Added support for WooCommerce Blocks
+
 ### 1.0
 * Public release
 
 
 ## Upgrade Notice 
+
+### 1.1 
+* Added support for WooCommerce Blocks
 
 ### 1.0
 * Public release

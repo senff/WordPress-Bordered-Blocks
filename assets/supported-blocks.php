@@ -89,8 +89,34 @@
 			</ul>
 		</li>			
 	</ul>
+	<ul style="clear: both;">
+		<li><strong><?php _e('WOOCOMMERCE:','Bordered Blocks'); ?></strong></li>
+		<li><ul>
+			<li><?php _e('All Reviews','Bordered Blocks'); ?></li>
+			<li><?php _e('Featured Category','Bordered Blocks'); ?></li>
+			<li><?php _e('Featured Product','Bordered Blocks'); ?></li>
+			<li><?php _e('Hand-picked Products','Bordered Blocks'); ?></li>
+			<li><?php _e('Best Selling Products','Bordered Blocks'); ?></li>
+			<li><?php _e('Product Categories List','Bordered Blocks'); ?></li>
+			<li><?php _e('Products bu Category','Bordered Blocks'); ?></li>
+			<li><?php _e('Newest Products','Bordered Blocks'); ?></li>
+			<li><?php _e('On Sale Products','Bordered Blocks'); ?></li>
+			<li><?php _e('Products by Attribute','Bordered Blocks'); ?></li>
+			<li><?php _e('Top Rated Products','Bordered Blocks'); ?></li>
+			<li><?php _e('Reviews by Product','Bordered Blocks'); ?></li>
+			<li><?php _e('Reviews by Category','Bordered Blocks'); ?></li>
+			<li><?php _e('Product Search','Bordered Blocks'); ?></li>
+			<li><?php _e('Products by Tag','Bordered Blocks'); ?></li>
+			<li><?php _e('All Products','Bordered Blocks'); ?></li>
+			<li><?php _e('Filter Products by Price','Bordered Blocks'); ?></li>
+			<li><?php _e('Filter Products by Attribute','Bordered Blocks'); ?></li>
+			<li><?php _e('Filter Products by Stock','Bordered Blocks'); ?></li>
+			<li><?php _e('Active Product Filters','Bordered Blocks'); ?></li>			
+			</ul>
+		</li>
+	</ul>	
 
-	<p><?php _e('Support for WooCommerce and Jetpack Blocks will be included in the next version.','Bordered Blocks'); ?></p>
+	<p><?php _e('Support for Jetpack Blocks will be included in the next version.','Bordered Blocks'); ?></p>
 
 
 </div>
