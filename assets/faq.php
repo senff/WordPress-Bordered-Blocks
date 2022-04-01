@@ -81,16 +81,13 @@
 	<?php _e('but -are- on the roadmap:','Bordered Blocks'); ?></p>
 <ul>
 	<li>
-		<?php _e('Support for WooCommerce Blocks','Bordered Blocks'); ?>
-	</li>
-	<li>
 		<?php _e('Support for Jetpack Blocks','Bordered Blocks'); ?>
 	</li>
 	<li>
 		<?php _e('Performance: have the main "checkBlocks()" JS function run -only- when a Block is being added/edited (currently it runs every second)','Bordered Blocks'); ?>
 	</li>
 	<li>
-		<?php _e('Multi-language support','Bordered Blocks'); ?>
+		<?php _e('Full multi-language support','Bordered Blocks'); ?>
 	</li>
 </ul>
 
