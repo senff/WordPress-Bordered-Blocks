@@ -5,7 +5,7 @@
 * Plugin URI: http://www.senff.com
 * Requires at least: 5.9
 * Tested up to: 5.9
-* Stable tag: 0.96
+* Stable tag: 1.0
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,43 +85,20 @@ Bordered Blocks' community support forum at https://wordpress.org/support/plugin
 Please go to the plugin's community support forum at https://wordpress.org/support/plugin/bordered-blocks and post a message. Note that support is provided on a voluntary basis and that it is always difficult to troubleshoot, as it will require access to your admin area (needless to say, NEVER include any passwords of your site on a public forum!
 
 
+## Screenshots
+
+1. Your Blocks now have borders!
+2. For reference: the default, borderless editor view
+3. Settings screen
+
+
 ## Changelog
 
-### 0.96
-* Security fixes
-
-### 0.92
-* isset() and variables and database and stuff
-
-### 0.9 
-* Support for all core blocks
-
-### 0.5 
-* Global settings screen added
-
-### 0.2 
-* Toggle button added
-
-### 0.1 
-* Initial alpha release 
+### 1.0
+* Public release
 
 
 ## Upgrade Notice 
 
-### 0.96
-* Security update
-
-### 0.92
-* Security update
-
-### 0.9 
-* Release candidate 1
-
-### 0.5 
-* Beta release 
-
-### 0.2 
-* Update 
-
-### 0.1 
-* Initial alpha release 
+### 1.0
+* Public release
