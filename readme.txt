@@ -1,10 +1,11 @@
 === Bordered Blocks - Add subtle borders or outlines and labels to Blocks in the Editor ===
 Contributors: senff, correliebre
+Donate link: https://donate.senff.com
 Tags: gutenberg, borders, editor, blocks, labels
-Plugin URI: http://www.senff.com/
+Plugin URI: https://wordpress.org/plugins/bordered-blocks/
 Requires at least: 5.9
-Tested up to: 5.9
-Stable tag: 1.1
+Tested up to: 6.2
+Stable tag: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -90,6 +91,12 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 3. Settings screen
 
 == Changelog ==
+
+= 1.1.2 = 
+* Database version bug fix
+
+= 1.1.1 = 
+* Compatibility update
 
 = 1.1 = 
 * Added support for WooCommerce Blocks

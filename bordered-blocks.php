@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugins/bordered-blocks
 Description: Bordered Blocks adds subtle borders to all blocks in the WordPress Post/Page editor, to give you a clearer view of the layout of the blocks are on your page. Switch easily between default (clean) view, and bordered (clear) view.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 1.1
+Version: 1.1.2
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -20,7 +20,7 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 
 	function borderedblocks_default_options() {
-		$versionNum = '1.1';
+		$versionNum = '1.1.1';
 		if (get_option('borderedblocks_options') === false) {
 			$new_options['gb_bordershow'] = '';
 			$new_options['gb_bordercolor'] = '#c0c0c0';
@@ -33,29 +33,13 @@ defined('ABSPATH') or die('INSERT COIN');
 			$new_options['gb_labelcolor'] = '#ffffff';
 			$new_options['gb_labelbackground'] = '#000000';
 			$new_options['gb_labelopacity'] = '3';
-			$new_options['gb_labelsize'] = '12';						
+			$new_options['gb_labelsize'] = '12';
+			$new_options['gb_num'] = $versionNum;
+			$new_options['gb_version'] = $versionNum;												
 			add_option('borderedblocks_options',$new_options);
 		} 
-		// Ver
-		if (get_option('borderedblocks_version') === false) {	
-			$new_options['gb_num'] = $versionNum;	
-		}
 	}
 
-/**
- * --- UPDATE THE VERSION NUMBER IN THE DATABASE --------------------------------------------------------------
- */
-
-	function borderedblocks_version_update() {
-		$gb_version = get_option('borderedblocks_version');
-		$dbVersion = $options['gb_num']; // version in database
-		$currentVersion = '1.1'; 
-
-		if ($dbVersion != $currentVersion) {
-			$updateversion['gb_num'] = $currentVersion;		
-			update_option('borderedblocks_version',$updateversion);
-		}
-	}
 
 
 /**
@@ -67,7 +51,7 @@ defined('ABSPATH') or die('INSERT COIN');
 		$options = get_option('borderedblocks_options');
 		
 		$script_vars = array(
-			'version' 		=> $options['gb_version'],
+			'version' 		=> '1.1.1',
 			'bordershow'	=> $options['gb_bordershow'],
 			'bordercolor'	=> $options['gb_bordercolor'],
 			'borderstyle'	=> $options['gb_borderstyle'],
@@ -83,7 +67,7 @@ defined('ABSPATH') or die('INSERT COIN');
 		);
 
 		$gb_version = get_option('borderedblocks_version');
-		$versionNum = $options['gb_num'];			
+		$versionNum = '1.1.1';			
 
 		wp_enqueue_script('borderedblocksLoader', plugins_url('/assets/js/bordered-blocks.js', __FILE__), array( 'jquery' ), $versionNum, true);
 		wp_localize_script( 'borderedblocksLoader', 'borderedblocks_loader', $script_vars );
@@ -660,7 +644,7 @@ function borderedblocks_config_page() {
 	add_action('enqueue_block_editor_assets', 'borderedblocks_styles' );
 	add_action('admin_menu', 'borderedblocks_menu');
 	add_action('admin_init', 'borderedblocks_admin_init' );
-	add_action('admin_init', 'borderedblocks_version_update' );	
+	// add_action('admin_init', 'borderedblocks_version_update' );	
 	add_action('admin_enqueue_scripts', 'borderedblocks_admin' );	
 	add_action('admin_enqueue_scripts', 'borderedblocks_color_picker' );
 	add_filter("plugin_action_links_$plugin", 'borderedblocks_settings_link' );
