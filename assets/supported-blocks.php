@@ -116,7 +116,7 @@
 		</li>
 	</ul>	
 
-	<p><?php _e('Support for Jetpack Blocks will be included in the next version.','Bordered Blocks'); ?></p>
+	<p><?php _e('Support for Jetpack Blocks will be included in a future version.','Bordered Blocks'); ?></p>
 
 
 </div>

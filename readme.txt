@@ -4,8 +4,8 @@ Donate link: https://donate.senff.com
 Tags: gutenberg, borders, editor, blocks, labels
 Plugin URI: https://wordpress.org/plugins/bordered-blocks/
 Requires at least: 5.9
-Tested up to: 6.2
-Stable tag: 1.1.2
+Tested up to: 6.6.2
+Stable tag: 1.1.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -52,9 +52,9 @@ Bonus: you can fully customize the size/color/type of the borders/labels to your
 
 Although you can leave the "bordered" view on when you create/edit pages, it is not recommended, as it will indeed add a lot more information to the editor which may be distracting. It will also have some impact on the performance (although I'm working on that). The recommended use is to keep using the default editor view, and only sparingly flip the switch to show the borders and labels of the Blocks on the page.
 
-= So wait, can borders be turned on and off instantly?
+= Can borders be turned on and off instantly?
 
-Pretty much, yes. In the plugin's settings, you can choose to have the editor show the standard view by default, or the bordered view. If you have the standard view, then flipping the switch at the top of the page will quickly show all borders/labels. If you have the bordered view, flipping the switch will quickly remove all borders/labels and go back to the standard view.
+While that used to be the case until version 1.1.3, this option has been removed for now as it did not appear to be working anymore with WordPress 6.6.2. I will look into adding this again, but for now, the borders are always showing in the editor as long as the plugin is active.
 
 = Some of my blocks don't have a label, look weird, etc.
 
@@ -92,6 +92,14 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 == Changelog ==
 
+= 1.1.4 = 
+* Removed the ON/OFF toggle in the editor since it was not working with WordPress 6.6.2
+
+= 1.1.3 = 
+* Fixed JS issue that appeared when saving settings
+* Fixed jQuery issue to make toggle button appear again
+* Fixed CSS to position H1 label properly
+
 = 1.1.2 = 
 * Database version bug fix
 
@@ -104,3 +112,23 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 = 1.0 =
 * Public release
 
+
+== Upgrade Notice ==
+
+= 1.1.4 =
+* Emergency fix
+
+= 1.1.3 =
+* Bug fixes
+
+= 1.1.2 =
+* Bug fix
+
+= 1.1.1 =
+* Compatibility Update
+
+= 1.1 =
+* Added support for WooCommerce Blocks
+
+= 1.0 =
+* Public release

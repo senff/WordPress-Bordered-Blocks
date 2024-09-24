@@ -20,39 +20,42 @@ jQuery(function($) {
     let labelsize = borderedblocks_loader.labelsize;      
 
     // Apply CSS styles for borders
-    let cssVar = '.borderedblocks .editor-styles-wrapper .wp-block, .borderedblocks .editor-styles-wrapper *[data-title], .borderedblocks .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{';
+    let cssVar = '.editor-styles-wrapper .wp-block, .editor-styles-wrapper *[data-title], .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{';
     cssVar += 'border: '+borderstyle+' '+borderwidth+'px '+bordercolor+' !important;';
     cssVar += 'padding: '+paddingtop+'px '+paddingright+'px '+paddingbottom+'px '+paddingleft+'px !important; margin-bottom: 20px !important;}';
     // Apply CSS styles for labels
     if (labelsize < 1) {
-        cssVar += '.borderedblocks .editor-styles-wrapper .wp-block:before  {display: none;}';
+        cssVar += '.editor-styles-wrapper .wp-block:before  {display: none;}';
     } else {
-        cssVar += '.borderedblocks .editor-styles-wrapper .wp-block::before, .borderedblocks .editor-styles-wrapper .wp-block *[data-title]::before {';
+        cssVar += '.editor-styles-wrapper .wp-block::before, .editor-styles-wrapper .wp-block *[data-title]::before {';
         cssVar += 'font-size:'+labelsize+'px;height:'+(labelsize*1.5)+'px;line-height:'+(labelsize*1.5)+'px;background:'+labelbackground+';color:'+labelcolor+';opacity:'+(labelopacity/10)+';';
         cssVar += '}';
     }
-        cssVar += '.borderedblocks .editor-styles-wrapper .wp-block.contains-blocks[data-title] {position: relative; padding: 0 !important; border: none;}';
-        cssVar += '.borderedblocks .editor-styles-wrapper .wp-block.contains-blocks::before {display: none;}';    
-        cssVar += '.borderedblocks .editor-styles-wrapper hr.wp-block-separator[data-title], .borderedblocks .editor-styles-wrapper .contains-blocks[data-title] hr[data-title] {padding: 0 !important;} .borderedblocks .editor-styles-wrapper hr.wp-block-separator:after {display: none;}';
-        cssVar += '.borderedblocks .editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .borderedblocks .editor-styles-wrapper .wp-block.contains-blocks[data-title="Social Icons"] *[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .borderedblocks .editor-styles-wrapper .wp-block[data-title="Social Icon"]:before {display: none;}';
+        cssVar += '.editor-styles-wrapper .wp-block.contains-blocks[data-title] {position: relative; padding: 0 !important; border: none;}';
+        cssVar += '.editor-styles-wrapper .wp-block.contains-blocks::before {display: none;}';    
+        cssVar += '.editor-styles-wrapper hr.wp-block-separator[data-title], .editor-styles-wrapper .contains-blocks[data-title] hr[data-title] {padding: 0 !important;} .editor-styles-wrapper hr.wp-block-separator:after {display: none;}';
+        cssVar += '.editor-styles-wrapper .wp-block[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .editor-styles-wrapper .wp-block.contains-blocks[data-title="Social Icons"] *[data-title="Social Icon"] {border: none; padding: 0 !important; margin-bottom: 0 !important;} .editor-styles-wrapper .wp-block[data-title="Social Icon"]:before {display: none;}';
 
         $('#borderedBlocks-css-variable').html(cssVar);        
 
     // Whether the toggle button (and the borders) should be ON of OFF by default
-    let checkedornot;
-    if (bordershow) {
-        $('body').addClass('borderedblocks');
-        checkedornot = 'checked';
-    }
+//    let checkedornot;
+//    if (bordershow) {
+//        $('body').addClass('borderedblocks');
+//        checkedornot = 'checked';
+//    }
 
-    function addToggle() {
-        $('.edit-post-header-toolbar__left').append('<div class="borderedblocks-header"><span class="borderedblocks-toggle components-form-toggle is-'+checkedornot+'"><input class="components-form-toggle__input" id="borderedblocks-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" '+checkedornot+'><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="borderedblocks-toggle">Show borders/labels</label></span></div>').addClass('hasToggle');
-    }
+//    function addToggle() {
+        // Adding the toggle button
+        // First line is updated - we can remove the second line a few versions down the road.
+//        $('.editor-document-tools__left').append('<div class="borderedblocks-header"><span class="borderedblocks-toggle components-form-toggle is-'+checkedornot+'"><input class="components-form-toggle__input" id="borderedblocks-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" '+checkedornot+'><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="borderedblocks-toggle">Show borders/labels</label></span></div>').addClass('hasToggle');
+//       $('.edit-post-header-toolbar__left').append('<div class="borderedblocks-header"><span class="borderedblocks-toggle components-form-toggle is-'+checkedornot+'"><input class="components-form-toggle__input" id="borderedblocks-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" '+checkedornot+'><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="borderedblocks-toggle">Show borders/labels</label></span></div>').addClass('hasToggle');
+//    }
 
-    $('#editor').on('click','.borderedblocks-toggle',function(){
-       $(this).toggleClass('is-checked');
-       $('body').toggleClass('borderedblocks');
-    });  
+//    $('#editor').on('click','.borderedblocks-toggle',function(){
+//       $(this).toggleClass('is-checked');
+//       $('body').toggleClass('borderedblocks');
+//    });  
 
     // This function SHOULD run every time a new block is added, or when an existing block is changed.
     // Right now, it will just run every second, and will output an array with all the block types on the page.
@@ -95,26 +98,26 @@ jQuery(function($) {
         // This CSS code also includes blocks that were on the page before.
         let cssCode = '';
         blocksOnPage.forEach(function(blockType) {
-            cssCode += '.borderedblocks .editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} .borderedblocks .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] *[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
+            cssCode += '.editor-styles-wrapper .wp-block[data-title="'+blockType+'"]:before {content: "'+blockType+'";} .editor-styles-wrapper .wp-block[data-title="'+blockType+'"] *[data-title="'+blockType+'"]:before {content: "'+blockType+'";} ';
         });  
 
         embedsOnPage.forEach(function(embedType) {
-            cssCode += '.borderedblocks .editor-styles-wrapper .wp-block[borderedblocks-label="'+embedType+'"]:before {content: "'+embedType+'";} .borderedblocks .editor-styles-wrapper .wp-block[borderedblocks-label="'+embedType+'"] *[data-title="Embed"]:before {content: "'+embedType+'";} ';
+            cssCode += '.editor-styles-wrapper .wp-block[borderedblocks-label="'+embedType+'"]:before {content: "'+embedType+'";} .editor-styles-wrapper .wp-block[borderedblocks-label="'+embedType+'"] *[data-title="Embed"]:before {content: "'+embedType+'";} ';
         });  
 
         // There's a few exceptions (thanks to the WordPress editor inconsistencies), so we'll need to add those.
-            cssCode += '.borderedblocks .editor-styles-wrapper .wp-block.taxonomy-category:before {content: "Post Categories";}';
-            cssCode += '.borderedblocks .editor-styles-wrapper .wp-block.taxonomy-post_tag:before {content: "Post Tags";}';
-            cssCode += '.borderedblocks .editor-styles-wrapper .wp-block[borderedblocks-label="Next post"]:before {content: "Next Post";}';
-            cssCode += '.borderedblocks .editor-styles-wrapper .wp-block[borderedblocks-label="Previous post"]:before {content: "Previous Post";}';
-            cssCode += '.borderedblocks .editor-styles-wrapper .wp-block.wp-block-query-title:before {content: "Archive Title";}';
+            cssCode += '.editor-styles-wrapper .wp-block.taxonomy-category:before {content: "Post Categories";}';
+            cssCode += '.editor-styles-wrapper .wp-block.taxonomy-post_tag:before {content: "Post Tags";}';
+            cssCode += '.editor-styles-wrapper .wp-block[borderedblocks-label="Next post"]:before {content: "Next Post";}';
+            cssCode += '.editor-styles-wrapper .wp-block[borderedblocks-label="Previous post"]:before {content: "Previous Post";}';
+            cssCode += '.editor-styles-wrapper .wp-block.wp-block-query-title:before {content: "Archive Title";}';
 
         //
         $('#borderedBlocks-css-dynamic').html(cssCode);        
     }
 
     var addToggleButton = setInterval(function() {
-        if(!$('.edit-post-header-toolbar__left').hasClass('hasToggle')) {
+        if(   (!$('.edit-post-header-toolbar__left').hasClass('hasToggle')) && (!$('.editor-document-tools__left').hasClass('hasToggle')) ) {
             addToggle();
         } else {
         // End this silly loop

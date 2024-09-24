@@ -2,11 +2,6 @@
 	<?php _e('Plugin info','Bordered Blocks'); ?>
 </h3>
 
-<?php 
-	$options = get_option('borderedblocks_version');
-	$version = $options['gb_num'];
-?>
-
 <div class="inner">
 
 	<ul>
@@ -18,7 +13,7 @@
 		<li><strong>
 			<?php _e('Version:','Bordered Blocks'); ?>
 			</strong> 
-			<?php echo esc_html($version); ?>
+			1.1.4
 		</li>
 		<li><strong>
 			<?php _e('Detailed Documentation:','Bordered Blocks'); ?>

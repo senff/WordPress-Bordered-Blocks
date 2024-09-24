@@ -21,15 +21,15 @@ body:not(.borderedblocks) .borderedblocks-label {
     display: none !important;
 }
 
-.borderedblocks .editor-styles-wrapper .wp-block {
+.editor-styles-wrapper .wp-block {
     margin-top: 0 !important;
 }
 
-.borderedblocks .editor-styles-wrapper .wp-block[data-empty="true"] {
+.editor-styles-wrapper .wp-block[data-empty="true"] {
     padding-top: 10px !important;
 }
 
-.borderedblocks .editor-styles-wrapper *[data-title]:hover {
+.editor-styles-wrapper *[data-title]:hover {
     border-color: #00000 !important;
 }
 
@@ -42,17 +42,17 @@ body:not(.borderedblocks) .borderedblocks-label {
     overflow: initial;
 }
 
-.borderedblocks .editor-styles-wrapper .wp-block.block-list-appender {
+.editor-styles-wrapper .wp-block.block-list-appender {
     border: 0;
     padding: 0;
 }
 
-.borderedblocks .editor-styles-wrapper .block-editor-inserter {
+.editor-styles-wrapper .block-editor-inserter {
     z-index: 25;
 }
 
-.borderedblocks .editor-styles-wrapper .wp-block::before,
-.borderedblocks .editor-styles-wrapper .wp-block *[data-title]::before  {
+.editor-styles-wrapper .wp-block::before,
+.editor-styles-wrapper .wp-block *[data-title]::before  {
     transition: all 0.2s;
     position: absolute;
     left: 0;
@@ -73,25 +73,25 @@ body:not(.borderedblocks) .borderedblocks-label {
     border-radius: 0;
 }
 
-.borderedblocks .editor-styles-wrapper .wp-block img,
-.borderedblocks .editor-styles-wrapper .wp-block video {
+.editor-styles-wrapper .wp-block img,
+.editor-styles-wrapper .wp-block video {
     opacity: 0.75;
 }
 
-.borderedblocks .editor-styles-wrapper .wp-block[data-empty="true"]:before {
+.editor-styles-wrapper .wp-block[data-empty="true"]:before {
     display: none;
 }
 
-.borderedblocks .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{
+.editor-styles-wrapper .contains-blocks[data-title] *[data-title]{
     margin-top: 0
-};
+}
 
 /* ------------------------------------------------------------------ */
 /* These are some exceptional cases that we need to hard-code for now */
 /* ------------------------------------------------------------------ */
 
-
-.borderedblocks .editor-styles-wrapper h1:before {content:"H1 Title";}
+.editor-styles-wrapper h1 {position: relative;}
+.editor-styles-wrapper h1:before {content:"H1 Title";}
 
 
 

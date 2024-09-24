@@ -36,12 +36,12 @@
 
 <p>
 	<strong>
-		<?php _e('So wait, can borders be turned on and off instantly?','Bordered Blocks'); ?>
+		<?php _e('Can borders be turned on and off instantly in the editor?','Bordered Blocks'); ?>
 	</strong>
 </p>
 
 <p>
-	<?php _e('Pretty much, yes. In the plugin\'s settings, you can choose to have the editor show the standard view by default, -OR- the bordered view. If you have the standard view, then flipping the switch at the top of the page will quickly show all borders/labels. If you have the bordered view, flipping the switch will quickly remove all borders/labels and go back to the standard view.','Bordered Blocks'); ?>
+	<?php _e('While that used to be the case until version 1.1.3, this option has been removed for now as it did not appear to be working anymore with WordPress 6.6.2. I will look into adding this again, but for now, the borders are always showing in the editor as long as the plugin is active.','Bordered Blocks'); ?>
 </p>
 
 <p>
@@ -51,7 +51,7 @@
 </p>
 
 <p>
-	<?php _e('Bordered Blocks currently only supports the default Blocks that come with WordPress (support for WooCommerce and Jetpack is planned). If you have additional blocks added with plugins (or custom code), and they are not coded exactly following WordPress standards, they may not look as intended with borders and/or labels. If that\'s the case, please reach out to the plugin developer and have them check if all their Blocks have the proper naming with "data-title" attributes.','Bordered Blocks'); ?>
+	<?php _e('Bordered Blocks currently only supports the default Blocks that come with WordPress and WooCommerce. If you have additional blocks added with plugins (or custom code), and they are not coded exactly following WordPress standards, they may not look as intended with borders and/or labels. If that\'s the case, please reach out to the plugin developer and have them check if all their Blocks have the proper naming with "data-title" attributes.','Bordered Blocks'); ?>
 </p>
 
 <p>
@@ -80,6 +80,9 @@
 	<span class="bold-text"><?php _e('currently not supported','Bordered Blocks'); ?></span>, 
 	<?php _e('but -are- on the roadmap:','Bordered Blocks'); ?></p>
 <ul>
+	<li>
+		<?php _e('Re-introcing the toggle to show/hide borders instantly in the editor','Bordered Blocks'); ?>
+	</li>	
 	<li>
 		<?php _e('Support for Jetpack Blocks','Bordered Blocks'); ?>
 	</li>

@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugins/bordered-blocks
 Description: Bordered Blocks adds subtle borders to all blocks in the WordPress Post/Page editor, to give you a clearer view of the layout of the blocks are on your page. Switch easily between default (clean) view, and bordered (clear) view.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 1.1.2
+Version: 1.1.4
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -20,7 +20,7 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 
 	function borderedblocks_default_options() {
-		$versionNum = '1.1.1';
+		$versionNum = '1.1.4';
 		if (get_option('borderedblocks_options') === false) {
 			$new_options['gb_bordershow'] = '';
 			$new_options['gb_bordercolor'] = '#c0c0c0';
@@ -51,7 +51,7 @@ defined('ABSPATH') or die('INSERT COIN');
 		$options = get_option('borderedblocks_options');
 		
 		$script_vars = array(
-			'version' 		=> '1.1.1',
+			'version' 		=> '1.1.4',
 			'bordershow'	=> $options['gb_bordershow'],
 			'bordercolor'	=> $options['gb_bordercolor'],
 			'borderstyle'	=> $options['gb_borderstyle'],
@@ -67,13 +67,13 @@ defined('ABSPATH') or die('INSERT COIN');
 		);
 
 		$gb_version = get_option('borderedblocks_version');
-		$versionNum = '1.1.1';			
+		$versionNum = '1.1.4';			
 
 		wp_enqueue_script('borderedblocksLoader', plugins_url('/assets/js/bordered-blocks.js', __FILE__), array( 'jquery' ), $versionNum, true);
 		wp_localize_script( 'borderedblocksLoader', 'borderedblocks_loader', $script_vars );
 
 		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks.css', __FILE__) );
-	    wp_enqueue_style('borderedblocksAdminStyle');		
+	   wp_enqueue_style('borderedblocksAdminStyle');		
 	}
 
 
@@ -203,7 +203,7 @@ function borderedblocks_config_page() {
 								<td colspan="2">
 
 									<table class="form-table">
-										<tr>
+										<tr style="display: none;">
 											<th scope="row"><?php _e('Default State','Bordered Blocks'); ?> </th>
 											<td>
 												<fieldset>
@@ -480,6 +480,8 @@ function borderedblocks_config_page() {
 
 	function borderedblocks_process_options() {
 
+		$warning = 'false';
+
 		if ( !current_user_can( 'manage_options' ))
 			wp_die( 'Not allowed');
 
@@ -641,7 +643,7 @@ function borderedblocks_config_page() {
 	$plugin = plugin_basename(__FILE__); 
 
 	register_activation_hook( __FILE__, 'borderedblocks_default_options' );
-	add_action('enqueue_block_editor_assets', 'borderedblocks_styles' );
+	add_action('enqueue_block_assets', 'borderedblocks_styles' );
 	add_action('admin_menu', 'borderedblocks_menu');
 	add_action('admin_init', 'borderedblocks_admin_init' );
 	// add_action('admin_init', 'borderedblocks_version_update' );	
