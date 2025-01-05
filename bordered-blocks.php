@@ -5,7 +5,10 @@ Plugin URI: https://wordpress.org/plugins/bordered-blocks
 Description: Bordered Blocks adds subtle borders to all blocks in the WordPress Post/Page editor, to give you a clearer view of the layout of the blocks are on your page. Switch easily between default (clean) view, and bordered (clear) view.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 1.1.4
+Version: 1.1.5
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Text Domain: bordered-blocks
 */
 
 defined('ABSPATH') or die('INSERT COIN');
@@ -20,7 +23,7 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 
 	function borderedblocks_default_options() {
-		$versionNum = '1.1.4';
+		$versionNum = '1.1.5';
 		if (get_option('borderedblocks_options') === false) {
 			$new_options['gb_bordershow'] = '';
 			$new_options['gb_bordercolor'] = '#c0c0c0';
@@ -41,7 +44,6 @@ defined('ABSPATH') or die('INSERT COIN');
 	}
 
 
-
 /**
  * --- ADD THE .CSS AND .JS TO ADMIN MENU --------------------------------------------------------------
  */
@@ -51,7 +53,7 @@ defined('ABSPATH') or die('INSERT COIN');
 		$options = get_option('borderedblocks_options');
 		
 		$script_vars = array(
-			'version' 		=> '1.1.4',
+			'version' 		=> '1.1.5',
 			'bordershow'	=> $options['gb_bordershow'],
 			'bordercolor'	=> $options['gb_bordercolor'],
 			'borderstyle'	=> $options['gb_borderstyle'],
@@ -67,12 +69,12 @@ defined('ABSPATH') or die('INSERT COIN');
 		);
 
 		$gb_version = get_option('borderedblocks_version');
-		$versionNum = '1.1.4';			
+		$versionNum = '1.1.5';			
 
 		wp_enqueue_script('borderedblocksLoader', plugins_url('/assets/js/bordered-blocks.js', __FILE__), array( 'jquery' ), $versionNum, true);
 		wp_localize_script( 'borderedblocksLoader', 'borderedblocks_loader', $script_vars );
 
-		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks.css', __FILE__) );
+		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks.css', __FILE__),'', '1.1.5' );
 	   wp_enqueue_style('borderedblocksAdminStyle');		
 	}
 
@@ -120,21 +122,21 @@ function borderedblocks_config_page() {
 
 	<div id="borderedblocks-settings-general" class="wrap">
 
-		<h2><?php _e('Bordered Blocks Settings','Bordered Blocks'); ?></h2>
+		<h2><?php esc_html_e('Bordered Blocks Settings','bordered-blocks'); ?></h2>
 
 		<p>
-			<?php _e('Bordered Blocks adds (customizable) borders and labels to all Blocks in the Post/Page editor, to give you a clearer overview of the structure of your content.','Bordered Blocks'); ?>
+			<?php esc_html_e('Bordered Blocks adds (customizable) borders and labels to all Blocks in the Post/Page editor, to give you a clearer overview of the structure of your content.','bordered-blocks'); ?>
 			<br>
-			<?php _e('A toggle switch at the top of the page will allow you to quickly switch between the default clean editor view and the bordered clear view.','Bordered Blocks'); ?>
+			<?php esc_html_e('A toggle switch at the top of the page will allow you to quickly switch between the default clean editor view and the bordered clear view.','bordered-blocks'); ?>
 		</p>
 
 		<div class="main-content">
 
 			<h2 class="nav-tab-wrapper">	
-				<a class="nav-tab" href="#main"><?php _e('Settings','Bordered Blocks'); ?></a>
-				<a class="nav-tab" href="#faq"><?php _e('FAQ/Troubleshooting','Bordered Blocks'); ?></a>
-				<a class="nav-tab" href="#supported-blocks"><?php _e('Supported Blocks','Bordered Blocks'); ?></a>
-				<a class="nav-tab" href="#plugin-info"><?php _e('About','Bordered Blocks'); ?></a>
+				<a class="nav-tab" href="#main"><?php esc_html_e('Settings','bordered-blocks'); ?></a>
+				<a class="nav-tab" href="#faq"><?php esc_html_e('FAQ/Troubleshooting','bordered-blocks'); ?></a>
+				<a class="nav-tab" href="#supported-blocks"><?php esc_html_e('Supported Blocks','bordered-blocks'); ?></a>
+				<a class="nav-tab" href="#plugin-info"><?php esc_html_e('About','bordered-blocks'); ?></a>
 			</h2>
 
 			<br>
@@ -143,43 +145,43 @@ function borderedblocks_config_page() {
 
 				if ( isset( $_GET['message'] ) && ($_GET['message'] == '1')) { 
 					echo '<div id="message" class="fade updated"><p><strong>';
-					_e('Settings updated.','Bordered Blocks');
+					esc_html_e('Settings updated.','bordered-blocks');
 					echo '</strong></p></div>';
 				}	
 
 				if ( isset( $_GET['warning'] ) && ($_GET['warning'] == '1')) { 
 					echo '<div id="message" class="error"><p><strong>';
-					_e('WARNING! Please review the following settings:','Bordered Blocks');
+					esc_html_e('WARNING! Please review the following settings:','bordered-blocks');
 					echo '</strong></p><ul style="list-style-type: disc; margin: 0 0 20px 24px;">';
  			
 
 					if ( isset( $_GET['borderwarning'] ) && ($_GET['borderwarning'] == 'true')) { 
 						echo '<li>';
-						_e('One or more settings for the','Bordered Blocks');
+						esc_html_e('One or more settings for the','bordered-blocks');
 						echo ' <strong>';
-						_e('BORDER','Bordered Blocks');
+						esc_html_e('BORDER','bordered-blocks');
 						echo '</strong> ';
-						_e('were empty or invalid and were reverted to their previous values.','Bordered Blocks');
+						esc_html_e('were empty or invalid and were reverted to their previous values.','bordered-blocks');
 						echo '</li>';
 					} 	
 
 					if ( isset( $_GET['paddingwarning'] ) && ($_GET['paddingwarning'] == 'true')) { 
 						echo '<li>';
-						_e('One or more settings for the','Bordered Blocks');
+						esc_html_e('One or more settings for the','bordered-blocks');
 						echo ' <strong>';
-						_e('PADDING','Bordered Blocks');
+						esc_html_e('PADDING','bordered-blocks');
 						echo '</strong> ';
-						_e('were empty or invalid and were reverted to their previous values.','Bordered Blocks');
+						esc_html_e('were empty or invalid and were reverted to their previous values.','bordered-blocks');
 						echo '</li>';
 					} 	
 
 					if ( isset( $_GET['labelwarning'] ) && ($_GET['labelwarning'] == 'true')) { 
 						echo '<li>';
-						_e('One or more settings for the','Bordered Blocks');
+						esc_html_e('One or more settings for the','bordered-blocks');
 						echo ' <strong>';
-						_e('LABEL','Bordered Blocks');
+						esc_html_e('LABEL','bordered-blocks');
 						echo '</strong> ';
-						_e('were empty or invalid and were reverted to their previous values.','Bordered Blocks');
+						esc_html_e('were empty or invalid and were reverted to their previous values.','bordered-blocks');
 						echo '</li>';
 					} 	
 
@@ -204,16 +206,16 @@ function borderedblocks_config_page() {
 
 									<table class="form-table">
 										<tr style="display: none;">
-											<th scope="row"><?php _e('Default State','Bordered Blocks'); ?> </th>
+											<th scope="row"><?php esc_html_e('Default State','bordered-blocks'); ?> </th>
 											<td>
 												<fieldset>
 													<input type="checkbox" id="gb_bordershow" name="gb_bordershow" <?php if (esc_html($gb_bordershow )) echo ' checked="checked" ';?> />
-													<label for="gb_bordershow"><strong><?php _e('Show borders & labels by default','Bordered Blocks'); ?></strong></label>
+													<label for="gb_bordershow"><strong><?php esc_html_e('Show borders & labels by default','bordered-blocks'); ?></strong></label>
 													<br>
 													<em>
-													<?php _e('Selecting this option will always show the borders/labels of all Blocks on page load, which may cause performance issues.','Bordered Blocks'); ?>
+													<?php esc_html_e('Selecting this option will always show the borders/labels of all Blocks on page load, which may cause performance issues.','bordered-blocks'); ?>
 													<br>
-													<?php _e('Regardless of this setting, there will always be a toggle button at the top of on any Post/Page in the editor, allowing you to quicky switch between showing/hiding the borders.','Bordered Blocks'); ?>
+													<?php esc_html_e('Regardless of this setting, there will always be a toggle button at the top of on any Post/Page in the editor, allowing you to quicky switch between showing/hiding the borders.','bordered-blocks'); ?>
 													</em>
 												</fieldset>
 											</td>
@@ -229,25 +231,25 @@ function borderedblocks_config_page() {
 									<table class="border-table">
 										<tr>
 											<th colspan="2" class="table-title">
-												<input type="button" value="<?php _e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-border button-reset button-secondary"/>
-												<h2><?php _e('Borders','Bordered Blocks'); ?></h2>
+												<input type="button" value="<?php esc_html_e('Reset to defaults','bordered-blocks'); ?>" class="button-reset-border button-reset button-secondary"/>
+												<h2><?php esc_html_e('Borders','bordered-blocks'); ?></h2>
 											</th>
 										</tr>
 										<tr>
 											<th scope="row">
-												<?php _e('Border Style:','Bordered Blocks'); ?> 
-												<a href="#" class="help" title="<?php _e('Choose what type of line should be used for the borders.','Bordered Blocks'); ?>">?</a>
+												<?php esc_html_e('Border Style:','bordered-blocks'); ?> 
+												<a href="#" class="help" title="<?php esc_attr_e('Choose what type of line should be used for the borders.','bordered-blocks'); ?>">?</a>
 											</th>
 											<td class="borderstyle">
-												<fieldset><input type="radio" id="gb_type_1" name="gb_borderstyle" value="<?php _e('solid','Bordered Blocks'); ?>" <?php if (esc_html( $gb_borderstyle ) == "solid") {echo 'checked';} ?>><label id="borderstyle-1" for="gb_type_1"><?php _e('Solid','Bordered Blocks'); ?></label></fieldset>
-												<fieldset><input type="radio" id="gb_type_2" name="gb_borderstyle" value="<?php _e('dashed','Bordered Blocks'); ?>" <?php if (esc_html( $gb_borderstyle ) == "dashed") {echo 'checked';} ?>><label id="borderstyle-2" for="gb_type_2"><?php _e('Dashed','Bordered Blocks'); ?></label></fieldset>
-												<fieldset><input type="radio" id="gb_type_3" name="gb_borderstyle" value="<?php _e('dotted','Bordered Blocks'); ?>" <?php if (esc_html( $gb_borderstyle ) == "dotted") {echo 'checked';} ?>><label id="borderstyle-3" for="gb_type_3"><?php _e('Dotted','Bordered Blocks'); ?></label></fieldset>
+												<fieldset><input type="radio" id="gb_type_1" name="gb_borderstyle" value="<?php esc_attr_e('solid','bordered-blocks'); ?>" <?php if (esc_html( $gb_borderstyle ) == "solid") {echo 'checked';} ?>><label id="borderstyle-1" for="gb_type_1"><?php esc_attr_e('Solid','bordered-blocks'); ?></label></fieldset>
+												<fieldset><input type="radio" id="gb_type_2" name="gb_borderstyle" value="<?php esc_attr_e('dashed','bordered-blocks'); ?>" <?php if (esc_html( $gb_borderstyle ) == "dashed") {echo 'checked';} ?>><label id="borderstyle-2" for="gb_type_2"><?php esc_attr_e('Dashed','bordered-blocks'); ?></label></fieldset>
+												<fieldset><input type="radio" id="gb_type_3" name="gb_borderstyle" value="<?php esc_attr_e('dotted','bordered-blocks'); ?>" <?php if (esc_html( $gb_borderstyle ) == "dotted") {echo 'checked';} ?>><label id="borderstyle-3" for="gb_type_3"><?php esc_attr_e('Dotted','bordered-blocks'); ?></label></fieldset>
 											</td>
 										</tr>								
 										<tr>
 											<th scope="row">
-												<?php _e('Border Color:','Bordered Blocks'); ?> 
-												<a href="#" class="help" title="<?php _e('Choose the color of the borders.','Bordered Blocks'); ?>">?</a>
+												<?php esc_html_e('Border Color:','bordered-blocks'); ?> 
+												<a href="#" class="help" title="<?php esc_attr_e('Choose the color of the borders.','bordered-blocks'); ?>">?</a>
 											</th>
 											<td class="bordercolor">
 												<input type="text" name="gb_bordercolor" value="<?php echo esc_html( $gb_bordercolor ) ?>" class="field-colorpicker" />
@@ -255,8 +257,8 @@ function borderedblocks_config_page() {
 										</tr>
 										<tr>
 											<th scope="row">
-												<?php _e('Border Width (1-10):','Bordered Blocks'); ?> 
-												<a href="#" class="help" title="<?php _e('Choose the width of the borders (1-10).','Bordered Blocks'); ?>">?</a>
+												<?php esc_html_e('Border Width (1-10):','bordered-blocks'); ?> 
+												<a href="#" class="help" title="<?php esc_attr_e('Choose the width of the borders (1-10).','bordered-blocks'); ?>">?</a>
 											</th>
 											<td class="borderwidth">
 												<input type="number" min="1" max="10" name="gb_borderwidth" value="<?php echo esc_html( $gb_borderwidth ) ?>" /> px
@@ -268,60 +270,58 @@ function borderedblocks_config_page() {
 								<td rowspan="3" class="preview-cell">
 
 									<div class="prev-block">
-										<span class="block-label"><?php _e('HEADING','Bordered Blocks'); ?></span>
-										<h3><?php _e('PREVIEW','Bordered Blocks'); ?></h3>
+										<span class="block-label"><?php esc_html_e('HEADING','bordered-blocks'); ?></span>
+										<h3><?php esc_html_e('PREVIEW','bordered-blocks'); ?></h3>
 									</div>
 
 									<p class="prev-block">
-										<span class="block-label"><?php _e('PARAGRAPH','Bordered Blocks'); ?></span>
-										<?php _e('This is to give you a very rough idea how the blocks will look in your editor. Actual results may be different, depending on your theme.','Bordered Blocks'); ?>
+										<span class="block-label"><?php esc_html_e('PARAGRAPH','bordered-blocks'); ?></span>
+										<?php esc_html_e('This is to give you a very rough idea how the blocks will look in your editor. Actual results may be different, depending on your theme.','bordered-blocks'); ?>
 										<strong>
-											<?php _e('To view changes before you save/submit the settings, select the button below:','Bordered Blocks'); ?>
+											<?php esc_html_e('To view changes before you save/submit the settings, select the button below:','bordered-blocks'); ?>
 										</strong>
 									</p>
 
 									<div class="prev-block">
-										<span class="block-label"><?php _e('BUTTONS','Bordered Blocks'); ?></span>
+										<span class="block-label"><?php esc_html_e('BUTTONS','bordered-blocks'); ?></span>
 										
 										<div class="prev-block" style="display: inline-block;">
-											<span class="block-label"><?php _e('BUTTON','Bordered Blocks'); ?></span>
-											<input type="button" value="<?php _e('SHOW ME A PREVIEW!','Bordered Blocks'); ?>" class="button-preview button-primary"/>				
+											<span class="block-label"><?php esc_html_e('BUTTON','bordered-blocks'); ?></span>
+											<input type="button" value="<?php esc_html_e('SHOW ME A PREVIEW!','bordered-blocks'); ?>" class="button-preview button-primary"/>				
 										</div>
 
 									</div>
 
 									<div class="prev-block columns" data-type="COLUMNS">
-										<span class="block-label"><?php _e('COLUMNS','Bordered Blocks'); ?></span>
+										<span class="block-label"><?php esc_html_e('COLUMNS','bordered-blocks'); ?></span>
 										
 										<div class="prev-block column column-left" data-type="COLUMN">
-											<span class="block-label"><?php _e('COLUMN','Bordered Blocks'); ?></span>
+											<span class="block-label"><?php esc_html_e('COLUMN','bordered-blocks'); ?></span>
 
 											<p class="prev-block"> 
-												<span class="block-label"><?php _e('PARAGRAPH','Bordered Blocks'); ?></span>
-												<?php _e('And now a picture of a beautiful girl:','Bordered Blocks'); ?>
+												<span class="block-label"><?php esc_html_e('PARAGRAPH','bordered-blocks'); ?></span>
+												<?php esc_html_e('And now a picture of a beautiful girl:','bordered-blocks'); ?>
 											</p>
 
 											<div class="prev-image" data-type="IMAGE">
-												<span class="block-label"><?php _e('IMAGE','Bordered Blocks'); ?></span>
-												<?php define('sophieURL', plugins_url('/assets/img/sophie.png', __FILE__)); ?>
-												<img src="<?php echo esc_html(sophieURL); ?>">												
+												<span class="block-label"><?php esc_html_e('IMAGE','bordered-blocks'); ?></span>										
 											</div>											
 
 										</div>
 			
 										<div class="prev-block column column-right" data-type="COLUMN">
-											<span class="block-label"><?php _e('COLUMN','Bordered Blocks'); ?></span>
+											<span class="block-label"><?php esc_html_e('COLUMN','bordered-blocks'); ?></span>
 											
 											<p class="prev-block"> 
-												<span class="block-label"><?php _e('PARAGRAPH','Bordered Blocks'); ?></span>
-												<?php _e('We also have space for an additional joke.','Bordered Blocks'); ?>
+												<span class="block-label"><?php esc_html_e('PARAGRAPH','bordered-blocks'); ?></span>
+												<?php esc_html_e('We also have space for an additional joke.','bordered-blocks'); ?>
 											</p>
 
 											<div class="prev-block"> 
-												<span class="block-label"><?php _e('LIST','Bordered Blocks'); ?></span>
+												<span class="block-label"><?php esc_html_e('LIST','bordered-blocks'); ?></span>
 												<ul>
-													<li><?php _e('Q: What did the drummer call his twin daughters?','Bordered Blocks'); ?></li>
-													<li><?php _e('A: Anna One, Anna Two.','Bordered Blocks'); ?></li>
+													<li><?php esc_html_e('Q: What did the drummer call his twin daughters?','bordered-blocks'); ?></li>
+													<li><?php esc_html_e('A: Anna One, Anna Two.','bordered-blocks'); ?></li>
 												</ul>
 											</div>	
 
@@ -352,30 +352,30 @@ function borderedblocks_config_page() {
 									<table class="padding-table">
 										<tr>
 											<th colspan="3" class="table-title">
-												<input type="button" value="<?php _e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-padding button-reset button-secondary"/>
-												<h2><?php _e('Padding','Bordered Blocks'); ?></h2>
+												<input type="button" value="<?php esc_attr_e('Reset to defaults','bordered-blocks'); ?>" class="button-reset-padding button-reset button-secondary"/>
+												<h2><?php esc_html_e('Padding','bordered-blocks'); ?></h2>
 											</th>
 										</tr>								
 										<tr>
 											<td> </td>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingtop" value="<?php echo esc_html( $gb_paddingtop ) ?>" />
+												<input type="number" min="1" max="50" name="gb_paddingtop" value="<?php echo esc_attr( $gb_paddingtop ) ?>" />
 											</td>
 											<td> </td>			
 										</tr>
 										<tr>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo esc_html( $gb_paddingleft ) ?>" />
+												<input type="number" min="1" max="50" name="gb_paddingleft" value="<?php echo esc_attr( $gb_paddingleft ) ?>" />
 											</td>
-											<td class="padding-preview" style="border:<?php echo esc_html( $gb_borderstyle ).' '.esc_html( $gb_borderwidth ).'px '.esc_html( $gb_bordercolor ) ?>"> </td>
+											<td class="padding-preview" style="border:<?php echo esc_attr( $gb_borderstyle ).' '.esc_attr( $gb_borderwidth ).'px '.esc_attr( $gb_bordercolor ) ?>"> </td>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo esc_html( $gb_paddingright ) ?>" /> 
+												<input type="number" min="1" max="50" name="gb_paddingright" value="<?php echo esc_attr( $gb_paddingright ) ?>" /> 
 											</td>			
 										</tr>
 										<tr>
 											<td> </td>
 											<td>
-												<input type="number" min="1" max="50" name="gb_paddingbottom" value="<?php echo esc_html( $gb_paddingbottom ) ?>" />
+												<input type="number" min="1" max="50" name="gb_paddingbottom" value="<?php echo esc_attr( $gb_paddingbottom ) ?>" />
 											</td>
 											<td> </td>			
 										</tr>																				
@@ -390,47 +390,47 @@ function borderedblocks_config_page() {
 									<table class="label-table">
 										<tr>
 											<th colspan="2" class="table-title">
-												<input type="button" value="<?php _e('Reset to defaults','Bordered Blocks'); ?>" class="button-reset-label button-reset button-secondary"/>
-												<h2><?php _e('Labels','Bordered Blocks'); ?></h2>
+												<input type="button" value="<?php esc_attr_e('Reset to defaults','bordered-blocks'); ?>" class="button-reset-label button-reset button-secondary"/>
+												<h2><?php esc_html_e('Labels','bordered-blocks'); ?></h2>
 											</th>
 										</tr>	
 										<tr>
 											<th scope="row">
-												<?php _e('Background color:','Bordered Blocks'); ?>
-												<a href="#" class="help" title="<?php _e('Choose the background of the labels.','Bordered Blocks'); ?>">?</a>
+												<?php esc_html_e('Background color:','bordered-blocks'); ?>
+												<a href="#" class="help" title="<?php esc_attr_e('Choose the background of the labels.','bordered-blocks'); ?>">?</a>
 											</th>
 											<td class="labelbackground">
-												<input type="text" name="gb_labelbackground" value="<?php echo esc_html( $gb_labelbackground ) ?>" class="field-colorpicker" />
+												<input type="text" name="gb_labelbackground" value="<?php echo esc_attr( $gb_labelbackground ) ?>" class="field-colorpicker" />
 											</td>
 										</tr>								
 
 										<tr>
 											<th scope="row">
-												<?php _e('Text Color:','Bordered Blocks'); ?> 
-												<a href="#" class="help" title="<?php _e('Choose the color of the labels.','Bordered Blocks'); ?>">?</a>
+												<?php esc_html_e('Text Color:','bordered-blocks'); ?> 
+												<a href="#" class="help" title="<?php esc_attr_e('Choose the color of the labels.','bordered-blocks'); ?>">?</a>
 											</th>
 											<td class="labelcolor">
-												<input type="text" name="gb_labelcolor" value="<?php echo esc_html( $gb_labelcolor ) ?>" class="field-colorpicker" />
+												<input type="text" name="gb_labelcolor" value="<?php echo esc_attr( $gb_labelcolor ) ?>" class="field-colorpicker" />
 											</td>
 										</tr>
 
 										<tr>
 											<th scope="row">
-												<?php _e('Text size (0-30):','Bordered Blocks'); ?> 
-												<a href="#" class="help" title="<?php _e('Choose the text size of the labels. If 0, no labels will be shown at all.','Bordered Blocks'); ?>">?</a>
+												<?php esc_html_e('Text size (0-30):','bordered-blocks'); ?> 
+												<a href="#" class="help" title="<?php esc_attr_e('Choose the text size of the labels. If 0, no labels will be shown at all.','bordered-blocks'); ?>">?</a>
 											</th>
 											<td class="borderwidth">
-												<input type="number" min="1" max="30" name="gb_labelsize" value="<?php echo esc_html( $gb_labelsize ) ?>" /> px
+												<input type="number" min="1" max="30" name="gb_labelsize" value="<?php echo esc_attr( $gb_labelsize ) ?>" /> px
 											</td>
 										</tr>
 
 										<tr>
 											<th scope="row">
-												<?php _e('Opacity (0-10):','Bordered Blocks'); ?> 
-												<a href="#" class="help" title="<?php _e('Choose the opacity size of the labels. 0 = invisible, 10 = full opacity.','Bordered Blocks'); ?>">?</a>
+												<?php esc_html_e('Opacity (0-10):','bordered-blocks'); ?> 
+												<a href="#" class="help" title="<?php esc_attr_e('Choose the opacity size of the labels. 0 = invisible, 10 = full opacity.','bordered-blocks'); ?>">?</a>
 											</th>
 											<td class="borderwidth">
-												<input type="number" min="1" max="10" name="gb_labelopacity" value="<?php echo esc_html( $gb_labelopacity ) ?>" />
+												<input type="number" min="1" max="10" name="gb_labelopacity" value="<?php echo esc_attr( $gb_labelopacity ) ?>" />
 											</td>
 										</tr>
 									</table>
@@ -439,9 +439,9 @@ function borderedblocks_config_page() {
 							</tr>
 						</table>
 
-						<input type="button" value="<?php _e('Reset all to defaults','Bordered Blocks'); ?>" class="button-reset-all button-secondary"/>
-						<input type="button" value="<?php _e('Preview','Bordered Blocks'); ?>" class="button-preview button-secondary"/>
-						<input type="submit" value="<?php _e('SAVE SETTINGS','Bordered Blocks'); ?>" class="button-primary"/>
+						<input type="button" value="<?php esc_html_e('Reset all to defaults','bordered-blocks'); ?>" class="button-reset-all button-secondary"/>
+						<input type="button" value="<?php esc_html_e('Preview','bordered-blocks'); ?>" class="button-preview button-secondary"/>
+						<input type="submit" value="<?php esc_html_e('SAVE SETTINGS','bordered-blocks'); ?>" class="button-primary"/>
 
 						<p>&nbsp;</p>
 					</form>
@@ -498,13 +498,13 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_borderstyle') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} 
 		}
 
 		foreach ( array('gb_bordercolor') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) ) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', sanitize_text_field(wp_unslash($_POST[$option_name])))) ) {
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$borderwarning = 'true';
@@ -513,7 +513,7 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_borderwidth') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$borderwarning = 'true';				
@@ -522,7 +522,7 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_paddingtop') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$paddingwarning = 'true';
@@ -531,7 +531,7 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_paddingright') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$paddingwarning = 'true';				
@@ -540,7 +540,7 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_paddingbottom') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$paddingwarning = 'true';
@@ -549,7 +549,7 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_paddingleft') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$paddingwarning = 'true';
@@ -557,8 +557,8 @@ function borderedblocks_config_page() {
 		}							
 
 		foreach ( array('gb_labelbackground') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) ) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', sanitize_text_field(wp_unslash($_POST[$option_name])))) ) {
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$labelwarning = 'true';
@@ -566,8 +566,8 @@ function borderedblocks_config_page() {
 		}
 
 		foreach ( array('gb_labelcolor') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', $_POST[$option_name])) ) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', sanitize_text_field(wp_unslash($_POST[$option_name])))) ) {
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$labelwarning = 'true';
@@ -576,7 +576,7 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_labelsize') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} else {
 				$warning = 'true';
 				$labelwarning = 'true';				
@@ -585,7 +585,7 @@ function borderedblocks_config_page() {
 
 		foreach ( array('gb_labelopacity') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field( $_POST[$option_name] );
+				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
 			} 	else {
 				$warning = 'true';
 				$labelwarning = 'true';
@@ -622,17 +622,17 @@ function borderedblocks_config_page() {
 			return;
 		}
 
-		wp_register_script('borderedblocksAdminScript', plugins_url('/assets/js/bordered-blocks-admin.js', __FILE__), array( 'jquery' ), '1.0');
+		wp_register_script('borderedblocksAdminScript', plugins_url('/assets/js/bordered-blocks-admin.js', __FILE__), array( 'jquery' ), '1.1.5', array( 'in_footer' => true ));
 		wp_enqueue_script('borderedblocksAdminScript');
 
-		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks-admin.css', __FILE__) );
+		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks-admin.css', __FILE__),'', '1.1.5' );
 	    wp_enqueue_style('borderedblocksAdminStyle');		
 	}
 
 
 	function borderedblocks_color_picker( $hook_suffix ) {
 	    wp_enqueue_style( 'wp-color-picker' );
-	    wp_enqueue_script( 'borderedblocksColorpicker', plugins_url('/assets/js/colorpicker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
+	    wp_enqueue_script( 'borderedblocksColorpicker', plugins_url('/assets/js/colorpicker.js', __FILE__ ), array( 'wp-color-picker' ), '1.1.5', true );
 	}
 
 

@@ -145,6 +145,15 @@
 	max-width: 100%;
 }
 
+.form-table .prev-image:after {
+	content:"";
+	width:200px;
+	height: 200px;
+	display: block;
+	background-image:url('http://plugins-testground.local/wp-content/plugins/bordered-blocks/assets/img/sophie.png');
+	background-size: 200px 200px;
+}
+
 .form-table .preview-cell .block-label {
     transition: all 0.2s;
     position: absolute;

@@ -1,122 +1,122 @@
 
-<h2><p><?php _e('Supported Blocks','Bordered Blocks'); ?></h2>
+<h2><p><?php esc_html_e('Supported Blocks','bordered-blocks'); ?></h2>
 
-<p><?php _e('The current version of Bordered Blocks includes (but is not limited to) support for the following Blocks:','Bordered Blocks'); ?></p>
+<p><?php esc_html_e('The current version of Bordered Blocks includes (but is not limited to) support for the following Blocks:','bordered-blocks'); ?></p>
 
 <div class="supported-blocks">
 
 	<ul>
-		<li><strong><?php _e('TEXT:','Bordered Blocks'); ?></strong></li>
+		<li><strong><?php esc_html_e('TEXT:','bordered-blocks'); ?></strong></li>
 		<li><ul>
-			<li><?php _e('Paragraph','Bordered Blocks'); ?></li>
-			<li><?php _e('Heading','Bordered Blocks'); ?></li>
-			<li><?php _e('List','Bordered Blocks'); ?></li>
-			<li><?php _e('Quote','Bordered Blocks'); ?></li>
-			<li><?php _e('Classic','Bordered Blocks'); ?></li>
-			<li><?php _e('Code','Bordered Blocks'); ?></li>
-			<li><?php _e('Preformatted','Bordered Blocks'); ?></li>
-			<li><?php _e('Pullquote','Bordered Blocks'); ?></li>
-			<li><?php _e('Table','Bordered Blocks'); ?></li>
-			<li><?php _e('Verse','Bordered Blocks'); ?></li>
+			<li><?php esc_html_e('Paragraph','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Heading','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('List','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Quote','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Classic','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Code','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Preformatted','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Pullquote','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Table','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Verse','bordered-blocks'); ?></li>
 			</ul>
 		</li>
-		<li><strong><?php _e('MEDIA:','Bordered Blocks'); ?></strong></li>
+		<li><strong><?php esc_html_e('MEDIA:','bordered-blocks'); ?></strong></li>
 		<li><ul>
-			<li><?php _e('Image','Bordered Blocks'); ?></li>
-			<li><?php _e('Gallery','Bordered Blocks'); ?></li>
-			<li><?php _e('Audio','Bordered Blocks'); ?></li>
-			<li><?php _e('Cover','Bordered Blocks'); ?></li>
-			<li><?php _e('File','Bordered Blocks'); ?></li>
-			<li><?php _e('Code','Bordered Blocks'); ?></li>
-			<li><?php _e('Media &amp; Text','Bordered Blocks'); ?></li>
-			<li><?php _e('Video','Bordered Blocks'); ?></li>
+			<li><?php esc_html_e('Image','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Gallery','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Audio','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Cover','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('File','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Code','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Media &amp; Text','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Video','bordered-blocks'); ?></li>
 			</ul>
 		</li>
 	</ul>
 	<ul>
-		<li><strong><?php _e('DESIGN:','Bordered Blocks'); ?></strong></li>
+		<li><strong><?php esc_html_e('DESIGN:','bordered-blocks'); ?></strong></li>
 		<li><ul>
-			<li><?php _e('Buttons','Bordered Blocks'); ?></li>
-			<li><?php _e('Columns','Bordered Blocks'); ?></li>
-			<li><?php _e('Group','Bordered Blocks'); ?></li>
-			<li><?php _e('Row','Bordered Blocks'); ?></li>
-			<li><?php _e('More','Bordered Blocks'); ?></li>
-			<li><?php _e('Page Break','Bordered Blocks'); ?></li>
-			<li><?php _e('Separator','Bordered Blocks'); ?></li>
-			<li><?php _e('Spacer','Bordered Blocks'); ?></li>
+			<li><?php esc_html_e('Buttons','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Columns','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Group','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Row','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('More','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Page Break','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Separator','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Spacer','bordered-blocks'); ?></li>
 			</ul>
 		</li>	
-		<li><strong><?php _e('WIDGETS:','Bordered Blocks'); ?></strong></li>
+		<li><strong><?php esc_html_e('WIDGETS:','bordered-blocks'); ?></strong></li>
 		<li><ul>
-			<li><?php _e('Archives','Bordered Blocks'); ?></li>
-			<li><?php _e('Calendar','Bordered Blocks'); ?></li>
-			<li><?php _e('Categories','Bordered Blocks'); ?></li>
-			<li><?php _e('Custom HTML','Bordered Blocks'); ?></li>
-			<li><?php _e('Latest Comments','Bordered Blocks'); ?></li>
-			<li><?php _e('Latest Posts','Bordered Blocks'); ?></li>
-			<li><?php _e('Page List','Bordered Blocks'); ?></li>
-			<li><?php _e('RSS','Bordered Blocks'); ?></li>
-			<li><?php _e('Search','Bordered Blocks'); ?></li>
-			<li><?php _e('Shortcode','Bordered Blocks'); ?></li>
-			<li><?php _e('Social Icons','Bordered Blocks'); ?></li>				
-			<li><?php _e('Tag Cloud','Bordered Blocks'); ?></li>
+			<li><?php esc_html_e('Archives','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Calendar','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Categories','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Custom HTML','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Latest Comments','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Latest Posts','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Page List','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('RSS','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Search','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Shortcode','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Social Icons','bordered-blocks'); ?></li>				
+			<li><?php esc_html_e('Tag Cloud','bordered-blocks'); ?></li>
 			</ul>
 		</li>
 	</ul>
 	<ul>
-		<li><strong><?php _e('THEME:','Bordered Blocks'); ?></strong></li>
+		<li><strong><?php esc_html_e('THEME:','bordered-blocks'); ?></strong></li>
 		<li><ul>
-			<li><?php _e('Navigation','Bordered Blocks'); ?></li>
-			<li><?php _e('Site Logo','Bordered Blocks'); ?></li>
-			<li><?php _e('Site Title','Bordered Blocks'); ?></li>
-			<li><?php _e('Site Tagline','Bordered Blocks'); ?></li>
-			<li><?php _e('Query Loop','Bordered Blocks'); ?></li>
-			<li><?php _e('Posts List','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Title','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Excerpt','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Featured Image','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Content','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Author','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Date','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Categories','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Tags','Bordered Blocks'); ?></li>
-			<li><?php _e('Next Post','Bordered Blocks'); ?></li>
-			<li><?php _e('Previous Post','Bordered Blocks'); ?></li>
-			<li><?php _e('Post Comments','Bordered Blocks'); ?></li>
-			<li><?php _e('Login/out','Bordered Blocks'); ?></li>
-			<li><?php _e('Term Description','Bordered Blocks'); ?></li>
-			<li><?php _e('Archive Title','Bordered Blocks'); ?></li>
+			<li><?php esc_html_e('Navigation','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Site Logo','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Site Title','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Site Tagline','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Query Loop','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Posts List','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Title','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Excerpt','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Featured Image','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Content','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Author','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Date','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Categories','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Tags','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Next Post','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Previous Post','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Post Comments','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Login/out','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Term Description','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Archive Title','bordered-blocks'); ?></li>
 			</ul>
 		</li>			
 	</ul>
 	<ul style="clear: both;">
-		<li><strong><?php _e('WOOCOMMERCE:','Bordered Blocks'); ?></strong></li>
+		<li><strong><?php esc_html_e('WOOCOMMERCE:','bordered-blocks'); ?></strong></li>
 		<li><ul>
-			<li><?php _e('All Reviews','Bordered Blocks'); ?></li>
-			<li><?php _e('Featured Category','Bordered Blocks'); ?></li>
-			<li><?php _e('Featured Product','Bordered Blocks'); ?></li>
-			<li><?php _e('Hand-picked Products','Bordered Blocks'); ?></li>
-			<li><?php _e('Best Selling Products','Bordered Blocks'); ?></li>
-			<li><?php _e('Product Categories List','Bordered Blocks'); ?></li>
-			<li><?php _e('Products bu Category','Bordered Blocks'); ?></li>
-			<li><?php _e('Newest Products','Bordered Blocks'); ?></li>
-			<li><?php _e('On Sale Products','Bordered Blocks'); ?></li>
-			<li><?php _e('Products by Attribute','Bordered Blocks'); ?></li>
-			<li><?php _e('Top Rated Products','Bordered Blocks'); ?></li>
-			<li><?php _e('Reviews by Product','Bordered Blocks'); ?></li>
-			<li><?php _e('Reviews by Category','Bordered Blocks'); ?></li>
-			<li><?php _e('Product Search','Bordered Blocks'); ?></li>
-			<li><?php _e('Products by Tag','Bordered Blocks'); ?></li>
-			<li><?php _e('All Products','Bordered Blocks'); ?></li>
-			<li><?php _e('Filter Products by Price','Bordered Blocks'); ?></li>
-			<li><?php _e('Filter Products by Attribute','Bordered Blocks'); ?></li>
-			<li><?php _e('Filter Products by Stock','Bordered Blocks'); ?></li>
-			<li><?php _e('Active Product Filters','Bordered Blocks'); ?></li>			
+			<li><?php esc_html_e('All Reviews','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Featured Category','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Featured Product','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Hand-picked Products','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Best Selling Products','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Product Categories List','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Products bu Category','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Newest Products','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('On Sale Products','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Products by Attribute','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Top Rated Products','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Reviews by Product','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Reviews by Category','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Product Search','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Products by Tag','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('All Products','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Filter Products by Price','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Filter Products by Attribute','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Filter Products by Stock','bordered-blocks'); ?></li>
+			<li><?php esc_html_e('Active Product Filters','bordered-blocks'); ?></li>			
 			</ul>
 		</li>
 	</ul>	
 
-	<p><?php _e('Support for Jetpack Blocks will be included in a future version.','Bordered Blocks'); ?></p>
+	<p><?php esc_html_e('Support for Jetpack Blocks will be included in a future version.','bordered-blocks'); ?></p>
 
 
 </div>

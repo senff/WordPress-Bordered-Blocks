@@ -4,8 +4,8 @@
 * Tags: gutenberg, borders, editor, blocks, labels
 * Plugin URI: https://wordpress.org/plugins/bordered-blocks/
 * Requires at least: 5.9
-* Tested up to: 6.6.2
-* Stable tag: 1.1.4
+* Tested up to: 6.7
+* Stable tag: 1.1.5
 * License: GPLv3 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,8 +17,6 @@ Bordered Blocks adds subtle borders to all blocks in the WordPress Post/Page edi
 ### Summary
 
 Bordered Blocks adds (customizable) borders and labels to all Blocks in the Post/Page editor, to give you an instant overview of the layout of your page and how all Blocks relate to eachother.
-
-A toggle switch at the top of each Post or Page in the editor will allow you to quickly switch between the default editor view and the bordered view.
 
 Choose between the default CLEAN view, or a CLEAR view.
 
@@ -93,6 +91,9 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 ## Changelog
 
+### 1.1.5
+* Adjusted some code to better adhere to plugin standards.
+
 ### 1.1.4
 * Removed the ON/OFF toggle in the editor since it was not working with WordPress 6.6.2
 
@@ -115,6 +116,9 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 
 ## Upgrade Notice 
+
+### 1.1.5
+* Code updates
 
 ### 1.1.4
 * Emergency fix
