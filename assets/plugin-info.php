@@ -13,7 +13,7 @@
 		<li><strong>
 			<?php esc_html_e('Version:','bordered-blocks'); ?>
 			</strong> 
-			1.1.4
+			1.1.6
 		</li>
 		<li><strong>
 			<?php esc_html_e('Detailed Documentation:','bordered-blocks'); ?>

@@ -116,14 +116,14 @@ jQuery(function($) {
         $('#borderedBlocks-css-dynamic').html(cssCode);        
     }
 
-    var addToggleButton = setInterval(function() {
-        if(   (!$('.edit-post-header-toolbar__left').hasClass('hasToggle')) && (!$('.editor-document-tools__left').hasClass('hasToggle')) ) {
-            addToggle();
-        } else {
+//    var addToggleButton = setInterval(function() {
+//        if(   (!$('.edit-post-header-toolbar__left').hasClass('hasToggle')) && (!$('.editor-document-tools__left').hasClass('hasToggle')) ) {
+//            addToggle();
+//       } else {
         // End this silly loop
-            clearInterval(addToggleButton);
-        }
-    }, 1000);
+//            clearInterval(addToggleButton);
+//        }
+//    }, 1000);
 
     var checkBlockTypes = setInterval(function() {
         checkBlocks();

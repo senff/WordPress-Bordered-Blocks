@@ -5,7 +5,7 @@ Tags: gutenberg, borders, editor, blocks, labels
 Plugin URI: https://wordpress.org/plugins/bordered-blocks/
 Requires at least: 5.9
 Tested up to: 6.7
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -90,6 +90,9 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 == Changelog ==
 
+= 1.1.6 =
+* Removed old JS routine that caused error message in console.
+
 = 1.1.5 =
 * Adjusted some code to better adhere to plugin standards.
 
@@ -115,6 +118,9 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 
 == Upgrade Notice ==
+
+= 1.1.6 =
+* JS bug fix
 
 = 1.1.5 =
 * Code updates
