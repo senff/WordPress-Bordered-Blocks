@@ -17,7 +17,7 @@
     transition: all 0.3s;
 }
 
-body:not(.borderedblocks) .borderedblocks-label {
+.editor-styles-wrapper:not(.borderedblocks) .borderedblocks-label {
     display: none !important;
 }
 
@@ -33,12 +33,12 @@ body:not(.borderedblocks) .borderedblocks-label {
     border-color: #00000 !important;
 }
 
-.borderedblocks .components-placeholder.components-placeholder {
+.editor-styles-wrapper.borderedblocks .components-placeholder.components-placeholder {
     max-width: 100% !important;
     overflow: hidden;
 }
 
-.borderedblocks .components-placeholder.components-placeholder:hover {
+.editor-styles-wrapper.borderedblocks .components-placeholder.components-placeholder:hover {
     overflow: initial;
 }
 
@@ -73,8 +73,8 @@ body:not(.borderedblocks) .borderedblocks-label {
     border-radius: 0;
 }
 
-.editor-styles-wrapper .wp-block img,
-.editor-styles-wrapper .wp-block video {
+.editor-styles-wrapper.borderedblocks .wp-block img,
+.editor-styles-wrapper.borderedblocks .wp-block video {
     opacity: 0.75;
 }
 
@@ -83,15 +83,15 @@ body:not(.borderedblocks) .borderedblocks-label {
 }
 
 .editor-styles-wrapper .contains-blocks[data-title] *[data-title]{
-    margin-top: 0
+    margin-top: 0;
 }
 
 /* ------------------------------------------------------------------ */
 /* These are some exceptional cases that we need to hard-code for now */
 /* ------------------------------------------------------------------ */
 
-.editor-styles-wrapper h1 {position: relative;}
-.editor-styles-wrapper h1:before {content:"H1 Title";}
+.editor-styles-wrapper.borderedblocks h1 {position: relative;}
+.editor-styles-wrapper.borderedblocks h1:before {content:"H1 Title";}
 
 
 

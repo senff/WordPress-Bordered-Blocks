@@ -1,4 +1,4 @@
-
+<?php defined('ABSPATH') or die('INSERT COIN'); ?>
 <h2><p><?php esc_html_e('Supported Blocks','bordered-blocks'); ?></h2>
 
 <p><?php esc_html_e('The current version of Bordered Blocks includes (but is not limited to) support for the following Blocks:','bordered-blocks'); ?></p>

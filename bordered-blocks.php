@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugins/bordered-blocks
 Description: Bordered Blocks adds subtle borders to all blocks in the WordPress Post/Page editor, to give you a clearer view of the layout of the blocks are on your page. Switch easily between default (clean) view, and bordered (clear) view.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 1.1.6
+Version: 1.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: bordered-blocks
@@ -23,7 +23,7 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 
 	function borderedblocks_default_options() {
-		$versionNum = '1.1.6';
+		$versionNum = '1.2';
 		if (get_option('borderedblocks_options') === false) {
 			$new_options['gb_bordershow'] = '';
 			$new_options['gb_bordercolor'] = '#c0c0c0';
@@ -53,7 +53,7 @@ defined('ABSPATH') or die('INSERT COIN');
 		$options = get_option('borderedblocks_options');
 		
 		$script_vars = array(
-			'version' 		=> '1.1.6',
+			'version' 		=> '1.2',
 			'bordershow'	=> $options['gb_bordershow'],
 			'bordercolor'	=> $options['gb_bordercolor'],
 			'borderstyle'	=> $options['gb_borderstyle'],
@@ -68,13 +68,12 @@ defined('ABSPATH') or die('INSERT COIN');
 			'labelsize'	=> $options['gb_labelsize']	      
 		);
 
-		$gb_version = get_option('borderedblocks_version');
-		$versionNum = '1.1.6';			
+		$versionNum = '1.2';
 
 		wp_enqueue_script('borderedblocksLoader', plugins_url('/assets/js/bordered-blocks.js', __FILE__), array( 'jquery' ), $versionNum, true);
 		wp_localize_script( 'borderedblocksLoader', 'borderedblocks_loader', $script_vars );
 
-		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks.css', __FILE__),'', '1.1.6' );
+		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks.css', __FILE__),'', '1.2' );
 	   wp_enqueue_style('borderedblocksAdminStyle');		
 	}
 
@@ -92,10 +91,10 @@ defined('ABSPATH') or die('INSERT COIN');
  * --- ADD LINK TO SETTINGS PAGE TO PLUGIN ------------------------------------------------------------
  */
 
-	function borderedblocks_settings_link($links) { 
-		$settings_link = '<a href="options-general.php?page=borderedblocksconfig">Settings</a>'; 
-		array_unshift($links, $settings_link); 
-		return $links; 
+	function borderedblocks_settings_link($links) {
+		$settings_link = '<a href="' . esc_url( 'options-general.php?page=borderedblocksconfig' ) . '">Settings</a>';
+		array_unshift($links, $settings_link);
+		return $links;
 	}
 
 /**
@@ -143,19 +142,21 @@ function borderedblocks_config_page() {
 
 			<?php 
 
-				if ( isset( $_GET['message'] ) && ($_GET['message'] == '1')) { 
+				$has_valid_message_nonce = isset( $_GET['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'borderedblocks_message' );
+
+				if ( $has_valid_message_nonce && isset( $_GET['message'] ) && ($_GET['message'] == '1')) {
 					echo '<div id="message" class="fade updated"><p><strong>';
 					esc_html_e('Settings updated.','bordered-blocks');
 					echo '</strong></p></div>';
-				}	
+				}
 
-				if ( isset( $_GET['warning'] ) && ($_GET['warning'] == '1')) { 
+				if ( $has_valid_message_nonce && isset( $_GET['warning'] ) && ($_GET['warning'] == '1')) {
 					echo '<div id="message" class="error"><p><strong>';
 					esc_html_e('WARNING! Please review the following settings:','bordered-blocks');
 					echo '</strong></p><ul style="list-style-type: disc; margin: 0 0 20px 24px;">';
- 			
 
-					if ( isset( $_GET['borderwarning'] ) && ($_GET['borderwarning'] == 'true')) { 
+
+					if ( isset( $_GET['borderwarning'] ) && ($_GET['borderwarning'] == 'true')) {
 						echo '<li>';
 						esc_html_e('One or more settings for the','bordered-blocks');
 						echo ' <strong>';
@@ -163,9 +164,9 @@ function borderedblocks_config_page() {
 						echo '</strong> ';
 						esc_html_e('were empty or invalid and were reverted to their previous values.','bordered-blocks');
 						echo '</li>';
-					} 	
+					}
 
-					if ( isset( $_GET['paddingwarning'] ) && ($_GET['paddingwarning'] == 'true')) { 
+					if ( isset( $_GET['paddingwarning'] ) && ($_GET['paddingwarning'] == 'true')) {
 						echo '<li>';
 						esc_html_e('One or more settings for the','bordered-blocks');
 						echo ' <strong>';
@@ -173,9 +174,9 @@ function borderedblocks_config_page() {
 						echo '</strong> ';
 						esc_html_e('were empty or invalid and were reverted to their previous values.','bordered-blocks');
 						echo '</li>';
-					} 	
+					}
 
-					if ( isset( $_GET['labelwarning'] ) && ($_GET['labelwarning'] == 'true')) { 
+					if ( isset( $_GET['labelwarning'] ) && ($_GET['labelwarning'] == 'true')) {
 						echo '<li>';
 						esc_html_e('One or more settings for the','bordered-blocks');
 						echo ' <strong>';
@@ -183,10 +184,10 @@ function borderedblocks_config_page() {
 						echo '</strong> ';
 						esc_html_e('were empty or invalid and were reverted to their previous values.','bordered-blocks');
 						echo '</li>';
-					} 	
+					}
 
 					echo '</ul></div>';
-				} 
+				}
 
 			?>
 		
@@ -205,7 +206,7 @@ function borderedblocks_config_page() {
 								<td colspan="2">
 
 									<table class="form-table">
-										<tr style="display: none;">
+										<tr>
 											<th scope="row"><?php esc_html_e('Default State','bordered-blocks'); ?> </th>
 											<td>
 												<fieldset>
@@ -304,7 +305,9 @@ function borderedblocks_config_page() {
 											</p>
 
 											<div class="prev-image" data-type="IMAGE">
-												<span class="block-label"><?php esc_html_e('IMAGE','bordered-blocks'); ?></span>										
+												<span class="block-label"><?php esc_html_e('IMAGE','bordered-blocks'); ?></span>
+												<?php $sophie_url = plugins_url('/assets/img/sophie.png', __FILE__); ?>
+												<img src="<?php echo esc_url( $sophie_url ); ?>" alt="">
 											</div>											
 
 										</div>
@@ -480,7 +483,10 @@ function borderedblocks_config_page() {
 
 	function borderedblocks_process_options() {
 
-		$warning = 'false';
+		$warning       = 'false';
+		$borderwarning = 'false';
+		$paddingwarning = 'false';
+		$labelwarning  = 'false';
 
 		if ( !current_user_can( 'manage_options' ))
 			wp_die( 'Not allowed');
@@ -496,10 +502,12 @@ function borderedblocks_config_page() {
 			}
 		}
 
-		foreach ( array('gb_borderstyle') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
-			} 
+		$allowed_borderstyles = array( 'solid', 'dashed', 'dotted' );
+		if ( isset( $_POST['gb_borderstyle'] ) && in_array( sanitize_text_field( wp_unslash( $_POST['gb_borderstyle'] ) ), $allowed_borderstyles, true ) ) {
+			$options['gb_borderstyle'] = sanitize_text_field( wp_unslash( $_POST['gb_borderstyle'] ) );
+		} else {
+			$warning = 'true';
+			$borderwarning = 'true';
 		}
 
 		foreach ( array('gb_bordercolor') as $option_name ) {
@@ -511,50 +519,34 @@ function borderedblocks_config_page() {
 			}
 		}
 
-		foreach ( array('gb_borderwidth') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
+		if ( isset( $_POST['gb_borderwidth'] ) ) {
+			$val = absint( $_POST['gb_borderwidth'] );
+			if ( $val >= 1 && $val <= 10 ) {
+				$options['gb_borderwidth'] = $val;
 			} else {
 				$warning = 'true';
-				$borderwarning = 'true';				
+				$borderwarning = 'true';
 			}
-		}		
+		} else {
+			$warning = 'true';
+			$borderwarning = 'true';
+		}
 
-		foreach ( array('gb_paddingtop') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
+		$padding_fields = array( 'gb_paddingtop', 'gb_paddingright', 'gb_paddingbottom', 'gb_paddingleft' );
+		foreach ( $padding_fields as $option_name ) {
+			if ( isset( $_POST[$option_name] ) ) {
+				$val = absint( $_POST[$option_name] );
+				if ( $val >= 1 && $val <= 50 ) {
+					$options[$option_name] = $val;
+				} else {
+					$warning = 'true';
+					$paddingwarning = 'true';
+				}
 			} else {
 				$warning = 'true';
 				$paddingwarning = 'true';
 			}
-		}	
-
-		foreach ( array('gb_paddingright') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
-			} else {
-				$warning = 'true';
-				$paddingwarning = 'true';				
-			}
-		}	
-
-		foreach ( array('gb_paddingbottom') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
-			} else {
-				$warning = 'true';
-				$paddingwarning = 'true';
-			}
-		}	
-
-		foreach ( array('gb_paddingleft') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
-			} else {
-				$warning = 'true';
-				$paddingwarning = 'true';
-			}
-		}							
+		}
 
 		foreach ( array('gb_labelbackground') as $option_name ) {
 			if ( (isset( $_POST[$option_name] )) && (preg_match('/^#[a-f0-9]{6}$/i', sanitize_text_field(wp_unslash($_POST[$option_name])))) ) {
@@ -574,38 +566,46 @@ function borderedblocks_config_page() {
 			}
 		}
 
-		foreach ( array('gb_labelsize') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
+		if ( isset( $_POST['gb_labelsize'] ) ) {
+			$val = absint( $_POST['gb_labelsize'] );
+			if ( $val >= 0 && $val <= 30 ) {
+				$options['gb_labelsize'] = $val;
 			} else {
-				$warning = 'true';
-				$labelwarning = 'true';				
-			}
-		}
-
-		foreach ( array('gb_labelopacity') as $option_name ) {
-			if ( (isset( $_POST[$option_name] )) && ($_POST[$option_name] != '')) {
-				$options[$option_name] = sanitize_text_field(wp_unslash($_POST[$option_name] ));
-			} 	else {
 				$warning = 'true';
 				$labelwarning = 'true';
 			}
+		} else {
+			$warning = 'true';
+			$labelwarning = 'true';
+		}
+
+		if ( isset( $_POST['gb_labelopacity'] ) ) {
+			$val = absint( $_POST['gb_labelopacity'] );
+			if ( $val >= 0 && $val <= 10 ) {
+				$options['gb_labelopacity'] = $val;
+			} else {
+				$warning = 'true';
+				$labelwarning = 'true';
+			}
+		} else {
+			$warning = 'true';
+			$labelwarning = 'true';
 		}
 
 		update_option( 'borderedblocks_options', $options );	
 
 		if ($warning == 'true') {
-	 		wp_redirect( add_query_arg(
-	 			array('page' => 'borderedblocksconfig', 'message' => '1', 'warning' => '1', 'borderwarning' => $borderwarning, 'paddingwarning' => $paddingwarning, 'labelwarning' => $labelwarning, ),
-	 			admin_url( 'options-general.php' ) 
+	 		wp_safe_redirect( add_query_arg(
+	 			array('page' => 'borderedblocksconfig', 'message' => '1', 'warning' => '1', 'borderwarning' => $borderwarning, 'paddingwarning' => $paddingwarning, 'labelwarning' => $labelwarning, '_wpnonce' => wp_create_nonce('borderedblocks_message')),
+	 			admin_url( 'options-general.php' )
 	 			)
 	 		);
 		} else {
-	 		wp_redirect( add_query_arg(
-	 			array('page' => 'borderedblocksconfig', 'message' => '1'),
-	 			admin_url( 'options-general.php' ) 
+	 		wp_safe_redirect( add_query_arg(
+	 			array('page' => 'borderedblocksconfig', 'message' => '1', '_wpnonce' => wp_create_nonce('borderedblocks_message')),
+	 			admin_url( 'options-general.php' )
 	 			)
-	 		);	
+	 		);
  		}
 
 		exit;
@@ -622,17 +622,20 @@ function borderedblocks_config_page() {
 			return;
 		}
 
-		wp_register_script('borderedblocksAdminScript', plugins_url('/assets/js/bordered-blocks-admin.js', __FILE__), array( 'jquery' ), '1.1.6', array( 'in_footer' => true ));
+		wp_register_script('borderedblocksAdminScript', plugins_url('/assets/js/bordered-blocks-admin.js', __FILE__), array( 'jquery' ), '1.2', array( 'in_footer' => true ));
 		wp_enqueue_script('borderedblocksAdminScript');
 
-		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks-admin.css', __FILE__),'', '1.1.6' );
+		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks-admin.css', __FILE__),'', '1.2' );
 	    wp_enqueue_style('borderedblocksAdminStyle');		
 	}
 
 
 	function borderedblocks_color_picker( $hook_suffix ) {
+		if ( $hook_suffix !== 'settings_page_borderedblocksconfig' ) {
+			return;
+		}
 	    wp_enqueue_style( 'wp-color-picker' );
-	    wp_enqueue_script( 'borderedblocksColorpicker', plugins_url('/assets/js/colorpicker.js', __FILE__ ), array( 'wp-color-picker' ), '1.1.6', true );
+	    wp_enqueue_script( 'borderedblocksColorpicker', plugins_url('/assets/js/colorpicker.js', __FILE__ ), array( 'wp-color-picker' ), '1.2', true );
 	}
 
 

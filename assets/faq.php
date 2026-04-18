@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') or die('INSERT COIN'); ?>
 <h2>
 	<?php esc_html_e('FAQ','bordered-blocks'); ?>/<?php esc_html_e('Troubleshooting','bordered-blocks'); ?>
 </h2>
@@ -41,7 +42,7 @@
 </p>
 
 <p>
-	<?php esc_html_e('While that used to be the case until version 1.1.3, this option has been removed for now as it did not appear to be working anymore with WordPress 6.6.2. I will look into adding this again, but for now, the borders are always showing in the editor as long as the plugin is active.','bordered-blocks'); ?>
+	<?php esc_html_e('Pretty much, yes. In the plugin\'s settings, you can choose to have the editor show the standard view by default, -OR- the bordered view. If you have the standard view, then flipping the switch at the top of the page will quickly show all borders/labels. If you have the bordered view, flipping the switch will quickly remove all borders/labels and go back to the standard view.','bordered-blocks'); ?>
 </p>
 
 <p>

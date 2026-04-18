@@ -150,7 +150,7 @@
 	width:200px;
 	height: 200px;
 	display: block;
-	background-image:url('http://plugins-testground.local/wp-content/plugins/bordered-blocks/assets/img/sophie.png');
+	background-image:url('/assets/img/sophie.png');
 	background-size: 200px 200px;
 }
 

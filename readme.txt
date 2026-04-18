@@ -3,9 +3,9 @@ Contributors: senff, correliebre
 Donate link: https://donate.senff.com
 Tags: gutenberg, borders, editor, blocks, labels
 Plugin URI: https://wordpress.org/plugins/bordered-blocks/
-Requires at least: 5.9
-Tested up to: 6.7
-Stable tag: 1.1.6
+Requires at least: 6.0
+Tested up to: 6.9
+Stable tag: 1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -52,7 +52,7 @@ Although you can leave the "bordered" view on when you create/edit pages, it is 
 
 = Can borders be turned on and off instantly?
 
-While that used to be the case until version 1.1.3, this option has been removed for now as it did not appear to be working anymore with WordPress 6.6.2. I will look into adding this again, but for now, the borders are always showing in the editor as long as the plugin is active.
+Pretty much, yes. In the plugin's settings, you can choose to have the editor show the standard view by default, -OR- the bordered view. If you have the standard view, then flipping the switch at the top of the page will quickly show all borders/labels. If you have the bordered view, flipping the switch will quickly remove all borders/labels and go back to the standard view.
 
 = Some of my blocks don't have a label, look weird, etc.
 
@@ -90,6 +90,13 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 == Changelog ==
 
+= 1.2 =
+* Toggle button to turn borders on/off instantly is back! And backwards compatible with older WP versions.
+* Code fixes.
+
+= 1.1.7 =
+* Re-adding image of beautiful girl that was accidentally removed in previous version.
+
 = 1.1.6 =
 * Removed old JS routine that caused error message in console.
 
@@ -118,6 +125,12 @@ Please go to the plugin's community support forum at https://wordpress.org/suppo
 
 
 == Upgrade Notice ==
+
+= 1.2 =
+* Toggle button feature is back!
+
+= 1.1.7 = 
+* Bug fix
 
 = 1.1.6 =
 * JS bug fix

@@ -1,3 +1,4 @@
+<?php defined('ABSPATH') or die('INSERT COIN'); ?>
 <h3>
 	<?php esc_html_e('Plugin info','bordered-blocks'); ?>
 </h3>
@@ -13,7 +14,7 @@
 		<li><strong>
 			<?php esc_html_e('Version:','bordered-blocks'); ?>
 			</strong> 
-			1.1.6
+			1.2
 		</li>
 		<li><strong>
 			<?php esc_html_e('Detailed Documentation:','bordered-blocks'); ?>
@@ -28,7 +29,7 @@
 		<li><strong>
 			<?php esc_html_e('Github:','bordered-blocks'); ?>
 			</strong> 
-			<a href="https://github.com/senff/bordered-blocks" target="_blank"><?php esc_html_e( 'Code','bordered-blocks'); ?></a>
+			<a href="https://github.com/senff/WordPress-Bordered-Blocks" target="_blank"><?php esc_html_e( 'Code','bordered-blocks'); ?></a>
 		</li>
 		<li><strong>
 			<?php esc_html_e('Donate:','bordered-blocks'); ?>
