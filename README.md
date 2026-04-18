@@ -1,4 +1,4 @@
-=== Bordered Blocks - Add subtle borders or outlines and labels to Blocks in the Editor 
+# Bordered Blocks - Add subtle borders or outlines and labels to Blocks in the Editor 
 * Contributors: senff, correliebre
 * Donate link: https://donate.senff.com
 * Tags: gutenberg, borders, editor, blocks, labels
