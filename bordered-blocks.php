@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugins/bordered-blocks
 Description: Bordered Blocks adds subtle borders to all blocks in the WordPress Post/Page editor, to give you a clearer view of the layout of the blocks are on your page. Switch easily between default (clean) view, and bordered (clear) view.
 Author: Senff
 Author URI: http://www.senff.com
-Version: 1.2
+Version: 1.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: bordered-blocks
@@ -23,7 +23,7 @@ defined('ABSPATH') or die('INSERT COIN');
  */
 
 	function borderedblocks_default_options() {
-		$versionNum = '1.2';
+		$versionNum = '1.2.1';
 		if (get_option('borderedblocks_options') === false) {
 			$new_options['gb_bordershow'] = '';
 			$new_options['gb_bordercolor'] = '#c0c0c0';
@@ -53,7 +53,7 @@ defined('ABSPATH') or die('INSERT COIN');
 		$options = get_option('borderedblocks_options');
 		
 		$script_vars = array(
-			'version' 		=> '1.2',
+			'version' 		=> '1.2.1',
 			'bordershow'	=> $options['gb_bordershow'],
 			'bordercolor'	=> $options['gb_bordercolor'],
 			'borderstyle'	=> $options['gb_borderstyle'],
@@ -68,12 +68,12 @@ defined('ABSPATH') or die('INSERT COIN');
 			'labelsize'	=> $options['gb_labelsize']	      
 		);
 
-		$versionNum = '1.2';
+		$versionNum = '1.2.1';
 
 		wp_enqueue_script('borderedblocksLoader', plugins_url('/assets/js/bordered-blocks.js', __FILE__), array( 'jquery' ), $versionNum, true);
 		wp_localize_script( 'borderedblocksLoader', 'borderedblocks_loader', $script_vars );
 
-		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks.css', __FILE__),'', '1.2' );
+		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks.css', __FILE__),'', '1.2.1' );
 	   wp_enqueue_style('borderedblocksAdminStyle');		
 	}
 
@@ -622,10 +622,10 @@ function borderedblocks_config_page() {
 			return;
 		}
 
-		wp_register_script('borderedblocksAdminScript', plugins_url('/assets/js/bordered-blocks-admin.js', __FILE__), array( 'jquery' ), '1.2', array( 'in_footer' => true ));
+		wp_register_script('borderedblocksAdminScript', plugins_url('/assets/js/bordered-blocks-admin.js', __FILE__), array( 'jquery' ), '1.2.1', array( 'in_footer' => true ));
 		wp_enqueue_script('borderedblocksAdminScript');
 
-		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks-admin.css', __FILE__),'', '1.2' );
+		wp_register_style('borderedblocksAdminStyle', plugins_url('/assets/css/bordered-blocks-admin.css', __FILE__),'', '1.2.1' );
 	    wp_enqueue_style('borderedblocksAdminStyle');		
 	}
 
@@ -635,7 +635,7 @@ function borderedblocks_config_page() {
 			return;
 		}
 	    wp_enqueue_style( 'wp-color-picker' );
-	    wp_enqueue_script( 'borderedblocksColorpicker', plugins_url('/assets/js/colorpicker.js', __FILE__ ), array( 'wp-color-picker' ), '1.2', true );
+	    wp_enqueue_script( 'borderedblocksColorpicker', plugins_url('/assets/js/colorpicker.js', __FILE__ ), array( 'wp-color-picker' ), '1.2.1', true );
 	}
 
 

@@ -138,10 +138,11 @@ jQuery(function($) {
         // First line is updated - we can remove the second line a few versions down the road.
         $('.editor-document-tools__left').append('<div class="borderedblocks-header"><span class="borderedblocks-toggle components-form-toggle is-'+checkedornot+'"><input class="components-form-toggle__input" id="borderedblocks-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" '+checkedornot+'><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="borderedblocks-toggle">Show borders/labels</label></span></div>').addClass('hasToggle');
         $('.edit-post-header-toolbar__left').append('<div class="borderedblocks-header"><span class="borderedblocks-toggle components-form-toggle is-'+checkedornot+'"><input class="components-form-toggle__input" id="borderedblocks-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" '+checkedornot+'><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="borderedblocks-toggle">Show borders/labels</label></span></div>').addClass('hasToggle');
+        $('.edit-widgets-header__navigable-toolbar-wrapper').append('<div class="borderedblocks-header"><span class="borderedblocks-toggle components-form-toggle is-'+checkedornot+'"><input class="components-form-toggle__input" id="borderedblocks-toggle" type="checkbox" aria-describedby="inspector-toggle-contr-0__help" '+checkedornot+'><span class="components-form-toggle__track"></span><span class="components-form-toggle__thumb"></span><label for="borderedblocks-toggle">Show borders/labels</label></span></div>').addClass('hasToggle');
     }
 
     // Click handler lives in the parent document; it reaches into editorDoc to toggle the class
-    $('#editor').on('click','.borderedblocks-toggle',function(){
+    $(document).on('click','.borderedblocks-toggle',function(){
         $(this).toggleClass('is-checked');
         if (editorDoc) {
             $(editorDoc).find('.editor-styles-wrapper').toggleClass('borderedblocks');
@@ -160,7 +161,7 @@ jQuery(function($) {
     }, 500);
 
     var addToggleButton = setInterval(function() {
-        if ((!$('.edit-post-header-toolbar__left').hasClass('hasToggle')) && (!$('.editor-document-tools__left').hasClass('hasToggle'))) {
+        if ((!$('.edit-post-header-toolbar__left').hasClass('hasToggle')) && (!$('.editor-document-tools__left').hasClass('hasToggle')) && (!$('.edit-widgets-header__navigable-toolbar-wrapper').hasClass('hasToggle'))) {
             addToggle();
         } else {
             // End this silly loop
